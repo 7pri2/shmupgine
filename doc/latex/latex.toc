@@ -1,0 +1,19 @@
+\select@language {french}
+\contentsline {part}{I\hspace {1em}L'\'editeur}{2}
+\contentsline {part}{II\hspace {1em}Le moteur}{3}
+\contentsline {chapter}{\numberline {1}Introduction}{4}
+\contentsline {chapter}{\numberline {2}Constantes}{5}
+\contentsline {chapter}{\numberline {3}Types}{6}
+\contentsline {chapter}{\numberline {4}Classes}{7}
+\contentsline {section}{\numberline {4.1}Entity}{7}
+\contentsline {subsection}{\numberline {4.1.1}Attributs}{7}
+\contentsline {subsection}{\numberline {4.1.2}M\'ethodes}{7}
+\contentsline {subsection}{\numberline {4.1.3}Cr\'eer une entit\'e personnalis\'e}{8}
+\contentsline {section}{\numberline {4.2}Attribute}{9}
+\contentsline {subsection}{\numberline {4.2.1}Attributs}{9}
+\contentsline {subsection}{\numberline {4.2.2}M\'ethodes}{10}
+\contentsline {subsection}{\numberline {4.2.3}Cr\'eer un attribut personnalis\'e}{10}
+\contentsline {section}{\numberline {4.3}Scene}{11}
+\contentsline {subsection}{\numberline {4.3.1}Attributs}{11}
+\contentsline {subsection}{\numberline {4.3.2}M\'ethodes}{11}
+\contentsline {subsection}{\numberline {4.3.3}Utiliser une sc\`ene}{12}
