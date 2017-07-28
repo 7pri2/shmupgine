@@ -18,7 +18,7 @@ int main() {
 	e3->allocate_attribute<physics>();
 	e3->allocate_attribute<graphicrenderer>();
 	e3->allocate_attribute<destructor>();
-	e3->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
+	e3->get_attribute<graphicrenderer>()->set_texture("btl");
 	e3->get_attribute<destructor>()->f_when_out_of_bounds = true;
 	e3->get_attribute<physics>()->set_force(sf::Vector2f(0, -1));
 	e3->get_attribute<physics>()->set_velocity(30);
@@ -28,13 +28,13 @@ int main() {
 	e1->allocate_attribute<graphicrenderer>();
 	e1->allocate_attribute<destructor>();
 	e1->allocate_attribute<spawner>();
-	e1->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
+	e1->get_attribute<graphicrenderer>()->set_texture("btl");
 	e1->get_attribute<spawner>()->set_profile(e3);
 	e1->get_attribute<spawner>()->spawn();
 
 	e2->allocate_attribute<destructor>();
 	e2->allocate_attribute<graphicrenderer>();
-	e2->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
+	e2->get_attribute<graphicrenderer>()->set_texture("btl");
 
 	sc1.add_entity(e1);
 	sc1.add_entity(e2);

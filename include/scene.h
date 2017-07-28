@@ -27,7 +27,7 @@ public:
 /* Fonctions d'interactions avec le moteur */
 	void 	add_entity(entity* en);
 	void 	remove_entity(entity* en);
-	entity*	get_entity(entity* en);
+	bool	entity_exists(entity* en);
 
 /* Fonction de manipulation des groupes d'entites */
 	void	add_to_group(std::string groupname, entity* en);

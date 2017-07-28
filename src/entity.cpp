@@ -43,7 +43,7 @@ void entity::run_attributes() {
 void entity::move(sf::Vector2f offset) {
 	position += offset;
 	if(get_attribute<graphicrenderer>() != NULL)
-		get_attribute<graphicrenderer>()->sprite.setPosition(position);
+		get_attribute<graphicrenderer>()->m_sprite.setPosition(position);
 }
 
 void entity::move(float x, float y) {
@@ -53,7 +53,7 @@ void entity::move(float x, float y) {
 void entity::set_position(sf::Vector2f pos) {
 	position = pos;
 	if(get_attribute<graphicrenderer>() != NULL)
-		get_attribute<graphicrenderer>()->sprite.setPosition(position);
+		get_attribute<graphicrenderer>()->m_sprite.setPosition(position);
 }
 
 void entity::set_position(float x, float y) {

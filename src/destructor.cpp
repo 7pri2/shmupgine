@@ -31,10 +31,10 @@ void destructor::run() {
 				parent_scene->remove_entity(parent);
 			}
 		for(std::list<entity*>::iterator it = m_entities.begin(); it != m_entities.end(); ++it) {
-			if(	parent_scene->get_entity(*it) != NULL
+			if(	parent_scene->entity_exists(*it)
 				&& parent->get_attribute<graphicrenderer>() != NULL 
 				&& (*it)->get_attribute<graphicrenderer>() != NULL 
-				&& parent->get_attribute<graphicrenderer>()->sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->sprite.getGlobalBounds())) {
+				&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds())) {
 #ifdef DEBUG
 				std::cout << debug::attr << "\n\tcollision with" << *it << ", destruction will be requested." << debug::reset << " ";
 #endif
@@ -44,10 +44,10 @@ void destructor::run() {
 		for(std::list<std::string>::iterator g_it = m_groups.begin(); g_it != m_groups.end(); ++g_it) {
 			std::list<entity*> current_group = parent_scene->get_group(*g_it);
 			for(std::list<entity*>::iterator it = current_group.begin(); it != current_group.end(); ++it) {
-				if(	parent_scene->get_entity(*it) != NULL
+				if(	parent_scene->entity_exists(*it)
 					&& parent->get_attribute<graphicrenderer>() != NULL 
 					&& (*it)->get_attribute<graphicrenderer>() != NULL 
-					&& parent->get_attribute<graphicrenderer>()->sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->sprite.getGlobalBounds())) {
+					&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds())) {
 #ifdef DEBUG
 					std::cout << debug::attr << "\n\tcollision with" << *it << ", destruction will be requested." << debug::reset << " ";
 #endif
@@ -78,7 +78,7 @@ bool destructor::collides(entity* en) {
 	if(	!m_destruction_requested
 		&& parent->get_attribute<graphicrenderer>() != NULL 
 		&& en->get_attribute<graphicrenderer>() != NULL 
-		&& parent->get_attribute<graphicrenderer>()->sprite.getGlobalBounds().intersects(en->get_attribute<graphicrenderer>()->sprite.getGlobalBounds())) {
+		&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects(en->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds())) {
 		return true;
 	} 	else return false;
 }
@@ -86,10 +86,10 @@ bool destructor::collides(entity* en) {
 bool destructor::collides_something() {
 	if(!m_destruction_requested)
 		for(std::list<entity*>::iterator it = m_entities.begin(); it != m_entities.end(); ++it)
-			if(parent->parent->get_entity(*it) != NULL
+			if(parent->parent->entity_exists(*it)
 				&& parent->get_attribute<graphicrenderer>() != NULL 
 				&& (*it)->get_attribute<graphicrenderer>() != NULL 
-				&& parent->get_attribute<graphicrenderer>()->sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->sprite.getGlobalBounds()))
+				&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds()))
 				return true;
 	return false;
 }

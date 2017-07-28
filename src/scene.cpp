@@ -73,11 +73,11 @@ void scene::remove_entities() {
 	}
 }
 
-entity*	scene::get_entity(entity* en) {
+bool	scene::entity_exists(entity* en) {
 	for(std::list<entity*>::iterator it = scene::entities.begin(); it != scene::entities.end(); ++it)
 		if(*it == en)
-			return en;
-	return NULL;
+			return true;
+	return false;
 }
 
 void scene::add_to_group(std::string groupname, entity* en) {

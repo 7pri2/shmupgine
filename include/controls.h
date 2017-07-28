@@ -2,7 +2,6 @@
 #define __controls_H__	
 
 #include "attribute.h"
-#include <map>
 
 /* "controls" est un attribut qui permet de gérer les appuis sur les touches 
  * directionnelles pour déplacer l'entité parente	*/
