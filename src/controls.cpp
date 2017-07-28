@@ -25,7 +25,7 @@ void controls::run() {
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		parent->move(0, 0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds());
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		parent->getAttribute<spawner>()->spawn();
+		parent->get_attribute<spawner>()->spawn();
 	}
 #ifdef DEBUG
 	std::cout << debug::done;

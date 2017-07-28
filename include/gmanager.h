@@ -5,7 +5,7 @@
 #include <map>
 
 #define DEF_BULLET_SIZE	16
-#define BULLETPATH    "bullet.png"
+#define BULLETPATH    	"res/bullet.png"
 
 namespace gmanager {
 /* Texture par défaut de la classe "bullet" et bibliothèque de textures pour le 

@@ -13,20 +13,20 @@ int main() {
 	entity *heros = new entity(sf::Vector2f(208, 800));
 	entity *bullet = new entity;
 
-	heros->allocateAttribute<graphicrenderer>();
-	heros->allocateAttribute<controls>();
-	heros->allocateAttribute<spawner>();
-	heros->getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["heros"]);
-	heros->getAttribute<spawner>()->set_profile(bullet);
-	heros->getAttribute<controls>()->move_speed = 200;
+	heros->allocate_attribute<graphicrenderer>();
+	heros->allocate_attribute<controls>();
+	heros->allocate_attribute<spawner>();
+	heros->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["heros"]);
+	heros->get_attribute<spawner>()->set_profile(bullet);
+	heros->get_attribute<controls>()->move_speed = 200;
 
-	bullet->allocateAttribute<destructor>();
-	bullet->allocateAttribute<graphicrenderer>();
-	bullet->allocateAttribute<physics>();
-	bullet->getAttribute<destructor>()->whenOutOfBounds = true;
-	bullet->getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["bullet"]);
-	bullet->getAttribute<physics>()->setForce(sf::Vector2f(0, -1));
-	bullet->getAttribute<physics>()->setVelocity(160);
+	bullet->allocate_attribute<destructor>();
+	bullet->allocate_attribute<graphicrenderer>();
+	bullet->allocate_attribute<physics>();
+	bullet->get_attribute<destructor>()->f_when_out_of_bounds = true;
+	bullet->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["bullet"]);
+	bullet->get_attribute<physics>()->set_force(sf::Vector2f(0, -1));
+	bullet->get_attribute<physics>()->set_velocity(160);
 
 	sc1.add_entity(heros);
 	sc1.run();

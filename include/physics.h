@@ -17,8 +17,8 @@ public:
 
 /* Applique une force à l'entité parente ainsi qu'une vélocité en pixels par 
  * seconde.	*/
-	void	setForce(sf::Vector2f force);
-	void	setVelocity(float velocity);
+	void	set_force(sf::Vector2f force);
+	void	set_velocity(float velocity);
 
 private:
 	virtual void 		run();

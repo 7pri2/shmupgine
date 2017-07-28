@@ -15,26 +15,26 @@ int main() {
 
 	std::cout << e3;
 
-	e3->allocateAttribute<physics>();
-	e3->allocateAttribute<graphicrenderer>();
-	e3->allocateAttribute<destructor>();
-	e3->getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
-	e3->getAttribute<destructor>()->whenOutOfBounds = true;
-	e3->getAttribute<physics>()->setForce(sf::Vector2f(0, -1));
-	e3->getAttribute<physics>()->setVelocity(30);
-	e3->getAttribute<destructor>()->addCollision_entity(e2);
+	e3->allocate_attribute<physics>();
+	e3->allocate_attribute<graphicrenderer>();
+	e3->allocate_attribute<destructor>();
+	e3->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
+	e3->get_attribute<destructor>()->f_when_out_of_bounds = true;
+	e3->get_attribute<physics>()->set_force(sf::Vector2f(0, -1));
+	e3->get_attribute<physics>()->set_velocity(30);
+	e3->get_attribute<destructor>()->add_collision_entity(e2);
 	
-	e1->allocateAttribute<controls>();
-	e1->allocateAttribute<graphicrenderer>();
-	e1->allocateAttribute<destructor>();
-	e1->allocateAttribute<spawner>();
-	e1->getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
-	e1->getAttribute<spawner>()->set_profile(e3);
-	e1->getAttribute<spawner>()->spawn();
+	e1->allocate_attribute<controls>();
+	e1->allocate_attribute<graphicrenderer>();
+	e1->allocate_attribute<destructor>();
+	e1->allocate_attribute<spawner>();
+	e1->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
+	e1->get_attribute<spawner>()->set_profile(e3);
+	e1->get_attribute<spawner>()->spawn();
 
-	e2->allocateAttribute<destructor>();
-	e2->allocateAttribute<graphicrenderer>();
-	e2->getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
+	e2->allocate_attribute<destructor>();
+	e2->allocate_attribute<graphicrenderer>();
+	e2->get_attribute<graphicrenderer>()->sprite.setTexture(*gmanager::textures["btl"]);
 
 	sc1.add_entity(e1);
 	sc1.add_entity(e2);

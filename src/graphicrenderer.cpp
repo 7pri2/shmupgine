@@ -1,7 +1,7 @@
 #include "graphicrenderer.h"
 
 graphicrenderer::graphicrenderer(entity* parent) : attribute(parent) {
-	sprite.setPosition(parent->getPosition());
+	sprite.setPosition(parent->get_position());
 }
 
 graphicrenderer::~graphicrenderer() {

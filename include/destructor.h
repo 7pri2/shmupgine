@@ -20,12 +20,12 @@ public:
 
 /* Ajoute une entité ou un groupe à la liste des entités ou des groupes avec 
  * lesquel(le)s la collision détruit l'entité parente */
-	void	addCollision_entity(entity* en);
-	void	addGroup(std::string group);
+	void	add_collision_entity(entity* en);
+	void	add_collision_group(std::string group);
 
 /* Interrupteur qui indique si l'entité est détruite si elle sort de l'écran */
-	bool 	whenOutOfBounds;
-	bool	isOutOfBounds();
+	bool 	f_when_out_of_bounds;
+	bool	is_out_of_bounds();
 
 /* Fonctions permettant de connaître des informations à propos des collisions
  * /!\  Attention: l'utilisation de l'attribut "destructor" pour connaître des 

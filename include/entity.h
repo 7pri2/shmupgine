@@ -32,14 +32,14 @@ public:
 /* Tres dangereux, pour la copie uniquement, et a virer ensuite 
  * A REMPLACER DES QUE POSSIBLE PAR LA FONCTION SUIVANTE */
 	// + WIP, car en fait faut recreer les objets !
-	template<typename T> void allocateAttribute(T* ptr) {
+	template<typename T> void allocate_attribute(T* ptr) {
 		attributes.push_back(ptr->make_copy(this));
 	}
 
 
 /* Permet d'allouer en mémoire un attribut dans la liste d'attributs de
  * l'entité 
-	template<typename T> void allocateAttribute(T* newptr) {
+	template<typename T> void allocate_attribute(T* newptr) {
 		for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
 			if(dynamic_cast<T*>(*it) != NULL)
 				return;
@@ -48,7 +48,7 @@ public:
 	}
 	*/
 
-	template<typename T> void allocateAttribute() {
+	template<typename T> void allocate_attribute() {
 		for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
 			if(dynamic_cast<T*>(*it) != NULL)
 				return;
@@ -56,7 +56,7 @@ public:
 	}
 
 /* Permet de récupérer un attribut en particulier de l'entité */
-	template<typename T> T* getAttribute() {
+	template<typename T> T* get_attribute() {
 		for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
 			if(dynamic_cast<T*>(*it) != NULL)
 				return (T*)*it;
@@ -64,11 +64,11 @@ public:
 	}
 
 /* Fonctions relatives à la position de l'entité sur la scene */
-	sf::Vector2f	getPosition() const;
+	sf::Vector2f	get_position() const;
 	void 			move(sf::Vector2f offset);
 	void 			move(float x, float y);
-	void 			setPosition(sf::Vector2f pos);
-	void 			setPosition(float x, float y);
+	void 			set_position(sf::Vector2f pos);
+	void 			set_position(float x, float y);
 
 
 protected:

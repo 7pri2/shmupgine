@@ -35,7 +35,7 @@ void spawner::run() {
 		std::cout << debug::pattr("Spawn requested");
 #endif
 		if(f_spawn_at_parent)
-			to_spawn->setPosition(parent->getPosition());
+			to_spawn->set_position(parent->get_position());
 		parent->parent->add_entity(new entity(to_spawn));
 		f_spawn_requested = false;
 	}

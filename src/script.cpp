@@ -22,7 +22,7 @@ void script::run() {
 #endif
 }
 
-void script::setLoopFunction(std::function<void()> loop) {
+void script::set_loop_function(std::function<void()> loop) {
 	m_loop = loop;
 }
 

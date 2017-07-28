@@ -11,7 +11,7 @@ entity::entity(entity* en) {
 	parent = en->parent;
 	position = en->position;
 	for(attr_table::iterator it = en->attributes.begin(); it != en->attributes.end(); ++it)
-		allocateAttribute(*it);
+		allocate_attribute(*it);
 }
 
 entity::entity(scene* parent) : entity() {
@@ -42,24 +42,24 @@ void entity::run_attributes() {
 	
 void entity::move(sf::Vector2f offset) {
 	position += offset;
-	if(getAttribute<graphicrenderer>() != NULL)
-		getAttribute<graphicrenderer>()->sprite.setPosition(position);
+	if(get_attribute<graphicrenderer>() != NULL)
+		get_attribute<graphicrenderer>()->sprite.setPosition(position);
 }
 
 void entity::move(float x, float y) {
 	this->move(sf::Vector2f(x,y));
 }
 
-void entity::setPosition(sf::Vector2f pos) {
+void entity::set_position(sf::Vector2f pos) {
 	position = pos;
-	if(getAttribute<graphicrenderer>() != NULL)
-		getAttribute<graphicrenderer>()->sprite.setPosition(position);
+	if(get_attribute<graphicrenderer>() != NULL)
+		get_attribute<graphicrenderer>()->sprite.setPosition(position);
 }
 
-void entity::setPosition(float x, float y) {
-	this->setPosition(sf::Vector2f(x, y));
+void entity::set_position(float x, float y) {
+	this->set_position(sf::Vector2f(x, y));
 }
 
-sf::Vector2f entity::getPosition() const {
+sf::Vector2f entity::get_position() const {
 	return position;
 }

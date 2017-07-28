@@ -1,5 +1,5 @@
-#ifndef __script_H__
-#define __script_H__	
+#ifndef __SCRIPT_H__
+#define __SCRIPT_H__	
 
 #include "attribute.h"
 #include <functional>
@@ -10,7 +10,7 @@ public:
 	script(entity* parent);
 	~script();
 
-	void	setLoopFunction(std::function<void()> loop);
+	void	set_loop_function(std::function<void()> loop);
 
 private:
 	virtual void 			run();

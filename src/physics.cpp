@@ -26,11 +26,11 @@ void physics::run() {
 #endif
 }
 
-void physics::setForce(sf::Vector2f force) {
+void physics::set_force(sf::Vector2f force) {
 	this->force = force;
 }
 
-void physics::setVelocity(float velocity) {
+void physics::set_velocity(float velocity) {
 	this->velocity = velocity;
 }
 
