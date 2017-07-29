@@ -8,7 +8,7 @@ TESTS=tests/
 CXX=g++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++11 -pedantic-errors -I$(HEADERS)
 SFML=-lsfml-graphics -lsfml-window -lsfml-system
-EXECUTABLES=test test2
+EXECUTABLES=test
 DEBUG=-g
 
 all: executables
@@ -37,9 +37,6 @@ FILES=systems.o			\
 	  script.o
 
 OBJS=$(patsubst %,$(OBJ)%,$(FILES))
-
-test2: $(TESTS)test2.cpp $(HEADERS)shmupgine.h $(OBJS) 
-	$(CXX) $(CXXFLAGS) $< -o $(TESTS)$@ $(SFML) $(OBJS)
 
 test: $(TESTS)test.cpp $(HEADERS)shmupgine.h $(OBJS)
 	$(CXX) $(CXXFLAGS) $< -o $(TESTS)$@ $(SFML) $(OBJS)
