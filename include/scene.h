@@ -7,6 +7,7 @@
 #include "debug.h"
 
 class entity;
+class destructor;
 
 typedef std::list<entity*> group;
 
@@ -16,6 +17,7 @@ typedef std::list<entity*> group;
  * 3/ La scène est lancée grâce à la méthode run()	*/
 
 class scene {
+	friend class destructor;
 public:
 	scene();
 	~scene();
@@ -33,7 +35,9 @@ public:
 	void	add_to_group(std::string groupname, entity* en);
 	void	remove_from_group(std::string groupname, entity* en);
 	bool	belongs_to_group(std::string groupname, entity* en);
-	group	get_group(std::string groupname);
+	/* Fonction pour connaitre si une entite du groupe entre en collision avec
+	 * l'entite passee en parametre */
+	bool	group_collides(std::string groupname, entity* en);
 
 private:
 /* update est la fonction qui permet de mettre à jour la scène, de gérer
@@ -49,9 +53,9 @@ private:
  * les effets de leurs attributs qui sont activés */
 	void 	run_attributes();
 
-	std::map<std::string, group>	groups;
-	std::list<entity*>				entities;
-	std::vector<entity*>			to_be_removed;
+	std::map<std::string, group>	m_groups;
+	std::list<entity*>				m_entities;
+	std::vector<entity*>			m_to_be_removed;
 };
 
 #endif

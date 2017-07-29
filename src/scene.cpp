@@ -1,6 +1,7 @@
 #include "scene.h"
 #include "systems.h"
 #include "entity.h"
+#include "destructor.h"
 
 scene::scene() {}
 
@@ -8,16 +9,16 @@ scene::~scene() {}
 
 void scene::update() {
 	shmupgine::window.clear();
-	scene::run_attributes();
+	run_attributes();
 	shmupgine::window.display();
-	scene::remove_entities();
+	remove_entities();
 }
 
 void scene::run_attributes() {
 #ifdef DEBUG
 	std::cout << debug::ptitle("===== Loop =====\n");
 #endif
-	for(std::list<entity*>::iterator it = scene::entities.begin(); it != scene::entities.end(); ++it)
+	for(std::list<entity*>::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)
 		(*it)->run_attributes();
 }
 
@@ -52,29 +53,29 @@ void scene::add_entity(entity* en) {
 	std::cout << debug::scene << en << " added to the scene\n" << debug::reset;
 #endif
 	en->parent = this;
-	scene::entities.push_back(en);
+	scene::m_entities.push_back(en);
 }
 
 void scene::remove_entity(entity* en) {
 #ifdef DEBUG
 	std::cout << "\n" << debug::scene << en << " added to suppression list." << debug::reset;
 #endif
-	to_be_removed.push_back(en);
+	m_to_be_removed.push_back(en);
 }
 
 void scene::remove_entities() {
-	while(!to_be_removed.empty()) {
+	while(!m_to_be_removed.empty()) {
 #ifdef DEBUG
-		std::cout << debug::scene << to_be_removed.back() << " removed from the scene.\n" << debug::reset;
+		std::cout << debug::scene << m_to_be_removed.back() << " removed from the scene.\n" << debug::reset;
 #endif
-		scene::entities.remove(to_be_removed.back());
-		delete to_be_removed.back();
-		to_be_removed.pop_back();
+		scene::m_entities.remove(m_to_be_removed.back());
+		delete m_to_be_removed.back();
+		m_to_be_removed.pop_back();
 	}
 }
 
 bool	scene::entity_exists(entity* en) {
-	for(std::list<entity*>::iterator it = scene::entities.begin(); it != scene::entities.end(); ++it)
+	for(std::list<entity*>::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)
 		if(*it == en)
 			return true;
 	return false;
@@ -82,24 +83,27 @@ bool	scene::entity_exists(entity* en) {
 
 void scene::add_to_group(std::string groupname, entity* en) {
 	if(!belongs_to_group(groupname, en))
-		groups[groupname].push_back(en);
+		m_groups[groupname].push_back(en);
 }
 
 void scene::remove_from_group(std::string groupname, entity* en) {
-	for(group::iterator it = groups[groupname].begin(); it != groups[groupname].end(); ++it)
+	for(group::iterator it = m_groups[groupname].begin(); it != m_groups[groupname].end(); ++it)
 		if(*it == en) {
-			groups[groupname].erase(it);
+			m_groups[groupname].erase(it);
 			break;
 		}
 }
 
 bool scene::belongs_to_group(std::string groupname, entity* en) {
-	for(group::iterator it = groups[groupname].begin(); it != groups[groupname].end(); ++it)
+	for(group::iterator it = m_groups[groupname].begin(); it != m_groups[groupname].end(); ++it)
 		if(*it == en)
 			return true;
 	return false;
 }
 
-group scene::get_group(std::string groupname) {
-	return groups[groupname];
+bool scene::group_collides(std::string groupname, entity* en) {
+	for(group::iterator it = m_groups[groupname].begin(); it != m_groups[groupname].end(); ++it)
+		if((*it)->get_attribute<destructor>() && (*it)->get_attribute<destructor>()->collides(en))
+			return true;
+	return false;
 }

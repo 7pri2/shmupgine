@@ -42,7 +42,7 @@ void destructor::run() {
 			}
 		}
 		for(std::list<std::string>::iterator g_it = m_groups.begin(); g_it != m_groups.end(); ++g_it) {
-			std::list<entity*> current_group = parent_scene->get_group(*g_it);
+			std::list<entity*> current_group = parent_scene->m_groups[*g_it];
 			for(std::list<entity*>::iterator it = current_group.begin(); it != current_group.end(); ++it) {
 				if(	parent_scene->entity_exists(*it)
 					&& parent->get_attribute<graphicrenderer>() != NULL 

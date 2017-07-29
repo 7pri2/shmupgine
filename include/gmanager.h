@@ -1,5 +1,5 @@
-#ifndef __gmanager_H__
-#define __gmanager_H__	
+#ifndef __GMANAGER_H__
+#define __GMANAGER_H__	
 
 #include <SFML/Graphics.hpp>
 #include <map>
