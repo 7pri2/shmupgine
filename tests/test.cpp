@@ -15,6 +15,7 @@ int main() {
 	entity *bullet = new entity;
 	entity *enemy_bullet = new entity;
 	entity *op1	= new entity(sf::Vector2f(208, 100));
+	/*
 	entity *_script = new entity;
 
 	_script->allocate_attribute<script>();
@@ -36,6 +37,7 @@ int main() {
 					op1->get_attribute<destructor>()->destroy();
 			}
 		});
+	*/
 
 	op1->allocate_attribute<graphicrenderer>();
 	op1->allocate_attribute<spawner>();
@@ -51,7 +53,7 @@ int main() {
 	enemy_bullet->get_attribute<destructor>()->f_when_out_of_bounds = true;
 	enemy_bullet->get_attribute<graphicrenderer>()->set_texture("bullet");
 	enemy_bullet->get_attribute<graphicrenderer>()->colorify(RGBA(200, 50, 50));
-	enemy_bullet->get_attribute<physics>()->set_force(sf::Vector2f(0, 1));
+	enemy_bullet->get_attribute<physics>()->set_force_angle(90);
 	enemy_bullet->get_attribute<physics>()->set_velocity(120);
 	enemy_bullet->get_attribute<destructor>()->add_collision_entity(heros);
 
@@ -69,18 +71,19 @@ int main() {
 	bullet->allocate_attribute<physics>();
 	bullet->get_attribute<destructor>()->f_when_out_of_bounds = true;
 	bullet->get_attribute<graphicrenderer>()->set_texture("bullet");
-	bullet->get_attribute<physics>()->set_force(sf::Vector2f(0, -1));
+	bullet->get_attribute<physics>()->set_force_angle(270);
 	bullet->get_attribute<physics>()->set_velocity(160);
 	bullet->get_attribute<destructor>()->add_collision_entity(op1);
 
 	sc1.add_entity(heros);
 	sc1.add_entity(op1);
-	sc1.add_entity(_script);
+//	sc1.add_entity(_script);
 	sc1.run();
 
 	delete heros;
 	delete bullet;
 	delete enemy_bullet;
+	delete op1;
 
 	return 0;
 }

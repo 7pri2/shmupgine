@@ -2,7 +2,11 @@
 #define __PHYSICS_H__	
 
 #include <SFML/Graphics.hpp>
+#include <cmath>
 #include "attribute.h"
+
+#define PI 3.14159265
+#define FORCE sf::Vector2f(cos(m_force_angle*PI/180),sin(m_force_angle*PI/180))
 
 /* Attribut qui permet de faire se mouvoir dans la scène une entité selon une 
  * force et une vélocité */
@@ -12,20 +16,21 @@
 class physics : public attribute {
 public:
 	physics(entity* parent);
-	physics(entity* parent, sf::Vector2f force, float velocity);
+	physics(entity* parent, int angle, float velocity);
 	virtual ~physics();
 
 /* Applique une force à l'entité parente ainsi qu'une vélocité en pixels par 
  * seconde.	*/
-	void	set_force(sf::Vector2f force);
+	void	set_force_angle(int angle);
 	void	set_velocity(float velocity);
+	void	rotate_force(int degrees);
 
 private:
 	virtual void 		run();
 	virtual physics*	make_copy(entity* newparent);
 
-	sf::Vector2f	force;
-	float			velocity;
+	int		m_force_angle;
+	float	m_velocity;
 };
 
 #endif
