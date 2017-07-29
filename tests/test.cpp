@@ -5,8 +5,8 @@ using namespace std;
 
 int main() {
 	shmupgine::init();
-	gmanager::new_texture("heros", "res/ship.png", 64, 64);
-	gmanager::new_texture("bullet", "res/bullet_fire.png", 32, 32);
+	gmanager::instance().new_texture("heros", "res/ship.png", 64, 64);
+	gmanager::instance().new_texture("bullet", "res/bullet_fire.png", 32, 32);
 
 	scene sc1;
 	
@@ -30,7 +30,6 @@ int main() {
 
 	sc1.add_entity(heros);
 	sc1.run();
-	shmupgine::close();
 
 	delete heros;
 	delete bullet;

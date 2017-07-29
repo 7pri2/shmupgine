@@ -14,14 +14,7 @@ namespace shmupgine {
 	extern sf::RenderWindow		window;
 	extern sf::Clock			clock;
 	
-/* Les trois fonctions principales du moteur: init pour initialiser les 
- * variables du jeu, start pour démarrer la boucle principale et update, la 
- * boucle principale */
 	void init();
-	//void update();
-	//void start();
-	void close();
-
 } /* namespace shmupgine */
 
 #endif

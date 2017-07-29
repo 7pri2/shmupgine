@@ -19,7 +19,7 @@ void graphicrenderer::run() {
 }
 
 void graphicrenderer::set_texture(std::string texture_name) {
-	m_sprite.setTexture(*gmanager::textures[texture_name]);
+	m_sprite.setTexture(*gmanager::instance().m_textures[texture_name]);
 	m_sprite.setOrigin(m_sprite.getTextureRect().width/2, m_sprite.getTextureRect().height/2);
 }
 
