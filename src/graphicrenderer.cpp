@@ -28,3 +28,11 @@ graphicrenderer* graphicrenderer::make_copy(entity* newparent) {
 	ptr->parent = newparent;
 	return ptr;
 }
+
+void graphicrenderer::colorify(sf::Color color) {
+	m_sprite.setColor(color);
+}
+
+sf::Color RGBA(int r, int g, int b, int a) {
+	return sf::Color(r, g, b, a);
+}

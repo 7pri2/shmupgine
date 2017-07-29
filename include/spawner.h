@@ -16,12 +16,13 @@ public:
 	void	spawn();
 
 	bool	f_spawn_at_parent;
+	bool	f_auto_spawn;
+	int		ms_cooldown;
 
 private:
 	virtual void 		run();	
 	virtual spawner*	make_copy(entity* newparent);
 
-	int			ms_cooldown;
 	sf::Clock	clock;
 	entity*		to_spawn;
 	bool		f_spawn_requested;

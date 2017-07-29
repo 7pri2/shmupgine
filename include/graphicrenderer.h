@@ -8,6 +8,8 @@
 
 class destructor;
 
+sf::Color RGBA(int r, int g, int b, int a = 255);
+
 /* Attribut de rendu graphique; permet également de fournir des options de 
  * collisions à l'attribut "destructor"		*/
 
@@ -19,6 +21,7 @@ public:
 	virtual ~graphicrenderer();
 
 	void	set_texture(std::string texture_name);
+	void	colorify(sf::Color color);
 
 private:
 	virtual void 				run();

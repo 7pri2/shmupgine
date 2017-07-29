@@ -6,6 +6,7 @@ spawner::spawner(entity* parent) : attribute(parent) {
 	to_spawn = NULL;
 	f_spawn_at_parent = true;
 	f_spawn_requested = false;
+	f_auto_spawn = false;
 	ms_cooldown = 250;
 	clock.restart();
 }
@@ -20,17 +21,14 @@ void spawner::set_profile(entity* en) {
 }
 
 void spawner::spawn() {
-	if(clock.getElapsedTime().asMilliseconds() >= ms_cooldown) {
-		f_spawn_requested = true;
-		clock.restart();
-	}
+	f_spawn_requested = true;
 }
 
 void spawner::run() {
 #ifdef DEBUG
 	std::cout << "\tspawner... ";
 #endif
-	if(f_spawn_requested) {
+	if((f_auto_spawn || f_spawn_requested) && clock.getElapsedTime().asMilliseconds() >= ms_cooldown) {
 #ifdef DEBUG
 		std::cout << debug::pattr("Spawn requested");
 #endif
@@ -38,6 +36,7 @@ void spawner::run() {
 			to_spawn->set_position(parent->get_position());
 		parent->parent->add_entity(new entity(to_spawn));
 		f_spawn_requested = false;
+		clock.restart();
 	}
 #ifdef DEBUG
 	std::cout << debug::done;
