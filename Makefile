@@ -33,8 +33,7 @@ FILES=systems.o			\
 	  attribute.o		\
 	  destructor.o		\
 	  spawner.o			\
-	  debug.o			\
-	  script.o
+	  debug.o
 
 OBJS=$(patsubst %,$(OBJ)%,$(FILES))
 

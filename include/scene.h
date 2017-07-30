@@ -4,6 +4,7 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <functional>
 #include "debug.h"
 
 class entity;
@@ -35,9 +36,13 @@ public:
 	void	add_to_group(std::string groupname, entity* en);
 	void	remove_from_group(std::string groupname, entity* en);
 	bool	belongs_to_group(std::string groupname, entity* en);
+	void	remove_from_all_groups(entity* en);
 	/* Fonction pour connaitre si une entite du groupe entre en collision avec
 	 * l'entite passee en parametre */
 	bool	group_collides(std::string groupname, entity* en);
+
+/* Fonctions de manipulation des scripts */
+	void	add_script(std::function<void()> script);
 
 private:
 /* update est la fonction qui permet de mettre à jour la scène, de gérer
@@ -53,9 +58,14 @@ private:
  * les effets de leurs attributs qui sont activés */
 	void 	run_attributes();
 
-	std::map<std::string, group>	m_groups;
-	std::list<entity*>				m_entities;
-	std::vector<entity*>			m_to_be_removed;
+/* run_scripts parcoure la liste des scripts de la scene pour jouer leurs 
+ * programmation */
+	void	run_scripts();
+
+	std::map<std::string, group>		m_groups;
+	std::list<entity*>					m_entities;
+	std::vector<entity*>				m_to_be_removed;
+	std::list<std::function<void()>>	m_scripts;
 };
 
 #endif

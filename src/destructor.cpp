@@ -70,8 +70,10 @@ void destructor::add_collision_group(std::string group) {
 }
 
 bool destructor::is_out_of_bounds() {
-	return parent->get_position().x > shmupgine::w_width || parent->get_position().x < 0
-		||	parent->get_position().y > shmupgine::w_height || parent->get_position().y < 0;
+	return parent->get_position().x > shmupgine::w_width 
+		|| parent->get_position().x < 0
+		||	parent->get_position().y > shmupgine::w_height 
+		|| parent->get_position().y < 0;
 }
 
 bool destructor::collides(entity* en) {

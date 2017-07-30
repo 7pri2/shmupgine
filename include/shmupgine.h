@@ -8,7 +8,6 @@
 #include "graphicrenderer.h"
 #include "physics.h"
 #include "destructor.h"
-#include "script.h"
 #include "bullet.h"
 #include "controls.h"
 #include "gmanager.h"

@@ -10,6 +10,7 @@ scene::~scene() {}
 void scene::update() {
 	shmupgine::window.clear();
 	run_attributes();
+	run_scripts();
 	shmupgine::window.display();
 	remove_entities();
 }
@@ -68,13 +69,14 @@ void scene::remove_entities() {
 #ifdef DEBUG
 		std::cout << debug::scene << m_to_be_removed.back() << " removed from the scene.\n" << debug::reset;
 #endif
-		scene::m_entities.remove(m_to_be_removed.back());
+		m_entities.remove(m_to_be_removed.back());
+		remove_from_all_groups(m_to_be_removed.back());
 		delete m_to_be_removed.back();
 		m_to_be_removed.pop_back();
 	}
 }
 
-bool	scene::entity_exists(entity* en) {
+bool scene::entity_exists(entity* en) {
 	for(std::list<entity*>::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)
 		if(*it == en)
 			return true;
@@ -106,4 +108,18 @@ bool scene::group_collides(std::string groupname, entity* en) {
 		if((*it)->get_attribute<destructor>() && (*it)->get_attribute<destructor>()->collides(en))
 			return true;
 	return false;
+}
+
+void scene::add_script(std::function<void()> script) {
+	m_scripts.push_back(script);
+}
+
+void scene::run_scripts() {
+	for(std::list<std::function<void()>>::iterator it = m_scripts.begin(); it != m_scripts.end(); ++it)
+		(*it)();
+}
+	
+void scene::remove_from_all_groups(entity* en) {
+	for(std::map<std::string, group>::iterator it = m_groups.begin(); it != m_groups.end(); ++it)
+		remove_from_group(it->first, en);
 }

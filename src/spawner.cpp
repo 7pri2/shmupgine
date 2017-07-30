@@ -34,7 +34,10 @@ void spawner::run() {
 #endif
 		if(f_spawn_at_parent)
 			to_spawn->set_position(parent->get_position());
-		parent->parent->add_entity(new entity(to_spawn));
+		entity* en = new entity(to_spawn);
+		parent->parent->add_entity(en);
+		for(std::list<std::string>::iterator it = m_groups_to_join_on_spawn.begin(); it != m_groups_to_join_on_spawn.end(); ++it)
+			parent->parent->add_to_group(*it, en);
 		f_spawn_requested = false;
 		clock.restart();
 	}
@@ -47,4 +50,11 @@ spawner* spawner::make_copy(entity* newparent) {
 	spawner* ptr = new spawner(*this);
 	ptr->parent = newparent;
 	return ptr;
+}
+
+void spawner::add_group_to_join(std::string groupname) {
+	for(std::list<std::string>::iterator it = m_groups_to_join_on_spawn.begin(); it != m_groups_to_join_on_spawn.end(); ++it)
+		if(*it == groupname)
+			return;
+	m_groups_to_join_on_spawn.push_back(groupname);
 }
