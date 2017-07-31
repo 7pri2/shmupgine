@@ -10,6 +10,9 @@ scene::~scene() {}
 void scene::update() {
 	shmupgine::window.clear();
 	run_attributes();
+#ifdef DEBUG
+	show_groups();
+#endif
 	run_scripts();
 	shmupgine::window.display();
 	remove_entities();
@@ -122,4 +125,15 @@ void scene::run_scripts() {
 void scene::remove_from_all_groups(entity* en) {
 	for(std::map<std::string, group>::iterator it = m_groups.begin(); it != m_groups.end(); ++it)
 		remove_from_group(it->first, en);
+}
+
+void scene::show_groups() {
+#ifdef DEBUG
+	for(std::map<std::string, group>::iterator it = m_groups.begin(); it != m_groups.end(); ++it) {
+		std::cout << "Groupe \"" << it->first << "\":" << std::endl;
+		for(group::iterator it2 = m_groups[it->first].begin(); it2 != m_groups[it->first].end(); ++it2) {
+			std::cout << "\t" << (*it2) << std::endl;
+		}
+	}
+#endif
 }

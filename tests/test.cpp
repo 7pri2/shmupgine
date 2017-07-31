@@ -16,33 +16,40 @@ int main() {
 	entity *enemy_bullet = new entity;
 	entity *op1	= new entity(sf::Vector2f(0, 100));
 
-	sc1.add_script([&]() -> void {
+	script sc_hp = [&]() -> void {
 		static int enemy_hp = 100;
 		static int heros_hp = 100;
 		
+#ifdef DEBUG
 		cout << "Enemy = " << enemy_hp << "\nHeros = " << heros_hp << endl;
+#endif
 
 		if(sc1.entity_exists(heros)) {
-			cout << "Le heros existe" << endl;
 			if(sc1.group_collides("enemy_bullets", heros))
 				heros_hp -= 10;
 			if(heros_hp <= 0)
 				heros->get_attribute<destructor>()->destroy();
 		}
 		if(sc1.entity_exists(op1)) {
-			cout << "L'ennemi existe" << endl;
 			if(sc1.group_collides("heros_bullets", op1))
 				enemy_hp -= 10;
 			if(enemy_hp <= 0)
 				op1->get_attribute<destructor>()->destroy();
 		}
-	});
+	};
+
+	script sc_movements = [&]() -> void {
+		if(sc1.entity_exists(op1)) {
+			if(op1->get_attribute<destructor>()->is_out_of_bounds())
+				op1->get_attribute<physics>()->rotate_force(180);
+		}
+	};
 
 	op1->allocate_attribute<graphicrenderer>();
 	op1->allocate_attribute<spawner>();
 	op1->allocate_attribute<destructor>();
 	op1->allocate_attribute<physics>();
-	op1->get_attribute<physics>()->set_velocity(30);
+	op1->get_attribute<physics>()->set_velocity(90);
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");
 	op1->get_attribute<spawner>()->set_profile(enemy_bullet);
 	op1->get_attribute<spawner>()->f_auto_spawn = true;
@@ -64,28 +71,29 @@ int main() {
 	heros->allocate_attribute<spawner>();
 	heros->allocate_attribute<destructor>();
 	heros->get_attribute<graphicrenderer>()->set_texture("heros");
+	heros->get_attribute<controls>()->move_speed = 200;
 	heros->get_attribute<spawner>()->set_profile(bullet);
 	heros->get_attribute<spawner>()->ms_cooldown = 150;
 	heros->get_attribute<spawner>()->add_group_to_join("heros_bullets");
-	heros->get_attribute<controls>()->move_speed = 200;
 
-	bullet->allocate_attribute<destructor>();
 	bullet->allocate_attribute<graphicrenderer>();
 	bullet->allocate_attribute<physics>();
+	bullet->allocate_attribute<destructor>();
 	bullet->get_attribute<destructor>()->f_when_out_of_bounds = true;
 	bullet->get_attribute<graphicrenderer>()->set_texture("bullet");
 	bullet->get_attribute<physics>()->set_force_angle(270);
 	bullet->get_attribute<physics>()->set_velocity(550);
 	bullet->get_attribute<destructor>()->add_collision_entity(op1);
 
+	sc1.add_script(sc_hp);
+	sc1.add_script(sc_movements);
+
 	sc1.add_entity(heros);
 	sc1.add_entity(op1);
 	sc1.run();
 
-	delete heros;
 	delete bullet;
 	delete enemy_bullet;
-	delete op1;
 
 	return 0;
 }

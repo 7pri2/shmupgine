@@ -10,7 +10,8 @@
 class entity;
 class destructor;
 
-typedef std::list<entity*> group;
+typedef std::list<entity*> 		group;
+typedef std::function<void()>	script;
 
 /* L'utilisation normale de la scene est la suivante:
  * 1/ Des entités sont créées et customisées à l'aide d'attributs
@@ -62,10 +63,14 @@ private:
  * programmation */
 	void	run_scripts();
 
-	std::map<std::string, group>		m_groups;
-	std::list<entity*>					m_entities;
-	std::vector<entity*>				m_to_be_removed;
-	std::list<std::function<void()>>	m_scripts;
+/* Fonction de debug qui sert a afficher la liste des entites de chaque 
+ * groupe */
+	void	show_groups();
+
+	std::map<std::string, group>	m_groups;
+	std::list<entity*>				m_entities;
+	std::vector<entity*>			m_to_be_removed;
+	std::list<script>				m_scripts;
 };
 
 #endif

@@ -77,8 +77,8 @@ bool destructor::is_out_of_bounds() {
 }
 
 bool destructor::collides(entity* en) {
-	if(	!m_destruction_requested
-		&& parent->get_attribute<graphicrenderer>() != NULL 
+	if(	//!m_destruction_requested
+		parent->get_attribute<graphicrenderer>() != NULL 
 		&& en->get_attribute<graphicrenderer>() != NULL 
 		&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects(en->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds())) {
 		return true;
