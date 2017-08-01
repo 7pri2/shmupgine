@@ -2,6 +2,8 @@
 
 graphicrenderer::graphicrenderer(entity* parent) : attribute(parent) {
 	m_sprite.setPosition(parent->get_position());
+	f_blinking = false;
+	m_ms_blinks = BLINK_DURATION;
 }
 
 graphicrenderer::~graphicrenderer() {
@@ -12,6 +14,17 @@ void graphicrenderer::run() {
 #ifdef DEBUG
 	std::cout << "\tgraphicrenderer... ";
 #endif
+	if(f_blinking) {
+		if(m_clock.getElapsedTime().asMilliseconds() >= m_ms_blinks) {
+			f_blinking = false;
+			m_clock.restart();
+			m_sprite.setColor(RGBA(255, 255, 255));
+		} else
+			if(m_clock.getElapsedTime().asMilliseconds() / 100 % 2)
+				m_sprite.setColor(RGBA(255, 255, 255, 95));
+			else
+				m_sprite.setColor(RGBA(255, 255, 255));
+	}
 	shmupgine::window.draw(m_sprite);
 #ifdef DEBUG
 	std::cout << debug::done;
@@ -35,4 +48,10 @@ void graphicrenderer::colorify(sf::Color color) {
 
 sf::Color RGBA(int r, int g, int b, int a) {
 	return sf::Color(r, g, b, a);
+}
+
+void graphicrenderer::blink(int ms) {
+	m_clock.restart();
+	f_blinking = true;
+	m_ms_blinks = ms;
 }

@@ -16,23 +16,25 @@ int main() {
 	entity *enemy_bullet = new entity;
 	entity *op1	= new entity(sf::Vector2f(0, 100));
 
-	script sc_hp = [&]() -> void {
-		static int enemy_hp = 100;
+	script sc_heros_hp = [&]() -> void {
 		static int heros_hp = 100;
-		
-#ifdef DEBUG
-		cout << "Enemy = " << enemy_hp << "\nHeros = " << heros_hp << endl;
-#endif
-
 		if(sc1.entity_exists(heros)) {
-			if(sc1.group_collides("enemy_bullets", heros))
+			if(sc1.group_collides("enemy_bullets", heros)) {
 				heros_hp -= 10;
+				heros->get_attribute<graphicrenderer>()->blink();
+			}
 			if(heros_hp <= 0)
 				heros->get_attribute<destructor>()->destroy();
 		}
+	};
+
+	script sc_op1_hp = [&]() -> void {
+		static int enemy_hp = 100;
 		if(sc1.entity_exists(op1)) {
-			if(sc1.group_collides("heros_bullets", op1))
+			if(sc1.group_collides("heros_bullets", op1)) {
 				enemy_hp -= 10;
+				op1->get_attribute<graphicrenderer>()->blink();
+			}
 			if(enemy_hp <= 0)
 				op1->get_attribute<destructor>()->destroy();
 		}
@@ -85,7 +87,8 @@ int main() {
 	bullet->get_attribute<physics>()->set_velocity(550);
 	bullet->get_attribute<destructor>()->add_collision_entity(op1);
 
-	sc1.add_script(sc_hp);
+	sc1.add_script(sc_heros_hp);
+	sc1.add_script(sc_op1_hp);
 	sc1.add_script(sc_movements);
 
 	sc1.add_entity(heros);
