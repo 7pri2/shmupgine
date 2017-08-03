@@ -55,3 +55,7 @@ void graphicrenderer::blink(int ms) {
 	f_blinking = true;
 	m_ms_blinks = ms;
 }
+
+bool graphicrenderer::blink_finished() {
+	return !f_blinking;
+}

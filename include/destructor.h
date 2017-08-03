@@ -25,6 +25,8 @@ public:
 
 /* Interrupteur qui indique si l'entité est détruite si elle sort de l'écran */
 	bool 	f_when_out_of_bounds;
+
+/* Permet de savoir si l'entite est en dehors de l'ecran */
 	bool	is_out_of_bounds();
 
 /* Fonctions permettant de connaître des informations à propos des collisions

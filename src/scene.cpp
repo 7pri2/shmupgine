@@ -137,3 +137,16 @@ void scene::show_groups() {
 	}
 #endif
 }
+
+void scene::add_bar(bar *b) {
+	m_bars.push_back(b);
+}
+
+void scene::draw_bar(bar *b) {
+	// A supprimer
+	m_bars.push_back(b);
+}
+
+void scene::draw_bars() {
+
+}
