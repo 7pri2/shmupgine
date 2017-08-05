@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "shmupgine.h"
 
 using namespace std;
@@ -14,7 +15,7 @@ int main() {
 	entity *heros = new entity(sf::Vector2f(208, 800));
 	entity *bullet = new entity;
 	entity *enemy_bullet = new entity;
-	entity *op1	= new entity(sf::Vector2f(0, 100));
+	entity *op1	= new entity(sf::Vector2f(50, 100));
 
 	script sc_heros_hp = [&]() -> void {
 		static int heros_hp = 100;
@@ -40,18 +41,27 @@ int main() {
 		}
 	};
 
-	script sc_movements = [&]() -> void {
+	/*script sc_movements = [&]() -> void {
 		if(sc1.entity_exists(op1)) {
 			if(op1->get_attribute<destructor>()->is_out_of_bounds())
 				op1->get_attribute<physics>()->rotate_force(180);
 		}
-	};
+	};*/
 
+	op1->allocate_attribute<route>();
 	op1->allocate_attribute<graphicrenderer>();
 	op1->allocate_attribute<spawner>();
 	op1->allocate_attribute<destructor>();
 	op1->allocate_attribute<physics>();
-	op1->get_attribute<physics>()->set_velocity(90);
+	//op1->get_attribute<physics>()->set_velocity(90);
+	op1->get_attribute<route>()->set_curve(
+		[](float t) -> float {
+			return sin(t)*30;
+		},
+		[](float t) -> float {
+			return t*0;
+		});
+	op1->get_attribute<route>()->speed_factor = 100;
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");
 	op1->get_attribute<spawner>()->set_profile(enemy_bullet);
 	op1->get_attribute<spawner>()->f_auto_spawn = true;
@@ -89,7 +99,7 @@ int main() {
 
 	sc1.add_script(sc_heros_hp);
 	sc1.add_script(sc_op1_hp);
-	sc1.add_script(sc_movements);
+	//sc1.add_script(sc_movements);
 
 	sc1.add_entity(heros);
 	sc1.add_entity(op1);

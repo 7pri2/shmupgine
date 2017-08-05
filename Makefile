@@ -34,7 +34,8 @@ FILES=systems.o			\
 	  destructor.o		\
 	  spawner.o			\
 	  debug.o			\
-	  bar.o
+	  bar.o				\
+	  route.o
 
 OBJS=$(patsubst %,$(OBJ)%,$(FILES))
 

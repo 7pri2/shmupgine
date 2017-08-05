@@ -13,5 +13,6 @@
 #include "gmanager.h"
 #include "spawner.h"
 #include "bar.h"
+#include "route.h"
 
 #endif
