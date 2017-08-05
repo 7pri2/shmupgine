@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="shmupgine-logo.svg"
+   inkscape:export-filename="/home/cyprien/Documents/Informatique/shmupgine/doc/shmupgine-logo.png"
+   inkscape:export-xdpi="199.14999"
+   inkscape:export-ydpi="199.14999">
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4639"
+       x="-0.1765315"
+       width="1.353063"
+       y="-0.18360753"
+       height="1.3672151">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="16.748857"
+         id="feGaussianBlur4641" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter6235"
+       x="-0.052952074"
+       width="1.1059041"
+       y="-0.38717305"
+       height="1.7743461">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="11.524911"
+         id="feGaussianBlur6237" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter6235-0"
+       x="-0.052952074"
+       width="1.1059041"
+       y="-0.38717306"
+       height="1.7743461">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="11.524911"
+         id="feGaussianBlur6237-4" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="-546.01191"
+     inkscape:cy="1043.7796"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="false"
+     inkscape:window-width="956"
+     inkscape:window-height="1041"
+     inkscape:window-x="960"
+     inkscape:window-y="18"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.92893982px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5482235;filter:url(#filter6235-0)"
+       x="540.39594"
+       y="109.38527"
+       id="text4649-0-5"
+       transform="matrix(0.81220569,0,0,1.2312152,-440.46018,32.933615)"><tspan
+         sodipodi:role="line"
+         id="tspan4647-6-4"
+         x="540.39594"
+         y="109.38527"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.2589035px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:-4.93817711px;fill:#000000;fill-opacity:1;stroke-width:0.5482235">SHMUPGINE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.92893982px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5482235;filter:url(#filter6235)"
+       x="540.39594"
+       y="109.38527"
+       id="text4649-0"
+       transform="matrix(0.81220569,0,0,1.2312152,-440.46018,32.933615)"><tspan
+         sodipodi:role="line"
+         id="tspan4647-6"
+         x="540.39594"
+         y="109.38527"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.2589035px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:-4.93817711px;fill:#000000;fill-opacity:1;stroke-width:0.5482235">SHMUPGINE</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4639)"
+       d="m -182.17498,103.11889 c 0,0 -48.69685,17.15289 -51.39172,41.22436 -2.69488,24.07146 11.35502,63.2053 86.19049,83.51778 74.835469,20.31249 127.763159,-9.88947 113.073989,-50.28465 -9.62171,-26.45969 -22.67742,-32.36397 -22.67742,-32.36397 0,0 15.24759,-12.66702 11.25756,-24.83171 l 39.5558899,2.55412 -7.4946799,-48.940443 -52.90823,0.50768 c 0,0 -21.15308,-60.415131 -82.674749,-59.04757 -67.06686,1.49081 -61.13868,55.76608 -32.93113,87.664403 z"
+       id="path4513-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czsscccccsc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -182.17498,103.11888 c 0,0 -48.69685,17.1529 -51.39172,41.22437 -2.69488,24.07146 11.35502,63.2053 86.19049,83.51778 74.835469,20.31249 127.763159,-9.88947 113.073989,-50.28465 -9.62171,-26.45969 -22.67742,-32.36397 -22.67742,-32.36397 0,0 15.24759,-12.66702 11.25756,-24.83171 l 39.5558899,2.55412 -7.4946799,-48.940444 -52.90823,0.507677 c 0,0 -21.15308,-60.415128 -82.674749,-59.047571 -67.06686,1.490819 -61.13868,55.766085 -32.93113,87.664398 z"
+       id="path4513"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czsscccccsc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:21.06500053;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -86.446551,78.751174 c -4.90676,-23.481763 -38.878129,-45.822315 -62.620849,-43.592353 -62.46913,5.867223 -20.96769,61.861759 44.48453,99.707039 51.766049,29.93177 77.388429,67.70071 22.544329,78.55907 -56.018629,11.09091 -192.074139,-55.58272 -99.807249,-86.23908"
+       id="path4509"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:21.06500053;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -15.118391,101.2843 -59.66652,1.25252 c 36.68391,37.49326 -44.645279,59.80012 -85.668979,27.14482"
+       id="path4511"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:21.92893982px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.5482235"
+       x="-1.9053528"
+       y="136.13414"
+       id="text4649"
+       transform="scale(0.8122057,1.2312152)"><tspan
+         sodipodi:role="line"
+         id="tspan4647"
+         x="-1.9053528"
+         y="136.13414"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:105.2589035px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';letter-spacing:-4.93817711px;fill:#ffffff;fill-opacity:1;stroke-width:0.5482235">SHMUPGINE</tspan></text>
+  </g>
+</svg>
