@@ -1,3 +1,5 @@
+![Version : 0.0.3](https://github.com/7pri2/shmupgine/blob/develop/doc/wiki/version0.0.3.png)
+
 # shmupgine
 
 Shmupgine est un moteur de jeux conçu pour créer des jeux de type « Shoot'em'up ». Il s'agit d'un ensemble de bibliothèques basées sur SFML. Cependant, avec de l'imagination, il est tout à fait possible d'en faire quelque-chose d'autre.
