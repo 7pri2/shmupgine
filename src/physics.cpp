@@ -20,7 +20,7 @@ void physics::run() {
 #ifdef DEBUG
 	std::cout << "\tphysics... ";
 #endif
-	parent->move(0.001f * FORCE * m_velocity * (float)shmupgine::clock.getElapsedTime().asMilliseconds());
+	parent->move(0.001f * force(m_force_angle) * m_velocity * (float)shmupgine::clock.getElapsedTime().asMilliseconds());
 #ifdef DEBUG
 	std::cout << debug::done;
 #endif
@@ -42,4 +42,8 @@ physics* physics::make_copy(entity* newparent) {
 
 void physics::rotate_force(int degrees) {
 	m_force_angle = (m_force_angle + degrees) % 360;
+}
+
+sf::Vector2f force(float angle) {
+	return sf::Vector2f(cos(angle*PI/180),sin(angle*PI/180));
 }

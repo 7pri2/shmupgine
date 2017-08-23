@@ -8,7 +8,7 @@ TESTS=tests/
 CXX=g++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++11 -pedantic-errors -I$(HEADERS)
 SFML=-lsfml-graphics -lsfml-window -lsfml-system
-EXECUTABLES=test
+EXECUTABLES=demo
 DEBUG=-g
 
 all: executables
@@ -39,7 +39,7 @@ FILES=systems.o			\
 
 OBJS=$(patsubst %,$(OBJ)%,$(FILES))
 
-test: $(TESTS)test.cpp $(HEADERS)shmupgine.h $(OBJS)
+demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(OBJS)
 	$(CXX) $(CXXFLAGS) $< -o $(TESTS)$@ $(SFML) $(OBJS)
 
 $(OBJ)bullet.o: $(SRC)bullet.cpp $(HEADERS)bullet.h $(HEADERS)graphicrenderer.h $(HEADERS)physics.h
@@ -68,6 +68,3 @@ $(OBJ)%.o:	$(SRC)%.cpp $(HEADERS)%.h
 
 clean:
 	rm -rf $(OBJ)*.o
-
-mrproper: clean
-	rm -rf executables

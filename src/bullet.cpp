@@ -9,7 +9,7 @@ bullet::bullet() : entity() {
 	getAttribute<graphicrenderer>()->sprite.setOrigin(sf::Vector2f(DEF_BULLET_SIZE/2, DEF_BULLET_SIZE/2));
 }
 
-bullet::bullet(scene* parent) : entity(parent) {
+bullet::bullet(scene* parent) : entity(parent), bullet() {
 	allocateAttribute<graphicrenderer>();
 	allocateAttribute<physics>();
 	getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::tex_bullet);
@@ -27,9 +27,8 @@ bullet::bullet(scene* parent, sf::Vector2f initial_position) : entity(parent, in
 bullet::bullet(sf::Vector2f initial_position) : entity(parent, initial_position) {
 	allocateAttribute<graphicrenderer>();
 	allocateAttribute<physics>();
-	getAttribute<graphicrenderer>()->sprite.setTexture(*gmanager::tex_bullet);
+	getAttribute<graphicrenderer>()->set_texture(*gmanager::tex_bullet);
 	getAttribute<graphicrenderer>()->sprite.setPosition(initial_position);
-	getAttribute<graphicrenderer>()->sprite.setOrigin(sf::Vector2f(DEF_BULLET_SIZE/2, DEF_BULLET_SIZE/2));
 }
 
 bullet::~bullet() {

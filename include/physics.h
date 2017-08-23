@@ -6,7 +6,7 @@
 #include "attribute.h"
 
 #define PI 3.14159265
-#define FORCE sf::Vector2f(cos(m_force_angle*PI/180),sin(m_force_angle*PI/180))
+sf::Vector2f force(float angle); 
 
 /* Attribut qui permet de faire se mouvoir dans la scène une entité selon une 
  * force et une vélocité */

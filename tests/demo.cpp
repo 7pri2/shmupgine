@@ -14,6 +14,7 @@ int main() {
 	
 	entity *heros = new entity(sf::Vector2f(208, 800));
 	entity *bullet = new entity;
+	entity *alt_bullet = new entity;
 	entity *enemy_bullet = new entity;
 	entity *op1	= new entity(sf::Vector2f(50, 100));
 
@@ -56,16 +57,16 @@ int main() {
 	//op1->get_attribute<physics>()->set_velocity(90);
 	op1->get_attribute<route>()->set_curve(
 		[](float t) -> float {
-			return sin(t)*30;
+			return sin(t)*3;
 		},
 		[](float t) -> float {
 			return t*0;
 		});
-	op1->get_attribute<route>()->speed_factor = 100;
+	//op1->get_attribute<route>()->speed_factor = 100;
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");
 	op1->get_attribute<spawner>()->set_profile(enemy_bullet);
 	op1->get_attribute<spawner>()->f_auto_spawn = true;
-	op1->get_attribute<spawner>()->ms_cooldown = 800;
+	op1->get_attribute<spawner>()->ms_cooldown = 400;
 	op1->get_attribute<spawner>()->add_group_to_join("enemy_bullets");
 
 	enemy_bullet->allocate_attribute<graphicrenderer>();
@@ -97,6 +98,22 @@ int main() {
 	bullet->get_attribute<physics>()->set_velocity(550);
 	bullet->get_attribute<destructor>()->add_collision_entity(op1);
 
+	alt_bullet->allocate_attribute<route>();
+	alt_bullet->allocate_attribute<graphicrenderer>();
+	alt_bullet->allocate_attribute<destructor>();
+	alt_bullet->get_attribute<destructor>()->f_when_out_of_bounds = true;
+	alt_bullet->get_attribute<graphicrenderer>()->set_texture("bullet");
+	alt_bullet->get_attribute<graphicrenderer>()->colorify(RGBA(200, 50, 50));
+	alt_bullet->get_attribute<destructor>()->add_collision_entity(heros);
+	alt_bullet->get_attribute<route>()->set_curve(
+		[](float t) -> float {
+			return sin(t)/2;
+		},
+		[](float t) -> float {
+			return t/8;
+		});
+	alt_bullet->get_attribute<route>()->speed_factor = 1;
+
 	sc1.add_script(sc_heros_hp);
 	sc1.add_script(sc_op1_hp);
 	//sc1.add_script(sc_movements);
@@ -106,6 +123,7 @@ int main() {
 	sc1.run();
 
 	delete bullet;
+	delete alt_bullet;
 	delete enemy_bullet;
 
 	return 0;

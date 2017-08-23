@@ -22,8 +22,14 @@ entity::entity(scene* parent, sf::Vector2f initial_position) : entity(parent) {
 	position = initial_position;
 }
 
+entity::entity(scene* parent, float ix, float iy) : entity(parent, sf::Vector2f(ix, iy)) {
+}
+
 entity::entity(sf::Vector2f initial_position) : entity() {
 	position = initial_position;
+}
+
+entity::entity(float ix, float iy) : entity(sf::Vector2f(ix, iy)) {
 }
 
 entity::~entity() {

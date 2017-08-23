@@ -1,5 +1,6 @@
 #include "route.h"
 #include "entity.h"
+#include <iostream>
 
 route::route(entity* parent) : attribute(parent) {
 	speed_factor = 1;
@@ -17,11 +18,12 @@ void route::set_curve(std::function<float(float)> x, std::function<float(float)>
 
 void route::run() {
 	float sec = m_clock.getElapsedTime().asMilliseconds() / 1000.f;
-	parent->move(0.001f * sf::Vector2f(m_x(sec), m_y(sec)) * speed_factor);
+	parent->move(sf::Vector2f(m_x(sec), m_y(sec)) * speed_factor);
 }
 
 route* route::make_copy(entity* newparent) {
 	route* ptr = new route(*this);
 	ptr->parent = newparent;
+	ptr->m_clock.restart();
 	return ptr;
 }

@@ -26,28 +26,12 @@ public:
 	entity();
 	entity(scene* parent);
 	entity(scene* parent, sf::Vector2f initial_position);
+	entity(scene* parent, float ix, float iy);
 	entity(sf::Vector2f initial_position);
+	entity(float ix, float iy);
 	~entity();
-	
-/* Tres dangereux, pour la copie uniquement, et a virer ensuite 
- * A REMPLACER DES QUE POSSIBLE PAR LA FONCTION SUIVANTE */
-	// + WIP, car en fait faut recreer les objets !
-	template<typename T> void allocate_attribute(T* ptr) {
-		attributes.push_back(ptr->make_copy(this));
-	}
 
-
-/* Permet d'allouer en mémoire un attribut dans la liste d'attributs de
- * l'entité 
-	template<typename T> void allocate_attribute(T* newptr) {
-		for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
-			if(dynamic_cast<T*>(*it) != NULL)
-				return;
-		attributes.push_back(newptr);
-		attributes.back()->parent = this;		
-	}
-	*/
-
+/* Fonction permettant d'allouer un attribut a l'entite parente */
 	template<typename T> void allocate_attribute() {
 		for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
 			if(dynamic_cast<T*>(*it) != NULL)
@@ -81,6 +65,10 @@ protected:
 	attr_table		attributes;
 	sf::Vector2f	position;
 	scene*			parent;
+
+	template<typename T> void allocate_attribute(T* ptr) {
+		attributes.push_back(ptr->make_copy(this));
+	}
 };
 
 #endif

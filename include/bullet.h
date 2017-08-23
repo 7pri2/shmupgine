@@ -11,7 +11,9 @@ public:
 	bullet();
 	bullet(scene* parent);
 	bullet(scene* parent, sf::Vector2f initial_position);
+	bullet(scene* parent, float ix, float iy);
 	bullet(sf::Vector2f initial_position);
+	bullet(float ix, float iy);
 	virtual ~bullet();
 };
 
