@@ -18,7 +18,7 @@ void route::set_curve(std::function<float(float)> x, std::function<float(float)>
 
 void route::run() {
 	float sec = m_clock.getElapsedTime().asMilliseconds() / 1000.f;
-	parent->move(sf::Vector2f(m_x(sec), m_y(sec)) * speed_factor);
+	parent->set_position(sf::Vector2f(m_x(sec), m_y(sec)) * speed_factor);
 }
 
 route* route::make_copy(entity* newparent) {

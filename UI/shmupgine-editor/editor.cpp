@@ -95,7 +95,6 @@ void editor::setup_attribute_menu() {
     m_choose_attribute->addAction(a_graphic_renderer);
     m_choose_attribute->addAction(a_destructor);
     m_choose_attribute->addAction(a_controls);
-    m_choose_attribute->addAction(a_script);
 }
 
 void editor::request_attribute_menu() {
@@ -114,8 +113,6 @@ void editor::manage_attribute_menu_choice(QAction *a) {
         create_attribute(new destructor);
     else if(a == a_controls)
         create_attribute(new controls);
-    else if(a == a_script)
-        create_attribute(new script);
 }
 
 void editor::manage_build_menu_choice(QAction *a) {
@@ -130,6 +127,7 @@ void editor::manage_build_menu_choice(QAction *a) {
 void editor::setup_window_menu() {
     setMenuBar(mb_menuBar);
 
+    // File
     mb_menuBar->addMenu(m_file);
     m_file->addAction(a_new);
     m_file->addAction(a_open);
@@ -137,16 +135,19 @@ void editor::setup_window_menu() {
     m_file->addAction(a_save);
     m_file->addSeparator();
     m_file->addAction(a_close);
-
+    // Config
     mb_menuBar->addMenu(m_config_window);
     m_config_window->addAction(a_project);
     m_config_window->addAction(a_makefile);
     m_config_window->addAction(a_graphics);
-
+    // Build
     mb_menuBar->addMenu(m_build);
     m_build->addAction(a_run);
     m_build->addAction(a_build);
     m_build->addAction(a_build_and_run);
+    // Scene
+    mb_menuBar->addSeparator();
+    mb_menuBar->addAction(tr("Scene"));
 }
 
 void editor::manage_config_menu_choice(QAction *a) {
