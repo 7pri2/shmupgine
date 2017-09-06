@@ -7,7 +7,7 @@ TESTS=tests/
 
 CXX=g++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++11 -pedantic-errors -I$(HEADERS)
-SFML=-lsfml-graphics -lsfml-window -lsfml-system
+SFML=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 EXECUTABLES=demo
 DEBUG=-g
 

@@ -2,7 +2,6 @@
 #define __SYSTEMS_H__	
 
 #include <SFML/Graphics.hpp>
-#include "gmanager.h"
 
 namespace shmupgine {
 /* Le namespace regroupe différentes variables et fonctions essentielles au

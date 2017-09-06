@@ -1,10 +1,10 @@
 #include "systems.h"
 
-int 					shmupgine::w_width;
-int 					shmupgine::w_height;
-std::string 			shmupgine::w_title;
-sf::Clock				shmupgine::clock;
-sf::RenderWindow 		shmupgine::window;
+int 				shmupgine::w_width;
+int 				shmupgine::w_height;
+std::string 		shmupgine::w_title;
+sf::Clock			shmupgine::clock;
+sf::RenderWindow	shmupgine::window;
 
 void shmupgine::init() {
 	shmupgine::w_width = 480;

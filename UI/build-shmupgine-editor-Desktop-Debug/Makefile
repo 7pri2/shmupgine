@@ -60,7 +60,6 @@ SOURCES       = ../shmupgine-editor/editor.cpp \
 		../shmupgine-editor/destructor.cpp \
 		../shmupgine-editor/controls.cpp \
 		../shmupgine-editor/select_entity.cpp \
-		../shmupgine-editor/script.cpp \
 		../shmupgine-editor/script_editor.cpp moc_editor.cpp \
 		moc_new_project.cpp \
 		moc_config_panel.cpp \
@@ -75,7 +74,6 @@ SOURCES       = ../shmupgine-editor/editor.cpp \
 		moc_select_sprite.cpp \
 		moc_destructor.cpp \
 		moc_select_entity.cpp \
-		moc_script.cpp \
 		moc_script_editor.cpp
 OBJECTS       = editor.o \
 		main.o \
@@ -94,7 +92,6 @@ OBJECTS       = editor.o \
 		destructor.o \
 		controls.o \
 		select_entity.o \
-		script.o \
 		script_editor.o \
 		moc_editor.o \
 		moc_new_project.o \
@@ -110,7 +107,6 @@ OBJECTS       = editor.o \
 		moc_select_sprite.o \
 		moc_destructor.o \
 		moc_select_entity.o \
-		moc_script.o \
 		moc_script_editor.o
 DIST          = /usr/share/qt4/mkspecs/common/unix.conf \
 		/usr/share/qt4/mkspecs/common/linux.conf \
@@ -233,7 +229,7 @@ qmake:  FORCE
 
 dist: 
 	@$(CHK_DIR_EXISTS) .tmp/shmupgine-editor1.0.0 || $(MKDIR) .tmp/shmupgine-editor1.0.0 
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/shmupgine-editor1.0.0/ && $(COPY_FILE) --parents ../shmupgine-editor/editor.h ../shmupgine-editor/project_data.h ../shmupgine-editor/singleton.h ../shmupgine-editor/new_project.h ../shmupgine-editor/config_panel.h ../shmupgine-editor/config_window.h ../shmupgine-editor/graphics_manager.h ../shmupgine-editor/attribute_widget.h ../shmupgine-editor/attributes_container.h ../shmupgine-editor/entities_container.h ../shmupgine-editor/properties.h ../shmupgine-editor/physics.h ../shmupgine-editor/graphic_renderer.h ../shmupgine-editor/select_sprite.h ../shmupgine-editor/destructor.h ../shmupgine-editor/controls.h ../shmupgine-editor/select_entity.h ../shmupgine-editor/script.h ../shmupgine-editor/script_editor.h .tmp/shmupgine-editor1.0.0/ && $(COPY_FILE) --parents ../shmupgine-editor/editor.cpp ../shmupgine-editor/main.cpp ../shmupgine-editor/project_data.cpp ../shmupgine-editor/new_project.cpp ../shmupgine-editor/config_panel.cpp ../shmupgine-editor/config_window.cpp ../shmupgine-editor/graphics_manager.cpp ../shmupgine-editor/attribute_widget.cpp ../shmupgine-editor/attributes_container.cpp ../shmupgine-editor/entities_container.cpp ../shmupgine-editor/properties.cpp ../shmupgine-editor/physics.cpp ../shmupgine-editor/graphic_renderer.cpp ../shmupgine-editor/select_sprite.cpp ../shmupgine-editor/destructor.cpp ../shmupgine-editor/controls.cpp ../shmupgine-editor/select_entity.cpp ../shmupgine-editor/script.cpp ../shmupgine-editor/script_editor.cpp .tmp/shmupgine-editor1.0.0/ && $(COPY_FILE) --parents shmupgine-editor_fr.ts .tmp/shmupgine-editor1.0.0/ && (cd `dirname .tmp/shmupgine-editor1.0.0` && $(TAR) shmupgine-editor1.0.0.tar shmupgine-editor1.0.0 && $(COMPRESS) shmupgine-editor1.0.0.tar) && $(MOVE) `dirname .tmp/shmupgine-editor1.0.0`/shmupgine-editor1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/shmupgine-editor1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/shmupgine-editor1.0.0/ && $(COPY_FILE) --parents ../shmupgine-editor/editor.h ../shmupgine-editor/project_data.h ../shmupgine-editor/singleton.h ../shmupgine-editor/new_project.h ../shmupgine-editor/config_panel.h ../shmupgine-editor/config_window.h ../shmupgine-editor/graphics_manager.h ../shmupgine-editor/attribute_widget.h ../shmupgine-editor/attributes_container.h ../shmupgine-editor/entities_container.h ../shmupgine-editor/properties.h ../shmupgine-editor/physics.h ../shmupgine-editor/graphic_renderer.h ../shmupgine-editor/select_sprite.h ../shmupgine-editor/destructor.h ../shmupgine-editor/controls.h ../shmupgine-editor/select_entity.h ../shmupgine-editor/script_editor.h .tmp/shmupgine-editor1.0.0/ && $(COPY_FILE) --parents ../shmupgine-editor/editor.cpp ../shmupgine-editor/main.cpp ../shmupgine-editor/project_data.cpp ../shmupgine-editor/new_project.cpp ../shmupgine-editor/config_panel.cpp ../shmupgine-editor/config_window.cpp ../shmupgine-editor/graphics_manager.cpp ../shmupgine-editor/attribute_widget.cpp ../shmupgine-editor/attributes_container.cpp ../shmupgine-editor/entities_container.cpp ../shmupgine-editor/properties.cpp ../shmupgine-editor/physics.cpp ../shmupgine-editor/graphic_renderer.cpp ../shmupgine-editor/select_sprite.cpp ../shmupgine-editor/destructor.cpp ../shmupgine-editor/controls.cpp ../shmupgine-editor/select_entity.cpp ../shmupgine-editor/script.cpp ../shmupgine-editor/script_editor.cpp .tmp/shmupgine-editor1.0.0/ && $(COPY_FILE) --parents shmupgine-editor_fr.ts .tmp/shmupgine-editor1.0.0/ && (cd `dirname .tmp/shmupgine-editor1.0.0` && $(TAR) shmupgine-editor1.0.0.tar shmupgine-editor1.0.0 && $(COMPRESS) shmupgine-editor1.0.0.tar) && $(MOVE) `dirname .tmp/shmupgine-editor1.0.0`/shmupgine-editor1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/shmupgine-editor1.0.0
 
 
 clean:compiler_clean 
@@ -407,7 +403,6 @@ editor.o: ../shmupgine-editor/editor.cpp ../shmupgine-editor/editor.h \
 		../shmupgine-editor/select_entity.h \
 		../shmupgine-editor/entities_container.h \
 		../shmupgine-editor/controls.h \
-		../shmupgine-editor/script.h \
 		../shmupgine-editor/script_editor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editor.o ../shmupgine-editor/editor.cpp
 
@@ -428,7 +423,6 @@ main.o: ../shmupgine-editor/main.cpp ../shmupgine-editor/editor.h \
 		../shmupgine-editor/select_entity.h \
 		../shmupgine-editor/entities_container.h \
 		../shmupgine-editor/controls.h \
-		../shmupgine-editor/script.h \
 		../shmupgine-editor/script_editor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../shmupgine-editor/main.cpp
 

@@ -12,7 +12,7 @@
 #include "controls.h"
 #include "gmanager.h"
 #include "spawner.h"
-#include "bar.h"
 #include "route.h"
+#include "soundmanager.h"
 
 #endif

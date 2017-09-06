@@ -18,7 +18,6 @@
 #include "destructor.h"
 #include "entities_container.h"
 #include "controls.h"
-#include "script.h"
 
 class editor : public QMainWindow {
     Q_OBJECT

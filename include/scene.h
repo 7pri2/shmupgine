@@ -6,7 +6,6 @@
 #include <map>
 #include <functional>
 #include "debug.h"
-#include "bar.h"
 
 class entity;
 class destructor;
@@ -46,9 +45,6 @@ public:
 /* Fonctions de manipulation des scripts */
 	void	add_script(std::function<void()> script);
 
-/* Fonctions de manipulation des barres */
-	void	add_bar(bar *b);
-
 private:
 /* update est la fonction qui permet de mettre à jour la scène, de gérer
  * différents attributs et entités, ainsi que les afficher, etc..[]		*/ 
@@ -71,15 +67,10 @@ private:
  * groupe */
 	void	show_groups();
 
-/* Fonction de dessin des barres de la scene */
-	void	draw_bar(bar* b);
-	void	draw_bars();
-
 	std::map<std::string, group>	m_groups;
 	std::list<entity*>				m_entities;
 	std::vector<entity*>			m_to_be_removed;
 	std::list<script>				m_scripts;
-	std::list<bar*>					m_bars;
 };
 
 #endif
