@@ -13,17 +13,14 @@ public:
     virtual QString getCode();
 
 private:
-    QLineEdit*  le_x;
-    QLineEdit*  le_y;
+    QLineEdit*  le_angle;
     QLineEdit*  le_velocity;
 
-    QLabel*     lbl_force;
+    QLabel*     lbl_angle;
     QLabel*     lbl_velocity;
-    QLabel*     lbl_x;
-    QLabel*     lbl_y;
 
-    QHBoxLayout*    lay_coord;
-    QHBoxLayout*    lay_velocity;
+	QHBoxLayout*	lay_angle;
+	QHBoxLayout*	lay_velocity;
 };
 
 #endif // PHYSICS_H
