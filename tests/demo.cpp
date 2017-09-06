@@ -6,9 +6,10 @@ using namespace std;
 
 int main() {
 	shmupgine::init();
-	gmanager::instance().new_texture("heros", "./res/ship.png", 64, 64);
-	gmanager::instance().new_texture("bullet", "./res/bullet_fire.png", 32, 32);
-	gmanager::instance().new_texture("enemy", "./res/enemy_ship.png", 64, 112);
+	gmanager::instance().new_texture("heros", "./res/graphics/ship.png", 64, 64);
+	gmanager::instance().new_texture("bullet", "./res/graphics/bullet_fire.png", 32, 32);
+	gmanager::instance().new_texture("enemy", "./res/graphics/enemy_ship.png", 64, 112);
+	soundmanager::instance().new_sound("explode", "./res/audio/explode.ogg");
 
 	scene sc1;
 	
@@ -24,6 +25,7 @@ int main() {
 			if(heros_hp <= 0)
 				heros->get_attribute<destructor>()->destroy();
 			if(sc1.group_collides("enemy_bullets", heros)) {
+				soundmanager::instance().play_sound("explode");
 				heros_hp -= 10;
 				heros->get_attribute<graphicrenderer>()->blink();
 			}
@@ -36,18 +38,12 @@ int main() {
 			if(op1_hp <= 0)
 				op1->get_attribute<destructor>()->destroy();
 			if(sc1.group_collides("heros_bullets", op1)) {
+				soundmanager::instance().play_sound("explode");
 				op1_hp -= 10;
 				op1->get_attribute<graphicrenderer>()->blink();
 			}
 		}
 	};
-
-	/*script sc_movements = [&]() -> void {
-		if(sc1.entity_exists(op1)) {
-			if(op1->get_attribute<destructor>()->is_out_of_bounds())
-				op1->get_attribute<physics>()->rotate_force(180);
-		}
-	};*/
 
 	op1->allocate_attribute<route>();
 	op1->allocate_attribute<graphicrenderer>();
@@ -57,7 +53,7 @@ int main() {
 	//op1->get_attribute<physics>()->set_velocity(90);
 	op1->get_attribute<route>()->set_curve(
 		[](float t) -> float {
-			return sin(t)*3;
+			return 150+sin(t)*100;
 		},
 		[](float t) -> float {
 			return t*0;
