@@ -10,7 +10,8 @@ editor::editor(QWidget *parent) : QMainWindow(parent) {
     a_new   = new QAction(tr("&New project"), this);
     a_open  = new QAction(tr("&Open project"), this);
     a_save  = new QAction(tr("&Save project"), this);
-    a_close = new QAction(tr("&Close"), this);
+    a_close = new QAction(tr("&Close project"), this);
+    a_exit  = new QAction(tr("&Exit"), this);
     // Config
     m_config_window = new QMenu(tr("Config"), this);
     a_project       = new QAction(tr("&Project"), this);
@@ -21,6 +22,13 @@ editor::editor(QWidget *parent) : QMainWindow(parent) {
     a_run           = new QAction(tr("&Run"), this);
     a_build         = new QAction(tr("&Build"), this);
     a_build_and_run = new QAction(tr("Build a&nd run"), this);
+    // Scene
+    a_lbl_scene     = new QWidgetAction(this);
+    a_cbox_scene    = new QWidgetAction(this);
+    lbl_scene       = new QLabel(tr("Scene"), this);
+    cbox_scene      = new QComboBox(this);
+    a_lbl_scene->setDefaultWidget(lbl_scene);
+    a_cbox_scene->setDefaultWidget(cbox_scene);
 
     /// Attribute menu
     m_choose_attribute  = new QMenu(this);
@@ -28,7 +36,6 @@ editor::editor(QWidget *parent) : QMainWindow(parent) {
     a_graphic_renderer  = new QAction(tr("&graphic renderer"), this);
     a_destructor        = new QAction(tr("&destructor"), this);
     a_controls          = new QAction(tr("&controls"), this);
-    a_script            = new QAction(tr("&script"), this);
 
     win_new_project     = new new_project();
     win_config          = new config_window();
@@ -58,6 +65,8 @@ editor::editor(QWidget *parent) : QMainWindow(parent) {
     setup_window_menu();
     create_clear_gview();
 
+    switch_opened_project(false);
+
     connect(m_config_window, SIGNAL(triggered(QAction*)), this, SLOT(manage_config_menu_choice(QAction*)));
     connect(panel_entities->btn_new, SIGNAL(clicked()), this, SLOT(add_entity()));
     connect(panel_entities->lv_list, SIGNAL(clicked(QModelIndex)), panel_attributes, SLOT(update_what_is_visible()));
@@ -65,6 +74,8 @@ editor::editor(QWidget *parent) : QMainWindow(parent) {
     connect(m_choose_attribute, SIGNAL(triggered(QAction*)), this, SLOT(manage_attribute_menu_choice(QAction*)));
     connect(m_file, SIGNAL(triggered(QAction*)), this, SLOT(manage_file_menu_choice(QAction*)));
     connect(m_build, SIGNAL(triggered(QAction*)), this, SLOT(manage_build_menu_choice(QAction*)));
+
+    connect(win_new_project->btn_create, SIGNAL(clicked(bool)), this, SLOT(enable_ui()));
 }
 
 editor::~editor() {
@@ -135,6 +146,8 @@ void editor::setup_window_menu() {
     m_file->addAction(a_save);
     m_file->addSeparator();
     m_file->addAction(a_close);
+    m_file->addSeparator();
+    m_file->addAction(a_exit);
     // Config
     mb_menuBar->addMenu(m_config_window);
     m_config_window->addAction(a_project);
@@ -147,7 +160,8 @@ void editor::setup_window_menu() {
     m_build->addAction(a_build_and_run);
     // Scene
     mb_menuBar->addSeparator();
-    mb_menuBar->addAction(tr("Scene"));
+    mb_menuBar->addAction(a_lbl_scene);
+    mb_menuBar->addAction(a_cbox_scene);
 }
 
 void editor::manage_config_menu_choice(QAction *a) {
@@ -168,6 +182,8 @@ void editor::manage_file_menu_choice(QAction *a) {
         ;
     else if(a == a_close)
         ;
+    else if(a == a_exit)
+        close();
 }
 
 void editor::create_attribute(attribute_widget *attr) {
@@ -198,20 +214,20 @@ void editor::create_main_file() {
             QString("\tshmupgine::close();\n") +
             QString("\treturn 0;\n") +
             QString("}");
-    QString filename = project_data::instance().prj_configuration.at(working_dir)+project_data::instance().prj_configuration.at(name)+QString(".cpp");
+    QString filename = project_data::instance().prj_configuration.at(working_dir)+project_data::instance().prj_configuration.at(name)+QString("/")+project_data::instance().prj_configuration.at(name)+QString(".cpp");
     std::ofstream main(filename.toStdString().c_str());
     main << content.toStdString();
     main.close();
 }
 
 void editor::run() {
-   QProcess::startDetached(project_data::instance().prj_configuration.at(working_dir) + project_data::instance().prj_configuration.at(name));
+   QProcess::startDetached(project_data::instance().prj_configuration.at(working_dir) + project_data::instance().prj_configuration.at(name)+QString("/")+project_data::instance().prj_configuration.at(name));
 }
 
 void editor::build() {
     create_main_file();
     create_makefile();
-    QProcess::startDetached(project_data::instance().prj_configuration.at(make)+QString(" -f ")+project_data::instance().prj_configuration.at(working_dir)+QString("Makefile"));
+    QProcess::startDetached(project_data::instance().prj_configuration.at(make)+QString(" -f ")+project_data::instance().prj_configuration.at(working_dir)+project_data::instance().prj_configuration.at(name)+QString("/Makefile"));
 }
 
 void editor::build_and_run() {
@@ -220,7 +236,7 @@ void editor::build_and_run() {
 }
 
 void editor::create_makefile() {
-    QString filename = project_data::instance().prj_configuration.at(working_dir)+QString("/Makefile");
+    QString filename = project_data::instance().prj_configuration.at(working_dir)+project_data::instance().prj_configuration.at(name)+QString("/Makefile");
     std::ofstream makefile(filename.toStdString().c_str());
     makefile << project_data::instance().generate_makefile().toStdString();
 }
@@ -229,4 +245,22 @@ void editor::create_clear_gview() {
     QGraphicsRectItem* rect = new QGraphicsRectItem(0, 0, 640, 480);
     rect->setBrush(QBrush(Qt::black));
     project_data::instance().gscene->addItem(rect);
+}
+
+void editor::switch_opened_project(bool state) {
+    a_save->setEnabled(state);
+    a_close->setEnabled(state);
+    m_config_window->setEnabled(state);
+    m_build->setEnabled(state);
+    panel_attributes->setEnabled(state);
+    panel_entities->setEnabled(state);
+    panel_graphic_view->setEnabled(state);
+}
+
+void editor::enable_ui() {
+    switch_opened_project(true);
+}
+
+void editor::disable_ui() {
+    switch_opened_project(false);
 }

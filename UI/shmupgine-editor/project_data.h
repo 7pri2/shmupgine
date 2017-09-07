@@ -47,14 +47,13 @@ class select_entity;
 class editor;
 
 class project_data : public singleton<project_data> {
-public:
     friend class singleton<project_data>;
     friend class graphics_manager;
     friend class entities_container;
     friend class select_sprite;
     friend class select_entity;
     friend class editor;
-
+public:
     project_data();
     ~project_data();
 
@@ -89,35 +88,35 @@ public:
     void    append_picture(QString filename);
     void    remove_picture(int id);
 
-    int picture_max_id;
-    int current_picture_id;
+    int     picture_max_id;
+    int     current_picture_id;
 
     // Entities
     QString get_entity_name();  // Get current's entity's name
     QString get_entity_name(int id);
     QString get_entities_code(QString scene_name);
 
-    void register_entity(QStandardItem *item);
-    void remove_entity(int row);
+    void    register_entity(QStandardItem *item);
+    void    remove_entity(int row);
 
-    void update_entity_position(int id, int x, int y);
-    void update_entity_pixmap(int id, QPixmap *pic);
+    void    update_entity_position(int id, int x, int y);
+    void    update_entity_pixmap(int id, QPixmap *pic);
 
-    int entity_max_id;
-    int current_entity_id;
+    int     entity_max_id;
+    int     current_entity_id;
 
     // Project config
     QString generate_makefile();
     QStringList prj_configuration;
 
     // Attributes
-    void add_attribute(attribute_widget* attr);
-    void update_what_is_visible();
-    void remove_attribute(attribute_widget* attr);
+    void    add_attribute(attribute_widget* attr);
+    void    update_what_is_visible();
+    void    remove_attribute(attribute_widget* attr);
     QString get_attributes_code();
 
     // Scene
-    void draw_entities_on_scene();
+    void    draw_entities_on_scene();
 
     // flags
     flag    f_config_changed;

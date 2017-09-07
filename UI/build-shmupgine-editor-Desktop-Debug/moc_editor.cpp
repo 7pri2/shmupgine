@@ -22,7 +22,7 @@ static const uint qt_meta_data_editor[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -38,6 +38,8 @@ static const uint qt_meta_data_editor[] = {
      157,   46,    7,    7, 0x0a,
      197,  192,    7,    7, 0x0a,
      241,  233,    7,    7, 0x0a,
+     281,    7,    7,    7, 0x0a,
+     293,    7,    7,    7, 0x0a,
 
        0        // eod
 };
@@ -50,6 +52,7 @@ static const char qt_meta_stringdata_editor[] = {
     "manage_build_menu_choice(QAction*)\0"
     "attr\0create_attribute(attribute_widget*)\0"
     "id,attr\0create_attribute(int,attribute_widget*)\0"
+    "enable_ui()\0disable_ui()\0"
 };
 
 void editor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -66,6 +69,8 @@ void editor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 5: _t->manage_build_menu_choice((*reinterpret_cast< QAction*(*)>(_a[1]))); break;
         case 6: _t->create_attribute((*reinterpret_cast< attribute_widget*(*)>(_a[1]))); break;
         case 7: _t->create_attribute((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< attribute_widget*(*)>(_a[2]))); break;
+        case 8: _t->enable_ui(); break;
+        case 9: _t->disable_ui(); break;
         default: ;
         }
     }
@@ -103,9 +108,9 @@ int editor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 10;
     }
     return _id;
 }

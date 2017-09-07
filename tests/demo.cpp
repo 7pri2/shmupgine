@@ -53,10 +53,11 @@ int main() {
 	//op1->get_attribute<physics>()->set_velocity(90);
 	op1->get_attribute<route>()->set_curve(
 		[](float t) -> float {
-			return 150+sin(t)*100;
+			//return 240+sin(t)*240;
+			return 240+cos(tan(t))*100;
 		},
 		[](float t) -> float {
-			return t*0;
+			return t*10;
 		});
 	//op1->get_attribute<route>()->speed_factor = 100;
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");

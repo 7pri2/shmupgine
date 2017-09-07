@@ -1,6 +1,8 @@
 #include "new_project.h"
 
 new_project::new_project(QWidget *parent) : QWidget(parent) {
+    setFixedSize(sizeHint());
+
     lbl_name            = new QLabel(tr("Project name"), this);
     lbl_working_dir     = new QLabel(tr("Create in"), this);
     lbl_compiler        = new QLabel(tr("Compiler"), this);
@@ -35,10 +37,20 @@ new_project::new_project(QWidget *parent) : QWidget(parent) {
 
     chkbx_show_more = new QCheckBox(tr("Show advanced configuration"), this);
 
+    connect(le_name, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
+    connect(le_compiler, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
+    connect(le_compiler_flags, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
+    connect(le_engine, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
+    connect(le_make, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
+    connect(le_working_dir, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
+    connect(btn_cancel, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(btn_create, SIGNAL(clicked(bool)), this, SLOT(create_new_project()));
+
     setWindowTitle(tr("Create new project"));
     resize_buttons();
     setup_child_layouts();
     fill_main_layout();
+    switch_create_btn_state();
 }
 
 void new_project::fill_main_layout() {
@@ -99,4 +111,27 @@ void new_project::resize_buttons() {
 
 new_project::~new_project() {
 
+}
+
+void new_project::switch_create_btn_state() {
+    bool can_be_activated =
+        !le_compiler->text().isEmpty()          &&
+        !le_compiler_flags->text().isEmpty()    &&
+        !le_engine->text().isEmpty()            &&
+        !le_make->text().isEmpty()              &&
+        !le_name->text().isEmpty()              &&
+        !le_working_dir->text().isEmpty();
+    btn_create->setEnabled(can_be_activated);
+}
+
+void new_project::create_new_project() {
+    close();
+    QDir projectdir = QDir::root();
+    project_data::instance().prj_configuration.replace(working_dir, le_working_dir->text());
+    project_data::instance().prj_configuration.replace(name, le_name->text());
+    project_data::instance().prj_configuration.replace(compiler, le_compiler->text());
+    project_data::instance().prj_configuration.replace(compiler_flags, le_compiler_flags->text());
+    project_data::instance().prj_configuration.replace(engine, le_engine->text());
+    project_data::instance().prj_configuration.replace(make, le_make->text());
+    projectdir.mkpath(le_working_dir->text()+le_name->text());
 }

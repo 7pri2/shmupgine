@@ -1,4 +1,5 @@
 #include "physics.h"
+#include <iostream>
 
 physics::physics() : attribute_widget() {
 	/* Allocation des QLineEdit */
@@ -39,6 +40,7 @@ QString physics::getCode() {
     if(le_angle->text().toInt() != 0)
         code += QString("\t") + project_data::instance().get_entity_name(id_parent) + QString("->get_attribute<physics>()->set_angle(") + le_angle->text() + QString(");\n");
     if(le_velocity->text().toInt() != 0)
-        code += QString("\t") + project_data::instance().get_entity_name(id_parent) + QString("->get_attribute<physics>()->setVelocity(") + le_velocity->text() + QString(");\n");
+        code += QString("\t") + project_data::instance().get_entity_name(id_parent) + QString("->get_attribute<physics>()->set_velocity(") + le_velocity->text() + QString(");\n");
+	std::cout << code.toStdString();
     return code;
 }

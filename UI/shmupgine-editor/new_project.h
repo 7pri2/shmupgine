@@ -11,10 +11,14 @@
 #include <QCheckBox>
 #include <QDialog>
 #include <QPushButton>
+#include <QDir>
 
 #include "project_data.h"
 
+class editor;
+
 class new_project : public QWidget {
+    friend class editor;
     Q_OBJECT
 public:
     explicit new_project(QWidget *parent = 0);
@@ -23,6 +27,8 @@ public:
 signals:
 
 public slots:
+    void    switch_create_btn_state();
+    void    create_new_project();
 
 private:
     QLabel* lbl_name;

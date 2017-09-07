@@ -9,6 +9,8 @@
 #include <fstream>
 #include <QProcess>
 #include <QScrollArea>
+#include <QComboBox>
+#include <QWidgetAction>
 #include "new_project.h"
 #include "config_window.h"
 #include "project_data.h"
@@ -25,6 +27,8 @@ public:
     explicit editor(QWidget *parent = 0);
     ~editor();
 
+    void switch_opened_project(bool state);
+
 signals:
 
 public slots:
@@ -36,6 +40,8 @@ public slots:
      void manage_build_menu_choice(QAction* a);
      void create_attribute(attribute_widget* attr);
      void create_attribute(int id, attribute_widget* attr);
+     void enable_ui();
+     void disable_ui();
 
 private:
     new_project*        win_new_project;
@@ -62,18 +68,23 @@ private:
     QAction*    a_open;
     QAction*    a_save;
     QAction*    a_close;
+    QAction*    a_exit;
     // Config
     QMenu*      m_config_window;
     QAction*    a_project;
     QAction*    a_makefile;
     QAction*    a_graphics;
     QAction*    a_controls;
-    QAction*    a_script;
     // Build
     QMenu*      m_build;
     QAction*    a_run;
     QAction*    a_build;
     QAction*    a_build_and_run;
+    // Scene
+    QWidgetAction*  a_lbl_scene;
+    QWidgetAction*  a_cbox_scene;
+    QComboBox*      cbox_scene;
+    QLabel*         lbl_scene;
 
     QScrollArea*    sa_scroll_attributes;
 
