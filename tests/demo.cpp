@@ -45,21 +45,21 @@ int main() {
 		}
 	};
 
-	op1->allocate_attribute<route>();
+	op1->allocate_attribute<movement>();
 	op1->allocate_attribute<graphicrenderer>();
 	op1->allocate_attribute<spawner>();
 	op1->allocate_attribute<destructor>();
 	op1->allocate_attribute<physics>();
 	//op1->get_attribute<physics>()->set_velocity(90);
-	op1->get_attribute<route>()->set_curve(
+	op1->get_attribute<movement>()->set_curve(
 		[](float t) -> float {
 			//return 240+sin(t)*240;
-			return 240+cos(tan(t))*100;
+			return 240+cos(t)*100;
 		},
 		[](float t) -> float {
 			return t*10;
 		});
-	//op1->get_attribute<route>()->speed_factor = 100;
+	//op1->get_attribute<movement>()->speed_factor = 100;
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");
 	op1->get_attribute<spawner>()->set_profile(enemy_bullet);
 	op1->get_attribute<spawner>()->f_auto_spawn = true;
@@ -95,21 +95,21 @@ int main() {
 	bullet->get_attribute<physics>()->set_velocity(550);
 	bullet->get_attribute<destructor>()->add_collision_entity(op1);
 
-	alt_bullet->allocate_attribute<route>();
+	alt_bullet->allocate_attribute<movement>();
 	alt_bullet->allocate_attribute<graphicrenderer>();
 	alt_bullet->allocate_attribute<destructor>();
 	alt_bullet->get_attribute<destructor>()->f_when_out_of_bounds = true;
 	alt_bullet->get_attribute<graphicrenderer>()->set_texture("bullet");
 	alt_bullet->get_attribute<graphicrenderer>()->colorify(RGBA(200, 50, 50));
 	alt_bullet->get_attribute<destructor>()->add_collision_entity(heros);
-	alt_bullet->get_attribute<route>()->set_curve(
+	alt_bullet->get_attribute<movement>()->set_curve(
 		[](float t) -> float {
 			return sin(t)/2;
 		},
 		[](float t) -> float {
 			return t/8;
 		});
-	alt_bullet->get_attribute<route>()->speed_factor = 1;
+	alt_bullet->get_attribute<movement>()->speed_factor = 1;
 
 	sc1.add_script(sc_heros_hp);
 	sc1.add_script(sc_op1_hp);

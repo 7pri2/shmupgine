@@ -40,8 +40,8 @@ public:
 	void 	destroy();
 
 private:
-	virtual void 		run();
-	virtual destructor*	make_copy(entity* newparent);
+	virtual void 			run();
+	virtual destructor*		make_copy(entity* newparent);
 
 /* Flag qui permet de savoir si l'entité parente a déjà été soumise à la 
  * destruction */

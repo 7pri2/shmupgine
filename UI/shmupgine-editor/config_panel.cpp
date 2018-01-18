@@ -118,3 +118,11 @@ void config_panel::update_engine(QString n_engine) {
     project_data::instance().f_config_changed = true;
 }
 
+void config_panel::fill_fields() {
+    le_name->setText(project_data::instance().prj_configuration.at(name));
+    le_working_dir->setText(project_data::instance().prj_configuration.at(working_dir));
+    le_compiler->setText(project_data::instance().prj_configuration.at(compiler));
+    le_compiler_flags->setText(project_data::instance().prj_configuration.at(compiler_flags));
+    le_engine->setText(project_data::instance().prj_configuration.at(engine));
+    le_make->setText(project_data::instance().prj_configuration.at(make));
+}

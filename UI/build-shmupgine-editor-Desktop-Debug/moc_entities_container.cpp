@@ -1,25 +1,50 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'entities_container.h'
 **
-** Created by: The Qt Meta Object Compiler version 63 (Qt 4.8.7)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../shmupgine-editor/entities_container.h"
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'entities_container.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.7. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.7.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+struct qt_meta_stringdata_entities_container_t {
+    QByteArrayData data[5];
+    char stringdata0[61];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_entities_container_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_entities_container_t qt_meta_stringdata_entities_container = {
+    {
+QT_MOC_LITERAL(0, 0, 18), // "entities_container"
+QT_MOC_LITERAL(1, 19, 20), // "update_current_index"
+QT_MOC_LITERAL(2, 40, 0), // ""
+QT_MOC_LITERAL(3, 41, 5), // "index"
+QT_MOC_LITERAL(4, 47, 13) // "remove_entity"
+
+    },
+    "entities_container\0update_current_index\0"
+    "\0index\0remove_entity"
+};
+#undef QT_MOC_LITERAL
+
 static const uint qt_meta_data_entities_container[] = {
 
  // content:
-       6,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        2,   14, // methods
@@ -29,24 +54,22 @@ static const uint qt_meta_data_entities_container[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: signature, parameters, type, tag, flags
-      26,   20,   19,   19, 0x0a,
-      60,   19,   19,   19, 0x0a,
+ // slots: name, argc, parameters, tag, flags
+       1,    1,   24,    2, 0x0a /* Public */,
+       4,    0,   27,    2, 0x0a /* Public */,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::QModelIndex,    3,
+    QMetaType::Void,
 
        0        // eod
-};
-
-static const char qt_meta_stringdata_entities_container[] = {
-    "entities_container\0\0index\0"
-    "update_current_index(QModelIndex)\0"
-    "remove_entity()\0"
 };
 
 void entities_container::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        Q_ASSERT(staticMetaObject.cast(_o));
         entities_container *_t = static_cast<entities_container *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->update_current_index((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
         case 1: _t->remove_entity(); break;
@@ -55,28 +78,21 @@ void entities_container::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     }
 }
 
-const QMetaObjectExtraData entities_container::staticMetaObjectExtraData = {
-    0,  qt_static_metacall 
-};
-
 const QMetaObject entities_container::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_entities_container,
-      qt_meta_data_entities_container, &staticMetaObjectExtraData }
+    { &QWidget::staticMetaObject, qt_meta_stringdata_entities_container.data,
+      qt_meta_data_entities_container,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
-#ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &entities_container::getStaticMetaObject() { return staticMetaObject; }
-#endif //Q_NO_DATA_RELOCATION
 
 const QMetaObject *entities_container::metaObject() const
 {
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
 void *entities_container::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_entities_container))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_entities_container.stringdata0))
         return static_cast<void*>(const_cast< entities_container*>(this));
     return QWidget::qt_metacast(_clname);
 }
@@ -89,6 +105,10 @@ int entities_container::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
+        _id -= 2;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 2)
+            *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 2;
     }
     return _id;

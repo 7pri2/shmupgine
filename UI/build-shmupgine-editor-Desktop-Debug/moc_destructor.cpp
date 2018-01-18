@@ -1,25 +1,50 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'destructor.h'
 **
-** Created by: The Qt Meta Object Compiler version 63 (Qt 4.8.7)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.7.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "../shmupgine-editor/destructor.h"
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'destructor.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.7. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.7.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+struct qt_meta_stringdata_destructor_t {
+    QByteArrayData data[5];
+    char stringdata0[57];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_destructor_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_destructor_t qt_meta_stringdata_destructor = {
+    {
+QT_MOC_LITERAL(0, 0, 10), // "destructor"
+QT_MOC_LITERAL(1, 11, 18), // "open_select_entity"
+QT_MOC_LITERAL(2, 30, 0), // ""
+QT_MOC_LITERAL(3, 31, 12), // "selectEntity"
+QT_MOC_LITERAL(4, 44, 12) // "removeEntity"
+
+    },
+    "destructor\0open_select_entity\0\0"
+    "selectEntity\0removeEntity"
+};
+#undef QT_MOC_LITERAL
+
 static const uint qt_meta_data_destructor[] = {
 
  // content:
-       6,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        3,   14, // methods
@@ -29,24 +54,24 @@ static const uint qt_meta_data_destructor[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: signature, parameters, type, tag, flags
-      12,   11,   11,   11, 0x0a,
-      33,   11,   11,   11, 0x08,
-      48,   11,   11,   11, 0x08,
+ // slots: name, argc, parameters, tag, flags
+       1,    0,   29,    2, 0x0a /* Public */,
+       3,    0,   30,    2, 0x08 /* Private */,
+       4,    0,   31,    2, 0x08 /* Private */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
-};
-
-static const char qt_meta_stringdata_destructor[] = {
-    "destructor\0\0open_select_entity()\0"
-    "selectEntity()\0removeEntity()\0"
 };
 
 void destructor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        Q_ASSERT(staticMetaObject.cast(_o));
         destructor *_t = static_cast<destructor *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->open_select_entity(); break;
         case 1: _t->selectEntity(); break;
@@ -57,28 +82,21 @@ void destructor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     Q_UNUSED(_a);
 }
 
-const QMetaObjectExtraData destructor::staticMetaObjectExtraData = {
-    0,  qt_static_metacall 
-};
-
 const QMetaObject destructor::staticMetaObject = {
-    { &attribute_widget::staticMetaObject, qt_meta_stringdata_destructor,
-      qt_meta_data_destructor, &staticMetaObjectExtraData }
+    { &attribute_widget::staticMetaObject, qt_meta_stringdata_destructor.data,
+      qt_meta_data_destructor,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
-#ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &destructor::getStaticMetaObject() { return staticMetaObject; }
-#endif //Q_NO_DATA_RELOCATION
 
 const QMetaObject *destructor::metaObject() const
 {
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
 void *destructor::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_destructor))
+    if (!_clname) return Q_NULLPTR;
+    if (!strcmp(_clname, qt_meta_stringdata_destructor.stringdata0))
         return static_cast<void*>(const_cast< destructor*>(this));
     return attribute_widget::qt_metacast(_clname);
 }
@@ -91,6 +109,10 @@ int destructor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 3;
     }
     return _id;

@@ -5,7 +5,7 @@ controls::controls() : attribute_widget() {
     lbl_move_speed  = new QLabel(tr("Move speed"), this);
     lay_move_speed  = new QHBoxLayout(this);
 
-    le_move_speed->setValidator(new QDoubleValidator((0, 9999999, 2, this)));
+    le_move_speed->setValidator(new QDoubleValidator(0, 9999999, 2, this));
     gb_box->setTitle(tr("Controls"));
 
     lay_move_speed->addWidget(lbl_move_speed);

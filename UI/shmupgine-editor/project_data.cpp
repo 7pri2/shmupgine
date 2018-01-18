@@ -1,10 +1,7 @@
+#include <fstream>
 #include "project_data.h"
 #include "graphic_renderer.h"
 #include "properties.h"
-
-#ifdef linux
-#include <cstdlib>
-#endif
 
 project_data::project_data() {
     pictures_model  = new QStandardItemModel();
@@ -21,20 +18,7 @@ project_data::project_data() {
     f_config_changed = true;
 
     prj_configuration << "";    // name of the project
-#ifdef linux
-    prj_configuration << QString(getenv("HOME"))+QString("/")   // working dir
-                      << "g++"                  // compiler path
-                      << "-Wall -Werror -std=c++11"        // compiler flags
-                      << "/home/cyprien/Documents/Informatique/shmupgine/"
-                      //<< "../../"           // engine path
-                      << "make";                // make path
-#else
-    prj_configuration << ""         // working dir
-                      << ""         // compiler path
-                      << ""         // compiler flags
-                      << "../../"  // engine path
-                      << "";        // make path
-#endif
+    CREATE_INFORMATIONS
 }
 
 project_data::~project_data() {
@@ -231,6 +215,7 @@ QString project_data::get_entity_name() {
         if(entities_model->index(i,0).child(e_id,0).data().toInt() == current_entity_id)
             return entities_model->index(i,0).data().toString();
     }
+    return "";
 }
 
 QString project_data::get_entity_name(int id) {
@@ -238,6 +223,7 @@ QString project_data::get_entity_name(int id) {
         if(entities_model->index(i,0).child(e_id,0).data().toInt() == id)
             return entities_model->index(i,0).data().toString();
     }
+    return "";
 }
 
 
@@ -332,4 +318,8 @@ void project_data::update_entity_pixmap(int id, QPixmap *pic) {
     std::list<QGraphicsPixmapItem*>::iterator it = items_list->begin();
     std::advance(it, row);
     (*it)->setPixmap(*pic);
+}
+
+void project_data::save_project_file() {
+    std::ofstream file((prj_configuration.at(working_dir)+prj_configuration.at(name)+QString("/")+prj_configuration.at(name)+QString(".shmgproj")).toStdString().c_str());
 }

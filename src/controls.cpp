@@ -25,8 +25,12 @@ void controls::run() {
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 		parent->move(0, 0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds());
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		if(parent->get_attribute<spawner>() != NULL)
+		if(parent->get_attribute<spawner>() != NULL) {
+#ifdef DEBUG
+			std::cout << debug::pattr("New entity creation requested\n");
+#endif
 			parent->get_attribute<spawner>()->spawn();
+		}
 	}
 #ifdef DEBUG
 	std::cout << debug::done;

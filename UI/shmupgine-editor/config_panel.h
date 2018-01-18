@@ -21,6 +21,7 @@ public:
 signals:
 
 public slots:
+    void fill_fields();
     void update_name(QString n_name);
     void update_working_dir(QString n_working_dir);
     void update_compiler(QString n_compiler);

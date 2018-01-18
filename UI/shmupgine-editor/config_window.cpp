@@ -18,7 +18,6 @@ config_window::config_window(QWidget *parent) : QMainWindow(parent) {
     m_tab->addTab(t_gmanager, tr("&Graphics manager"));
 
     setup_layouts();
-    design_tabs();
 
     connect(m_tab, SIGNAL(currentChanged(int)), this, SLOT(tab_changed(int)));
     connect(btn_close, SIGNAL(clicked()), this, SLOT(close()));
@@ -44,11 +43,8 @@ void config_window::setup_layouts() {
     setCentralWidget(wid_central);
 }
 
-void config_window::design_tabs() {
-
-}
-
 void config_window::open_tab(int tab) {
     show();
+    t_config->fill_fields();
     m_tab->setCurrentIndex(tab);
 }

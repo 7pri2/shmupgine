@@ -35,7 +35,7 @@ FILES=systems.o			\
 	  spawner.o			\
 	  debug.o			\
 	  soundmanager.o	\
-	  route.o
+	  movement.o
 
 OBJS=$(patsubst %,$(OBJ)%,$(FILES))
 

@@ -39,7 +39,6 @@ private:
     QWidget*        wid_central;
 
     void setup_layouts();
-    void design_tabs();
 };
 
 #endif // CONFIG_WINDOW_H

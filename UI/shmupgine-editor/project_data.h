@@ -16,6 +16,27 @@
 
 #define BTN_WIDTH   32
 
+#ifdef linux
+
+#include <cstdlib>
+#define CREATE_INFORMATIONS \
+prj_configuration << QString(getenv("HOME"))+QString("/")   \
+                  << "g++"                                  \
+                  << "-Wall -Werror -std=c++11"             \
+                  << "/home/cyprien/Documents/Informatique/shmupgine/"      \
+                                                                            \
+                  << "make";
+
+#else
+#define CREATE_INFORMATIONS \
+prj_configuration << "" \
+                  << "" \
+                  << "" \
+                  << "../../"   \
+                  << "";
+#endif
+
+
 typedef bool flag;
 
 enum {
@@ -56,6 +77,9 @@ class project_data : public singleton<project_data> {
 public:
     project_data();
     ~project_data();
+
+    // Project
+    void save_project_file();
 
     // Pictures
     QString get_pictures_name(int id);

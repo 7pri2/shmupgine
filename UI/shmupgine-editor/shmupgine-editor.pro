@@ -16,7 +16,6 @@ HEADERS += \
     destructor.h \
     controls.h \
     select_entity.h \
-    script.h \
     script_editor.h
 
 SOURCES += \
@@ -37,7 +36,6 @@ SOURCES += \
     destructor.cpp \
     controls.cpp \
     select_entity.cpp \
-    script.cpp \
     script_editor.cpp
 
 TRANSLATIONS = shmupgine-editor_fr.ts

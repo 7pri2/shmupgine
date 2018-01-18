@@ -1,7 +1,8 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
-#include <QLineEdit>
+#include <QDial>
+#include <QSpinBox>
 #include "attribute_widget.h"
 
 class physics : public attribute_widget {
@@ -13,13 +14,15 @@ public:
     virtual QString getCode();
 
 private:
-    QLineEdit*  le_angle;
-    QLineEdit*  le_velocity;
+    QDial*      dial_angle;
+    QSpinBox*   sb_angle;
+    QSpinBox*   sb_velocity;
 
     QLabel*     lbl_angle;
     QLabel*     lbl_velocity;
 
-	QHBoxLayout*	lay_angle;
+    QHBoxLayout*	lay_angle;
+    QVBoxLayout*    lay_sb_angle;
 	QHBoxLayout*	lay_velocity;
 };
 
