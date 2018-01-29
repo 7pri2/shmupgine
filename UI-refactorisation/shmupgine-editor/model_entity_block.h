@@ -1,11 +1,22 @@
-#ifndef ENTITY_BLOCK_H
-#define ENTITY_BLOCK_H
+#ifndef MODEL_ENTITY_BLOCK_H
+#define MODEL_ENTITY_BLOCK_H
 
+#include <QWidget>
 
-class entity_block
-{
+class attribute_panel;
+class entity_panel;
+
+class model_entity_block : public QWidget {
 public:
-    entity_block();
+    model_entity_block(QWidget *parent = 0);
+    ~model_entity_block();
+
+    entity_panel*       get_entity_panel();
+    attribute_panel*    get_attribute_panel();
+
+private:
+    entity_panel*       entites;
+    attribute_panel*    attributes;
 };
 
-#endif // ENTITY_BLOCK_H
+#endif // MODEL_ENTITY_BLOCK_H

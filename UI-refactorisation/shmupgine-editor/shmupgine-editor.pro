@@ -5,7 +5,10 @@ SOURCES += \
     w_graphics_manager.cpp \
     w_editor.cpp \
     p_config_panel.cpp \
-    entity_block.cpp
+    model_entity_block.cpp \
+    entity_panel.cpp \
+    attribute.cpp \
+    attribute_panel.cpp
 
 HEADERS += \
     project_data.h \
@@ -15,6 +18,9 @@ HEADERS += \
     w_editor.h \
     p_config_panel.h \
     windows_panels.h \
-    entity_block.h
+    model_entity_block.h \
+    entity_panel.h \
+    attribute.h \
+    attribute_panel.h
 
 QT += widgets

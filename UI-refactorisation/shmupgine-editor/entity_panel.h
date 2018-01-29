@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QStandardItemModel>
+#include "model_entity_block.h"
 #include "project_data.h"
 
 class editor;
@@ -15,7 +16,7 @@ class entity_panel : public QWidget {
 public:
     friend class editor;
 
-    explicit entity_panel(QWidget *parent = 0);
+    explicit entity_panel(model_entity_block *parent = 0);
     ~entity_panel();
 
 signals:
@@ -23,6 +24,7 @@ signals:
 public slots:
     void update_current_index(QModelIndex index);
     void remove_entity();
+    void new_entity();
 
 private slots:
     void update_what_is_visible();
@@ -30,15 +32,15 @@ private slots:
 private:
     QPushButton*    btn_new;
     QPushButton*    btn_delete;
-    QListView*      lv_list;
 
     QVBoxLayout*    lay_mainlayout;
     QVBoxLayout*    lay_btn;
 
-    QPushButton*    btn_new_attr;
-
+    QListView*          lv_list;
     QStandardItemModel* entities_model;
     QModelIndex         current_entity;
+
+    int entity_max_id;
 
     void setup_layout();
 };
