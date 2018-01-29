@@ -23,7 +23,7 @@ windows: executables
 
 executables: $(EXECUTABLES)
 
-FILES=systems.o			\
+OBJFILES=systems.o			\
 	  entity.o			\
 	  graphicrenderer.o	\
 	  gmanager.o		\
@@ -37,31 +37,18 @@ FILES=systems.o			\
 	  soundmanager.o	\
 	  movement.o
 
-OBJS=$(patsubst %,$(OBJ)%,$(FILES))
+OBJS=$(patsubst %,$(OBJ)%,$(OBJFILES))
 
 demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(OBJS)
 	$(CXX) $(CXXFLAGS) $< -o $(TESTS)$@ $(SFML) $(OBJS)
 
-$(OBJ)bullet.o: $(SRC)bullet.cpp $(HEADERS)bullet.h $(HEADERS)graphicrenderer.h $(HEADERS)physics.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)physics.o: $(SRC)physics.cpp $(HEADERS)physics.h $(HEADERS)systems.h $(HEADERS)entity.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)scene.o: $(SRC)scene.cpp $(HEADERS)scene.h $(HEADERS)systems.h $(HEADERS)entity.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)controls.o: $(SRC)controls.cpp $(HEADERS)controls.h $(HEADERS)entity.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)attribute.o: $(SRC)attribute.cpp $(HEADERS)attribute.h $(HEADERS)entity.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)destructor.o: $(SRC)destructor.cpp $(HEADERS)destructor.h $(HEADERS)entity.h $(HEADERS)scene.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ)spawner.o: $(SRC)spawner.cpp $(HEADERS)spawner.h $(HEADERS)entity.h $(HEADERS)scene.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ)bullet.o: $(HEADERS)graphicrenderer.h $(HEADERS)physics.h
+$(OBJ)physics.o: $(HEADERS)systems.h $(HEADERS)entity.h
+$(OBJ)scene.o: $(HEADERS)systems.h $(HEADERS)entity.h
+$(OBJ)controls.o: $(HEADERS)entity.h
+$(OBJ)attribute.o: $(HEADERS)entity.h
+$(OBJ)destructor.o: $(HEADERS)entity.h $(HEADERS)scene.h
+$(OBJ)spawner.o: $(HEADERS)entity.h $(HEADERS)scene.h
 
 $(OBJ)%.o:	$(SRC)%.cpp $(HEADERS)%.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
