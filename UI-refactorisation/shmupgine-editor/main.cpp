@@ -1,10 +1,10 @@
 #include <QApplication>
 #include "windows_panels.h"
-#include "model_entity_block.h"
+#include "entities_attributes_panel.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    model_entity_block ap;
+    entities_attributes_panel ap;
     ap.show();
     return app.exec();
 }
