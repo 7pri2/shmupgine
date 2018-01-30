@@ -62,10 +62,30 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
      * CONNECTIONS *
      * * * * * * * */
 
-    connect(a_new, SIGNAL(triggered(bool)), w_new_project::Instance(), SLOT(show()));
     connect(a_exit, SIGNAL(triggered(bool)), this, SLOT(close()));
+    connect(m_ressources, SIGNAL(triggered(QAction*)), this, SLOT(handle_ressources_choice(QAction*)));
+    connect(m_file, SIGNAL(triggered(QAction*)), this, SLOT(handle_file_choice(QAction*)));
+    connect(m_config_window, SIGNAL(triggered(QAction*)), this, SLOT(handle_config_choice(QAction*)));
 }
 
 w_editor::~w_editor() {
+
+}
+
+void w_editor::handle_config_choice(QAction *a) {
+    if(a == a_project)
+        p_config_panel::Instance()->show();
+}
+
+void w_editor::handle_file_choice(QAction *a) {
+    if(a == a_new)
+        w_new_project::Instance()->show();
+}
+
+void w_editor::handle_ressources_choice(QAction *a) {
+    if(a == a_graphics)
+        p_graphics_manager::Instance()->show();
+    else if(a == a_entities_collection)
+        p_entities_collection::Instance()->show();
 
 }

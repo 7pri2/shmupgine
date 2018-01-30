@@ -71,7 +71,7 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     connect(lv_list, SIGNAL(clicked(QModelIndex)), this, SLOT(update_current_index(QModelIndex)));
     connect(btn_delete_entity, SIGNAL(clicked()), this, SLOT(remove_entity()));
     connect(btn_new_entity, SIGNAL(clicked()), this, SLOT(new_entity()));
-    connect(m_choose_attribute, SIGNAL(triggered(QAction*)), this, SLOT(handle_Actions(QAction*)));
+    connect(m_choose_attribute, SIGNAL(triggered(QAction*)), this, SLOT(handle_actions(QAction*)));
 }
 
 entities_attributes_panel::~entities_attributes_panel() {
@@ -120,7 +120,7 @@ void entities_attributes_panel::add_attribute(int id, attribute *attr) {
     update_what_is_visible();
 }
 
-void entities_attributes_panel::handle_Actions(QAction *a) {
+void entities_attributes_panel::handle_actions(QAction *a) {
     if(a == a_destructor)
         add_attribute(new attr_destructor(this));
     else if(a == a_controls)

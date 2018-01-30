@@ -20,12 +20,10 @@ public:
     entities_attributes_panel(QWidget* parent = 0);
     ~entities_attributes_panel();
 
-signals:
-
 public slots:
     // ATTRIBUTES
     void showMenu();
-    void handle_Actions(QAction*);
+    void handle_actions(QAction*);
     void remove_attribute(attribute* attr);
 
     // ENTITIES
@@ -33,10 +31,10 @@ public slots:
     void remove_entity();
     void new_entity();
 
-private slots:
+protected slots:
     void update_what_is_visible();
 
-private:
+protected:
     // ENTITIES
     QWidget*        entities_widget;
     QPushButton*    btn_new_entity;

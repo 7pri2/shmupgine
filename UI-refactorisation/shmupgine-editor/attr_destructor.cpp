@@ -1,6 +1,10 @@
 #include "attr_destructor.h"
 
 attr_destructor::attr_destructor(entities_attributes_panel* container) : attribute(container) {
+    /* * * * * * * * * * *
+     * MEMORY ALLOCATION *
+     * * * * * * * * * * */
+
     lv_entities         = new QListView(this);
     lv_groups           = new QListView(this);
 
@@ -20,6 +24,10 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
 
     cb_out_of_bounds    = new QCheckBox(tr("Out of bounds"), this);
 
+    /* * * * * * * * * * * * * *
+     * CONSTRAINTS AND MODELS  *
+     * * * * * * * * * * * * * */
+
     lv_entities->setEditTriggers(QAbstractItemView::NoEditTriggers);
     lv_groups->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -27,6 +35,10 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
     lv_groups->setModel(sm_groups);
 
     gb_box->setTitle(tr("Destructor"));
+
+    /* * * * * * * *
+     *   LAYOUTS   *
+     * * * * * * * */
 
     lay_entities_btn->addWidget(btn_add_entity);
     lay_entities_btn->addWidget(btn_remove_entity);
@@ -42,8 +54,11 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
     lay_groupbox->addLayout(lay_groups_btn);
     lay_groupbox->addWidget(cb_out_of_bounds);
 
-    connect(btn_add_entity, SIGNAL(clicked()), this, SLOT(open_select_entity()));
+    /* * * * * * * *
+     * CONNECTIONS *
+     * * * * * * * */
 
+    connect(btn_add_entity, SIGNAL(clicked()), this, SLOT(open_select_entity()));
     connect(btn_remove_entity, SIGNAL(clicked()), this, SLOT(removeEntity()));
 }
 

@@ -1,6 +1,10 @@
 #include "attr_physics.h"
 
 attr_physics::attr_physics(entities_attributes_panel* container) : attribute(container) {
+    /* * * * * * * * * * *
+     * MEMORY ALLOCATION *
+     * * * * * * * * * * */
+
     /* Allocation des QSpinBox */
     dial_angle  = new QDial(this);
     sb_velocity = new QSpinBox(this);
@@ -15,11 +19,19 @@ attr_physics::attr_physics(entities_attributes_panel* container) : attribute(con
     lay_velocity 	= new QHBoxLayout(this);
     lay_sb_angle    = new QVBoxLayout(this);
 
+    /* * * * * * * * * * * * * *
+     * CONSTRAINTS AND MODELS  *
+     * * * * * * * * * * * * * */
+
     /* Application des validateurs */
     /*s_angle->setValidator(new QIntValidator(0, 359, this));
     sb_velocity->setValidator(new QDoubleValidator(-99999, 99999, 2, this));*/
     sb_angle->setRange(0,359);
     dial_angle->setRange(0, 359);
+
+    /* * * * * * * *
+     *   LAYOUTS   *
+     * * * * * * * */
 
     /* Mise en place du layout d'angle */
     lay_sb_angle->addWidget(dial_angle);
@@ -37,7 +49,10 @@ attr_physics::attr_physics(entities_attributes_panel* container) : attribute(con
     lay_groupbox->addLayout(lay_angle);
     lay_groupbox->addLayout(lay_velocity);
 
-    /* Signaux et slots */
+    /* * * * * * * *
+     * CONNECTIONS *
+     * * * * * * * */
+
     connect(dial_angle, SIGNAL(valueChanged(int)), sb_angle, SLOT(setValue(int)));
     connect(sb_angle, SIGNAL(valueChanged(int)), dial_angle, SLOT(setValue(int)));
 }

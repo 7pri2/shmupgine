@@ -2,14 +2,23 @@
 
 
 attr_graphic_renderer::attr_graphic_renderer(entities_attributes_panel* container) : attribute(container) {
+    /* * * * * * * * * * *
+     * MEMORY ALLOCATION *
+     * * * * * * * * * * */
+
     pm_picture      = new QPixmap;
-    gb_box->setTitle(tr("Graphic renderer"));
     lbl_sprite      = new QLabel(tr("Sprite"), this);
     le_sprite       = new QLineEdit(this);
     lay_sprite      = new QHBoxLayout(this);
     btn_open_sprite = new QPushButton("...", this);
     gs_scene        = new QGraphicsScene(this);
     gv_view         = new QGraphicsView(gs_scene, this);
+
+    /* * * * * * * * * * *
+     * WINDOW MANAGEMENT *
+     * * * * * * * * * * */
+
+    gb_box->setTitle(tr("Graphic renderer"));
 
     btn_open_sprite->setMaximumWidth(BTN_WIDTH);
 
@@ -19,7 +28,15 @@ attr_graphic_renderer::attr_graphic_renderer(entities_attributes_panel* containe
     lay_sprite->addWidget(btn_open_sprite);
     lay_groupbox->addLayout(lay_sprite);
 
+    /* * * * * * * * * * * * * *
+     * CONSTRAINTS AND MODELS  *
+     * * * * * * * * * * * * * */
+
     le_sprite->setReadOnly(true);
+
+    /* * * * * * * *
+     * CONNECTIONS *
+     * * * * * * * */
 
     connect(btn_open_sprite, SIGNAL(clicked(bool)), this, SLOT(selectSprite()));
 }

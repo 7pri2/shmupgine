@@ -4,6 +4,7 @@ p_config_panel::p_config_panel(QWidget *parent) : QWidget(parent) {
     /* * * * * * * * * * *
      * MEMORY ALLOCATION *
      * * * * * * * * * * */
+
     lbl_name            = new QLabel(tr("Project name"), this);
     lbl_working_dir     = new QLabel(tr("Working directory"), this);
     lbl_compiler        = new QLabel(tr("Compiler"), this);

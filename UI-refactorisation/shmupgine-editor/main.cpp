@@ -1,11 +1,8 @@
 #include <QApplication>
 #include "windows_panels.h"
-#include "entities_attributes_panel.h"
-#include <attribute.h>
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    entities_attributes_panel ap;
-    ap.show();
+    w_editor::Instance()->show();
     return app.exec();
 }
