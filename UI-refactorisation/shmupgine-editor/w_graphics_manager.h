@@ -17,6 +17,7 @@
 
 #include "project_data.h"
 #include "singleton.h"
+#include "select_window.h"
 
 enum {
     PIC_PATH    = 0,
@@ -30,6 +31,7 @@ class w_graphics_manager : public QWidget, public Singleton<w_graphics_manager> 
     friend class Singleton<w_graphics_manager>;
 
 public:
+    QString select_picture();
 
 private slots:
     void add_picture();
@@ -70,6 +72,8 @@ private:
 
     QPushButton*    btn_open;
     QPushButton*    btn_remove;
+
+    select_window*  select;
 
     QStandardItemModel* pictures_model;
     QModelIndex         current_selection;

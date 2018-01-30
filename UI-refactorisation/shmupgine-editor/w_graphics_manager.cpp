@@ -5,6 +5,8 @@ w_graphics_manager::w_graphics_manager(QWidget *parent) : QWidget(parent) {
      * MEMORY ALLOCATION *
      * * * * * * * * * * */
 
+    select  = new select_window(tr("Select a picture"), pictures_model);
+
     lv_pictures_view    = new QListView(this);
 
     gs_scene    = new QGraphicsScene(this);
@@ -82,10 +84,11 @@ w_graphics_manager::w_graphics_manager(QWidget *parent) : QWidget(parent) {
     connect(le_width, SIGNAL(textEdited(QString)), this, SLOT(update_model()));
     connect(le_height, SIGNAL(textEdited(QString)), this, SLOT(update_model()));
     connect(btn_remove, SIGNAL(clicked()), this, SLOT(delete_picture()));
+    connect(select->get_select_btn(), SIGNAL(clicked(bool)), select, SLOT(close()));
 }
 
 w_graphics_manager::~w_graphics_manager() {
-
+    delete select;
 }
 
 void w_graphics_manager::add_picture() {
@@ -151,4 +154,9 @@ void w_graphics_manager::append_picture(QString filename) {
     picture->appendRow(new QStandardItem(filename));   // path
     picture->appendRow(new QStandardItem(QString::number(file.width())));   // width
     picture->appendRow(new QStandardItem(QString::number(file.height())));  // height
+}
+
+QString w_graphics_manager::select_picture() {
+    sw.show();
+    return sw.get_selected_item();
 }

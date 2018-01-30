@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "windows_panels.h"
 #include "entities_attributes_panel.h"
+#include <attribute.h>
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);

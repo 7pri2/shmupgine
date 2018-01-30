@@ -11,5 +11,7 @@ int main(int argc, char* argv[]) {
 
     editor *game_editor= new editor;
     game_editor->show();
+    attribute_widget a;
+    a.show();
     return app.exec();
 }

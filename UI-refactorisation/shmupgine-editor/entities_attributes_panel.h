@@ -10,8 +10,9 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QSplitter>
+#include <list>
 
-#include "attribute.h"
+#include "attributes.h"
 
 class entities_attributes_panel : public QWidget {
     Q_OBJECT
@@ -25,6 +26,7 @@ public slots:
     // ATTRIBUTES
     void showMenu();
     void handle_Actions(QAction*);
+    void remove_attribute(attribute* attr);
 
     // ENTITIES
     void update_current_index(QModelIndex index);
@@ -51,6 +53,7 @@ private:
 
     // ATTRIBUTES
     void add_attribute(attribute* attr);
+    void add_attribute(int id, attribute* attr); // pour new_entity()
 
     QWidget*        attributes_widget;
 
@@ -64,7 +67,9 @@ private:
     QAction*    a_destructor;
     QAction*    a_controls;
 
-    // Mainwidget
+    std::list<attribute*>   attr_list;
+
+    // MAINWIDGET
     QSplitter*      s_splitter;
     QHBoxLayout*    lay_mainlayout;
 };

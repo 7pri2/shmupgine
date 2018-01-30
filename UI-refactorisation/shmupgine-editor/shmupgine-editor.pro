@@ -6,7 +6,13 @@ SOURCES += \
     w_editor.cpp \
     p_config_panel.cpp \
     attribute.cpp \
-    entities_attributes_panel.cpp
+    entities_attributes_panel.cpp \
+    attr_properties.cpp \
+    attr_controls.cpp \
+    attr_destructor.cpp \
+    attr_graphic_renderer.cpp \
+    attr_physics.cpp \
+    select_window.cpp
 
 HEADERS += \
     project_data.h \
@@ -17,6 +23,13 @@ HEADERS += \
     p_config_panel.h \
     windows_panels.h \
     attribute.h \
-    entities_attributes_panel.h
+    entities_attributes_panel.h \
+    attr_properties.h \
+    attr_controls.h \
+    attr_destructor.h \
+    attr_graphic_renderer.h \
+    attr_physics.h \
+    attributes.h \
+    select_window.h
 
 QT += widgets

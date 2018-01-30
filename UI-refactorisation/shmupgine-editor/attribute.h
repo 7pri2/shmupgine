@@ -8,35 +8,36 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QIntValidator>
-#include "project_data.h"
 
 #define CROSS_1 "\u2A09"
 #define CROSS_2 "\u2717"
 
+class entities_attributes_panel;
+
 class attribute : public QWidget {
     Q_OBJECT
 public:
-    explicit attribute();
+    explicit attribute(entities_attributes_panel* parent);
     ~attribute();
 
-    void setId_parent(int id);
-    int getId_parent();
+    void    setId_parent(int id);
+    int     getId_parent();
     virtual QString getCode();
-
-signals:
 
 public slots:
     void delete_attribute();
 
 protected:
     QCheckBox*      cb_enabled;
-    QVBoxLayout*    lay_groupbox;
     QGroupBox*      gb_box;
+    QVBoxLayout*    lay_groupbox;
     QPushButton*    btn_delete;
 
     int id_parent;
 
 private:
+    entities_attributes_panel*  container;
+
     QVBoxLayout*    lay_mainlayout;
 };
 
