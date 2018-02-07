@@ -3,27 +3,17 @@
 OBJ=obj/
 HEADERS=include/
 SRC=src/
+LIB=lib/
 TESTS=tests/
 
 CXX=g++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++11 -pedantic-errors -I$(HEADERS)
-SFML=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-EXECUTABLES=demo
+LDFLAGS=-L$(LIB) -lshmupgine -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 DEBUG=-g
 
-all: executables
-
-debug: CXXFLAGS+=$(DEBUG) -DDEBUG
-debug: executables
-
-windows: CXX=x86_64-w64-mingw32-g++
-windows: CXXFLAGS+= -I/usr/include/
-windows: SFML= -L/usr/lib/ $(SFML)
-windows: executables
-
-executables: $(EXECUTABLES)
-
-OBJFILES=systems.o			\
+EXECUTABLES=$(TESTS)demo
+LIBS=libshmupgine.a
+OBJFILES=systems.o		\
 	  entity.o			\
 	  graphicrenderer.o	\
 	  gmanager.o		\
@@ -36,11 +26,21 @@ OBJFILES=systems.o			\
 	  debug.o			\
 	  soundmanager.o	\
 	  movement.o
-
 OBJS=$(patsubst %,$(OBJ)%,$(OBJFILES))
 
-demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(OBJS)
-	$(CXX) $(CXXFLAGS) $< -o $(TESTS)$@ $(SFML) $(OBJS)
+debug: CXXFLAGS+=$(DEBUG) -DDEBUG
+debug: all
+
+all: executables libs
+executables: $(EXECUTABLES)
+libs: $(patsubst %,$(LIB)%,$(LIBS))
+
+
+$(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
+	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
+
+$(LIB)libshmupgine.a: $(OBJS)
+	ar -cr $@ $^
 
 $(OBJ)bullet.o: $(HEADERS)graphicrenderer.h $(HEADERS)physics.h
 $(OBJ)physics.o: $(HEADERS)systems.h $(HEADERS)entity.h
@@ -55,3 +55,5 @@ $(OBJ)%.o:	$(SRC)%.cpp $(HEADERS)%.h
 
 clean:
 	rm -rf $(OBJ)*.o
+	rm $(EXECUTABLES)
+	rm $(patsubst %,$(LIB)%,$(LIBS))
