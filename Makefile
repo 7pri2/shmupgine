@@ -28,10 +28,11 @@ OBJFILES=systems.o		\
 	  movement.o
 OBJS=$(patsubst %,$(OBJ)%,$(OBJFILES))
 
+all: executables libs
+
 debug: CXXFLAGS+=$(DEBUG) -DDEBUG
 debug: all
 
-all: executables libs
 executables: $(EXECUTABLES)
 libs: $(patsubst %,$(LIB)%,$(LIBS))
 
@@ -40,7 +41,7 @@ $(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 $(LIB)libshmupgine.a: $(OBJS)
-	ar -cr $@ $^
+	ar -cr $@ $^ 
 
 $(OBJ)bullet.o: $(HEADERS)graphicrenderer.h $(HEADERS)physics.h
 $(OBJ)physics.o: $(HEADERS)systems.h $(HEADERS)entity.h
