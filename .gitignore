@@ -34,6 +34,5 @@
 # Executables
 tests/demo
 
-# Folders
-!obj/
-!lib/
+# Dirtamps
+*.dirstamp

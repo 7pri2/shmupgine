@@ -55,6 +55,6 @@ $(OBJ)%.o:	$(SRC)%.cpp $(HEADERS)%.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ)*.o
-	rm $(EXECUTABLES)
-	rm $(patsubst %,$(LIB)%,$(LIBS))
+	-rm -rf $(OBJ)*.o
+	-rm -f $(EXECUTABLES) 
+	-rm -f $(patsubst %,$(LIB)%,$(LIBS)) 
