@@ -11,6 +11,6 @@ attribute::attribute(entity* parent) : attribute() {
 
 void attribute::run() {
 #ifdef DEBUG
-	std::cout << "\tattribute..." << debug::done;
+	std::cerr << "\tattribute..." << debug::done;
 #endif
 }

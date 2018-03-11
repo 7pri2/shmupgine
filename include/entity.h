@@ -19,6 +19,7 @@ typedef std::list<attribute*> attr_table;
  * 		- Une liste d'attributs	
  **/
 class entity {
+	friend class spawnslot;
 	friend class spawner;
 	friend class destructor;
 	friend class scene;

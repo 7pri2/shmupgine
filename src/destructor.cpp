@@ -19,14 +19,14 @@ destructor::~destructor() {
 void destructor::run() {
 	scene* parent_scene = parent->parent;
 #ifdef DEBUG
-	std::cout << "\tdestructor...";
+	std::cerr << "\tdestructor...";
 #endif
 	if(!m_destruction_requested) {	// Optimisation
 		if(f_when_out_of_bounds)
 			if(	parent->get_position().x > shmupgine::w_width  || parent->get_position().x < 0
 			||	parent->get_position().y > shmupgine::w_height || parent->get_position().y < 0 ) {
 #ifdef DEBUG
-				std::cout << debug::pattr("\n\tout of bounds, destruction will be requested. ");
+				std::cerr << debug::pattr("\n\tout of bounds, destruction will be requested. ");
 #endif
 				parent_scene->remove_entity(parent);
 			}
@@ -36,7 +36,7 @@ void destructor::run() {
 				&& (*it)->get_attribute<graphicrenderer>() != NULL 
 				&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds())) {
 #ifdef DEBUG
-				std::cout << debug::attr << "\n\tcollision with" << *it << ", destruction will be requested." << debug::reset << " ";
+				std::cerr << debug::attr << "\n\tcollision with" << *it << ", destruction will be requested." << debug::reset << " ";
 #endif
 				destroy();
 			}
@@ -49,7 +49,7 @@ void destructor::run() {
 					&& (*it)->get_attribute<graphicrenderer>() != NULL 
 					&& parent->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds().intersects((*it)->get_attribute<graphicrenderer>()->m_sprite.getGlobalBounds())) {
 #ifdef DEBUG
-					std::cout << debug::attr << "\n\tcollision with" << *it << ", destruction will be requested." << debug::reset << " ";
+					std::cerr << debug::attr << "\n\tcollision with" << *it << ", destruction will be requested." << debug::reset << " ";
 #endif
 					destroy();
 				}
@@ -57,7 +57,7 @@ void destructor::run() {
 		}
 	}
 #ifdef DEBUG
-	std::cout << debug::done;
+	std::cerr << debug::done;
 #endif
 }
 

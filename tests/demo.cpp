@@ -15,6 +15,8 @@ int main() {
 	
 	entity *heros = new entity(sf::Vector2f(208, 800));
 	entity *bullet = new entity;
+	entity *bullet2 = new entity;
+	entity *bullet3 = new entity;
 	entity *alt_bullet = new entity;
 	entity *enemy_bullet = new entity;
 	entity *op1	= new entity(sf::Vector2f(50, 100));
@@ -61,10 +63,11 @@ int main() {
 		});
 	//op1->get_attribute<movement>()->speed_factor = 100;
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");
-	op1->get_attribute<spawner>()->set_profile(enemy_bullet);
-	op1->get_attribute<spawner>()->f_auto_spawn = true;
-	op1->get_attribute<spawner>()->ms_cooldown = 400;
-	op1->get_attribute<spawner>()->add_group_to_join("enemy_bullets");
+	op1->get_attribute<spawner>()->add_slot("enemy");
+	op1->get_attribute<spawner>()->get_slot("enemy")->set_profile(enemy_bullet);
+	op1->get_attribute<spawner>()->get_slot("enemy")->f_auto_spawn = true;
+	op1->get_attribute<spawner>()->get_slot("enemy")->ms_cooldown = 400;
+	op1->get_attribute<spawner>()->get_slot("enemy")->add_group_to_join("enemy_bullets");
 
 	enemy_bullet->allocate_attribute<graphicrenderer>();
 	enemy_bullet->allocate_attribute<physics>();
@@ -82,9 +85,10 @@ int main() {
 	heros->allocate_attribute<destructor>();
 	heros->get_attribute<graphicrenderer>()->set_texture("heros");
 	heros->get_attribute<controls>()->move_speed = 200;
-	heros->get_attribute<spawner>()->set_profile(bullet);
-	heros->get_attribute<spawner>()->ms_cooldown = 150;
-	heros->get_attribute<spawner>()->add_group_to_join("heros_bullets");
+	heros->get_attribute<spawner>()->add_slot("bullet");
+	heros->get_attribute<spawner>()->get_slot("bullet")->set_profile(bullet);
+	heros->get_attribute<spawner>()->get_slot("bullet")->ms_cooldown = 150;
+	heros->get_attribute<spawner>()->get_slot("bullet")->add_group_to_join("heros_bullets");
 
 	bullet->allocate_attribute<graphicrenderer>();
 	bullet->allocate_attribute<physics>();

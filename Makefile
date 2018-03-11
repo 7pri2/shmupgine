@@ -12,7 +12,7 @@ LDFLAGS=-L$(LIB) -lshmupgine -lsfml-graphics -lsfml-window -lsfml-system -lsfml-
 DEBUG=-g
 
 EXECUTABLES=$(TESTS)demo
-LIBS=libshmupgine.a
+LIBFILES=libshmupgine.a
 OBJFILES=systems.o		\
 	  entity.o			\
 	  graphicrenderer.o	\
@@ -22,11 +22,13 @@ OBJFILES=systems.o		\
 	  controls.o		\
 	  attribute.o		\
 	  destructor.o		\
+	  spawnslot.o		\
 	  spawner.o			\
 	  debug.o			\
 	  soundmanager.o	\
 	  movement.o
 OBJS=$(patsubst %,$(OBJ)%,$(OBJFILES))
+LIBS=$(patsubst %,$(LIB)%,$(LIBFILES))
 
 all: executables libs
 
@@ -34,7 +36,7 @@ debug: CXXFLAGS+=$(DEBUG) -DDEBUG
 debug: all
 
 executables: $(EXECUTABLES)
-libs: $(patsubst %,$(LIB)%,$(LIBS))
+libs: $(LIBS)
 
 
 $(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
@@ -49,12 +51,13 @@ $(OBJ)scene.o: $(HEADERS)systems.h $(HEADERS)entity.h
 $(OBJ)controls.o: $(HEADERS)entity.h
 $(OBJ)attribute.o: $(HEADERS)entity.h
 $(OBJ)destructor.o: $(HEADERS)entity.h $(HEADERS)scene.h
-$(OBJ)spawner.o: $(HEADERS)entity.h $(HEADERS)scene.h
+$(OBJ)spawner.o: $(HEADERS)entity.h
+$(OBJ)spawnslot.o: $(HEADERS)entity.h $(HEADERS)scene.h $(HEADERS)spawner.h
 
 $(OBJ)%.o:	$(SRC)%.cpp $(HEADERS)%.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	-rm -rf $(OBJ)*.o
-	-rm -f $(EXECUTABLES) 
-	-rm -f $(patsubst %,$(LIB)%,$(LIBS)) 
+	-rm -rf $(EXECUTABLES) 
+	-rm -rf $(patsubst %,$(LIB)%,$(LIBS)) 

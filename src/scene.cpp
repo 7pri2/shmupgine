@@ -20,7 +20,7 @@ void scene::update() {
 
 void scene::run_attributes() {
 #ifdef DEBUG
-	std::cout << debug::ptitle("===== Loop =====\n");
+	std::cerr << debug::ptitle("===== Loop =====\n");
 #endif
 	for(std::list<entity*>::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)
 		(*it)->run_attributes();
@@ -40,7 +40,7 @@ void scene::run() {
 		}
 #ifdef DEBUG
 		fps++;
-		std::cout << debug::scene << "\nFPS : " << last_fps << "\n" << debug::reset;
+		std::cerr << debug::scene << "\nFPS : " << last_fps << "\n" << debug::reset;
 		if(fps_clock.getElapsedTime().asMilliseconds() >= 1000) {
 			last_fps = fps;
 			fps = 0;
@@ -54,7 +54,7 @@ void scene::run() {
 
 void scene::add_entity(entity* en) {
 #ifdef DEBUG
-	std::cout << debug::scene << en << " added to the scene\n" << debug::reset;
+	std::cerr << debug::scene << en << " added to the scene\n" << debug::reset;
 #endif
 	en->parent = this;
 	scene::m_entities.push_back(en);
@@ -62,7 +62,7 @@ void scene::add_entity(entity* en) {
 
 void scene::remove_entity(entity* en) {
 #ifdef DEBUG
-	std::cout << "\n" << debug::scene << en << " added to suppression list." << debug::reset;
+	std::cerr << "\n" << debug::scene << en << " added to suppression list." << debug::reset;
 #endif
 	m_to_be_removed.push_back(en);
 }
@@ -70,7 +70,7 @@ void scene::remove_entity(entity* en) {
 void scene::remove_entities() {
 	while(!m_to_be_removed.empty()) {
 #ifdef DEBUG
-		std::cout << debug::scene << m_to_be_removed.back() << " removed from the scene.\n" << debug::reset;
+		std::cerr << debug::scene << m_to_be_removed.back() << " removed from the scene.\n" << debug::reset;
 #endif
 		m_entities.remove(m_to_be_removed.back());
 		remove_from_all_groups(m_to_be_removed.back());
@@ -130,9 +130,9 @@ void scene::remove_from_all_groups(entity* en) {
 void scene::show_groups() {
 #ifdef DEBUG
 	for(std::map<std::string, group>::iterator it = m_groups.begin(); it != m_groups.end(); ++it) {
-		std::cout << "Groupe \"" << it->first << "\":" << std::endl;
+		std::cerr << "Groupe \"" << it->first << "\":" << std::endl;
 		for(group::iterator it2 = m_groups[it->first].begin(); it2 != m_groups[it->first].end(); ++it2) {
-			std::cout << "\t" << (*it2) << std::endl;
+			std::cerr << "\t" << (*it2) << std::endl;
 		}
 	}
 #endif

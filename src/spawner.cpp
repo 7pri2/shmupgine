@@ -3,47 +3,22 @@
 #include "scene.h"
 
 spawner::spawner(entity* parent) : attribute(parent) {
-	to_spawn = NULL;
-	f_spawn_at_parent = true;
-	f_spawn_requested = false;
-	f_auto_spawn = false;
-	ms_cooldown = 250;
-	clock.restart();
 }
 
 spawner::~spawner() {
-
 }
 
-void spawner::set_profile(entity* en) {
-	to_spawn = en;
-	to_spawn->parent = parent->parent;
+void spawner::add_slot(std::string name) {
+	m_spawnslots[name] = new spawnslot(this);
 }
 
-void spawner::spawn() {
-	f_spawn_requested = true;
+spawnslot* spawner::get_slot(std::string name) {
+	return m_spawnslots[name];
 }
 
 void spawner::run() {
-#ifdef DEBUG
-	std::cout << "\tspawner... ";
-#endif
-	if((f_auto_spawn || f_spawn_requested) && clock.getElapsedTime().asMilliseconds() >= ms_cooldown) {
-#ifdef DEBUG
-		std::cout << debug::pattr("Spawn requested");
-#endif
-		if(f_spawn_at_parent)
-			to_spawn->set_position(parent->get_position());
-		entity* en = new entity(to_spawn);
-		parent->parent->add_entity(en);
-		for(std::list<std::string>::iterator it = m_groups_to_join_on_spawn.begin(); it != m_groups_to_join_on_spawn.end(); ++it)
-			parent->parent->add_to_group(*it, en);
-		f_spawn_requested = false;
-		clock.restart();
-	}
-#ifdef DEBUG
-	std::cout << debug::done;
-#endif
+	for(std::map<std::string, spawnslot*>::iterator it = m_spawnslots.begin(); it != m_spawnslots.end(); ++it)
+		it->second->run();
 }
 
 spawner* spawner::make_copy(entity* newparent) {
@@ -52,9 +27,7 @@ spawner* spawner::make_copy(entity* newparent) {
 	return ptr;
 }
 
-void spawner::add_group_to_join(std::string groupname) {
-	for(std::list<std::string>::iterator it = m_groups_to_join_on_spawn.begin(); it != m_groups_to_join_on_spawn.end(); ++it)
-		if(*it == groupname)
-			return;
-	m_groups_to_join_on_spawn.push_back(groupname);
+void spawner::spawn(std::string slot) {
+	if(m_spawnslots[slot] != NULL)
+		m_spawnslots[slot]->spawn();
 }

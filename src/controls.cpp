@@ -29,7 +29,7 @@ void controls::run() {
 #ifdef DEBUG
 			std::cout << debug::pattr("New entity creation requested\n");
 #endif
-			parent->get_attribute<spawner>()->spawn();
+			parent->get_attribute<spawner>()->spawn("bullet");
 		}
 	}
 #ifdef DEBUG
