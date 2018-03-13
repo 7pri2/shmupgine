@@ -5,7 +5,6 @@
 #include <vector>
 #include <map>
 #include <functional>
-#include "debug.h"
 
 class entity;
 class destructor;
@@ -62,10 +61,6 @@ private:
 /* run_scripts parcoure la liste des scripts de la scene pour jouer leurs 
  * programmation */
 	void	run_scripts();
-
-/* Fonction de debug qui sert a afficher la liste des entites de chaque 
- * groupe */
-	void	show_groups();
 
 	std::map<std::string, group>	m_groups;
 	std::list<entity*>				m_entities;

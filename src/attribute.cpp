@@ -10,7 +10,4 @@ attribute::attribute(entity* parent) : attribute() {
 }
 
 void attribute::run() {
-#ifdef DEBUG
-	std::cerr << "\tattribute..." << debug::done;
-#endif
 }

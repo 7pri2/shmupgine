@@ -17,13 +17,7 @@ physics::~physics() {
 }
 
 void physics::run() {
-#ifdef DEBUG
-	std::cout << "\tphysics... ";
-#endif
 	parent->move(0.001f * force(m_force_angle) * m_velocity * (float)shmupgine::clock.getElapsedTime().asMilliseconds());
-#ifdef DEBUG
-	std::cout << debug::done;
-#endif
 }
 
 void physics::set_force_angle(int angle) {

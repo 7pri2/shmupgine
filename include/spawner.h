@@ -17,7 +17,13 @@ public:
 	~spawner();
 
 	void 		add_slot(std::string name);
-	spawnslot*	get_slot(std::string name);
+	void		spawn_all();
+
+	void		set_profile(std::string slotname, entity* en);
+	void		set_spawn_at_parent(std::string slotname, bool state);
+	void		set_auto_spawn(std::string slotname, bool state);
+	void		add_group_to_join(std::string slotname, std::string groupname);
+	void		set_cooldown(std::string slotname, int ms);
 	void 		spawn(std::string slot);
 
 private:

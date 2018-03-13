@@ -1,8 +1,6 @@
 #ifndef __ATTRIBUTE_H__
 #define __ATTRIBUTE_H__	
 
-#include "debug.h"
-
 class entity;
 class scene;
 

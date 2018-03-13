@@ -24,7 +24,6 @@ OBJFILES=systems.o		\
 	  destructor.o		\
 	  spawnslot.o		\
 	  spawner.o			\
-	  debug.o			\
 	  soundmanager.o	\
 	  movement.o
 OBJS=$(patsubst %,$(OBJ)%,$(OBJFILES))

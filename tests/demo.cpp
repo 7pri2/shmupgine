@@ -64,10 +64,10 @@ int main() {
 	//op1->get_attribute<movement>()->speed_factor = 100;
 	op1->get_attribute<graphicrenderer>()->set_texture("enemy");
 	op1->get_attribute<spawner>()->add_slot("enemy");
-	op1->get_attribute<spawner>()->get_slot("enemy")->set_profile(enemy_bullet);
-	op1->get_attribute<spawner>()->get_slot("enemy")->f_auto_spawn = true;
-	op1->get_attribute<spawner>()->get_slot("enemy")->ms_cooldown = 400;
-	op1->get_attribute<spawner>()->get_slot("enemy")->add_group_to_join("enemy_bullets");
+	op1->get_attribute<spawner>()->set_profile("enemy", enemy_bullet);
+	op1->get_attribute<spawner>()->set_auto_spawn("enemy", true);
+	op1->get_attribute<spawner>()->set_cooldown("enemy", 400);
+	op1->get_attribute<spawner>()->add_group_to_join("enemy", "enemy_bullets");
 
 	enemy_bullet->allocate_attribute<graphicrenderer>();
 	enemy_bullet->allocate_attribute<physics>();
@@ -86,9 +86,17 @@ int main() {
 	heros->get_attribute<graphicrenderer>()->set_texture("heros");
 	heros->get_attribute<controls>()->move_speed = 200;
 	heros->get_attribute<spawner>()->add_slot("bullet");
-	heros->get_attribute<spawner>()->get_slot("bullet")->set_profile(bullet);
-	heros->get_attribute<spawner>()->get_slot("bullet")->ms_cooldown = 150;
-	heros->get_attribute<spawner>()->get_slot("bullet")->add_group_to_join("heros_bullets");
+	heros->get_attribute<spawner>()->set_profile("bullet", bullet);
+	heros->get_attribute<spawner>()->set_cooldown("bullet", 150);
+	heros->get_attribute<spawner>()->add_group_to_join("bullet", "heros_bullets");
+	heros->get_attribute<spawner>()->add_slot("bullet2");
+	heros->get_attribute<spawner>()->set_profile("bullet2", bullet2);
+	heros->get_attribute<spawner>()->set_cooldown("bullet2", 150);
+	heros->get_attribute<spawner>()->add_group_to_join("bullet2", "heros_bullets");
+	heros->get_attribute<spawner>()->add_slot("bullet3");
+	heros->get_attribute<spawner>()->set_profile("bullet3", bullet3);
+	heros->get_attribute<spawner>()->set_cooldown("bullet3", 150);
+	heros->get_attribute<spawner>()->add_group_to_join("bullet3", "heros_bullets");
 
 	bullet->allocate_attribute<graphicrenderer>();
 	bullet->allocate_attribute<physics>();
@@ -98,6 +106,26 @@ int main() {
 	bullet->get_attribute<physics>()->set_force_angle(270);
 	bullet->get_attribute<physics>()->set_velocity(550);
 	bullet->get_attribute<destructor>()->add_collision_entity(op1);
+
+	bullet2->allocate_attribute<graphicrenderer>();
+	bullet2->allocate_attribute<physics>();
+	bullet2->allocate_attribute<destructor>();
+	bullet2->get_attribute<destructor>()->f_when_out_of_bounds = true;
+	bullet2->get_attribute<graphicrenderer>()->set_texture("bullet");
+	bullet2->get_attribute<physics>()->set_force_angle(290);
+	bullet2->get_attribute<physics>()->set_velocity(550);
+	bullet2->get_attribute<destructor>()->add_collision_entity(op1);
+
+	bullet3->allocate_attribute<graphicrenderer>();
+	bullet3->allocate_attribute<physics>();
+	bullet3->allocate_attribute<destructor>();
+	bullet3->get_attribute<destructor>()->f_when_out_of_bounds = true;
+	bullet3->get_attribute<graphicrenderer>()->set_texture("bullet");
+	bullet3->get_attribute<physics>()->set_force_angle(250);
+	bullet3->get_attribute<physics>()->set_velocity(550);
+	bullet3->get_attribute<destructor>()->add_collision_entity(op1);
+
+
 
 	alt_bullet->allocate_attribute<movement>();
 	alt_bullet->allocate_attribute<graphicrenderer>();

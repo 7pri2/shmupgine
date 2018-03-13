@@ -11,9 +11,6 @@ graphicrenderer::~graphicrenderer() {
 }
 
 void graphicrenderer::run() {
-#ifdef DEBUG
-	std::cout << "\tgraphicrenderer... ";
-#endif
 	if(f_blinking) {
 		if(m_clock.getElapsedTime().asMilliseconds() >= m_ms_blinks) {
 			f_blinking = false;
@@ -26,9 +23,6 @@ void graphicrenderer::run() {
 				m_sprite.setColor(RGBA(255, 255, 255));
 	}
 	shmupgine::window.draw(m_sprite);
-#ifdef DEBUG
-	std::cout << debug::done;
-#endif
 }
 
 void graphicrenderer::set_texture(std::string texture_name) {

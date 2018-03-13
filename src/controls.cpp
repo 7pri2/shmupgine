@@ -13,9 +13,6 @@ controls::~controls() {
 }
 
 void controls::run() {
-#ifdef DEBUG
-	std::cout << "\tcontrols... ";
-#endif
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 		parent->move(-0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds(), 0);
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
@@ -26,15 +23,10 @@ void controls::run() {
 		parent->move(0, 0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds());
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		if(parent->get_attribute<spawner>() != NULL) {
-#ifdef DEBUG
-			std::cout << debug::pattr("New entity creation requested\n");
-#endif
-			parent->get_attribute<spawner>()->spawn("bullet");
+			//parent->get_attribute<spawner>()->spawn("bullet");
+			parent->get_attribute<spawner>()->spawn_all();
 		}
 	}
-#ifdef DEBUG
-	std::cout << debug::done;
-#endif
 }
 
 controls* controls::make_copy(entity* newparent) {

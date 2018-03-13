@@ -10,68 +10,39 @@ scene::~scene() {}
 void scene::update() {
 	shmupgine::window.clear();
 	run_attributes();
-#ifdef DEBUG
-	show_groups();
-#endif
 	run_scripts();
 	shmupgine::window.display();
 	remove_entities();
 }
 
 void scene::run_attributes() {
-#ifdef DEBUG
-	std::cerr << debug::ptitle("===== Loop =====\n");
-#endif
 	for(std::list<entity*>::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)
 		(*it)->run_attributes();
 }
 
 void scene::run() {
-#ifdef DEBUG
-	sf::Clock	fps_clock;
-	int 		fps = 0, last_fps = fps;
-	fps_clock.restart();
-#endif
 	while(shmupgine::window.isOpen()) {
 		sf::Event event;
 		while (shmupgine::window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed)
 				shmupgine::window.close();
 		}
-#ifdef DEBUG
-		fps++;
-		std::cerr << debug::scene << "\nFPS : " << last_fps << "\n" << debug::reset;
-		if(fps_clock.getElapsedTime().asMilliseconds() >= 1000) {
-			last_fps = fps;
-			fps = 0;
-			fps_clock.restart();
-		}
-#endif
 		scene::update();
 		shmupgine::clock.restart();
 	}
 }
 
 void scene::add_entity(entity* en) {
-#ifdef DEBUG
-	std::cerr << debug::scene << en << " added to the scene\n" << debug::reset;
-#endif
 	en->parent = this;
 	scene::m_entities.push_back(en);
 }
 
 void scene::remove_entity(entity* en) {
-#ifdef DEBUG
-	std::cerr << "\n" << debug::scene << en << " added to suppression list." << debug::reset;
-#endif
 	m_to_be_removed.push_back(en);
 }
 
 void scene::remove_entities() {
 	while(!m_to_be_removed.empty()) {
-#ifdef DEBUG
-		std::cerr << debug::scene << m_to_be_removed.back() << " removed from the scene.\n" << debug::reset;
-#endif
 		m_entities.remove(m_to_be_removed.back());
 		remove_from_all_groups(m_to_be_removed.back());
 		delete m_to_be_removed.back();
@@ -125,15 +96,4 @@ void scene::run_scripts() {
 void scene::remove_from_all_groups(entity* en) {
 	for(std::map<std::string, group>::iterator it = m_groups.begin(); it != m_groups.end(); ++it)
 		remove_from_group(it->first, en);
-}
-
-void scene::show_groups() {
-#ifdef DEBUG
-	for(std::map<std::string, group>::iterator it = m_groups.begin(); it != m_groups.end(); ++it) {
-		std::cerr << "Groupe \"" << it->first << "\":" << std::endl;
-		for(group::iterator it2 = m_groups[it->first].begin(); it2 != m_groups[it->first].end(); ++it2) {
-			std::cerr << "\t" << (*it2) << std::endl;
-		}
-	}
-#endif
 }

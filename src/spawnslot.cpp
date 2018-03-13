@@ -27,13 +27,7 @@ void spawnslot::spawn() {
 }
 
 void spawnslot::run() {
-#ifdef DEBUG
-	std::cerr << "\tspawnslot... ";
-#endif
 	if((f_auto_spawn || f_spawn_requested) && clock.getElapsedTime().asMilliseconds() >= ms_cooldown) {
-#ifdef DEBUG
-		std::cerr << debug::pattr("Spawn requested");
-#endif
 		if(f_spawn_at_parent)
 			to_spawn->set_position(parent->parent->get_position());
 		entity* en = new entity(to_spawn);
@@ -43,9 +37,6 @@ void spawnslot::run() {
 		f_spawn_requested = false;
 		clock.restart();
 	}
-#ifdef DEBUG
-	std::cerr << debug::done;
-#endif
 }
 
 spawnslot* spawnslot::make_copy(spawner* newparent) {

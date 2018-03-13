@@ -12,8 +12,24 @@ void spawner::add_slot(std::string name) {
 	m_spawnslots[name] = new spawnslot(this);
 }
 
-spawnslot* spawner::get_slot(std::string name) {
-	return m_spawnslots[name];
+void spawner::set_profile(std::string slotname, entity* en) {
+	m_spawnslots[slotname]->set_profile(en);
+}
+
+void spawner::set_spawn_at_parent(std::string slotname, bool state) {
+	m_spawnslots[slotname]->f_spawn_at_parent = state;
+}
+
+void spawner::set_auto_spawn(std::string slotname, bool state) {
+	m_spawnslots[slotname]->f_auto_spawn = state;
+}
+
+void spawner::add_group_to_join(std::string slotname, std::string groupname) {
+	m_spawnslots[slotname]->add_group_to_join(groupname);
+}
+
+void spawner::set_cooldown(std::string slotname, int ms) {
+	m_spawnslots[slotname]->ms_cooldown = ms;
 }
 
 void spawner::run() {
@@ -30,4 +46,9 @@ spawner* spawner::make_copy(entity* newparent) {
 void spawner::spawn(std::string slot) {
 	if(m_spawnslots[slot] != NULL)
 		m_spawnslots[slot]->spawn();
+}
+
+void spawner::spawn_all() {
+	for(std::map<std::string, spawnslot*>::iterator it = m_spawnslots.begin(); it != m_spawnslots.end(); ++it)
+		it->second->spawn();
 }

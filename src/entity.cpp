@@ -38,9 +38,6 @@ entity::~entity() {
 }
 
 void entity::run_attributes() {
-#ifdef DEBUG
-	std::cout << this << ":\n";
-#endif
 	for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
 		if((*it)->enabled)
 			(*it)->run();
