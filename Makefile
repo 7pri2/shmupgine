@@ -4,12 +4,15 @@ OBJ=obj/
 HEADERS=include/
 SRC=src/
 LIB=lib/
+LCOV=lcov/
 TESTS=tests/
 
 CXX=g++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++11 -pedantic-errors -I$(HEADERS)
 LDFLAGS=-L$(LIB) -lshmupgine -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+GCOVFLAGS=-fprofile-arcs -ftest-coverage -pg
 DEBUG=-g
+BROWSER=firefox
 
 EXECUTABLES=$(TESTS)demo
 LIBFILES=libshmupgine.a
@@ -31,12 +34,17 @@ LIBS=$(patsubst %,$(LIB)%,$(LIBFILES))
 
 all: executables libs
 
-debug: CXXFLAGS+=$(DEBUG) -DDEBUG
+debug: CXXFLAGS+=$(DEBUG) -DDEBUG $(GCOVFLAGS)
 debug: all
 
 executables: $(EXECUTABLES)
 libs: $(LIBS)
 
+coverage: $(EXECUTABLES) $(wildcard $(SRC)*)
+	gcov -b -c -o $(OBJ) $^
+	lcov --directory $(OBJ) -c -o $(LCOV)rapport.info
+	genhtml $(LCOV)rapport.info --output-directory $(LCOV)
+	$(BROWSER) `pwd`/$(LCOV)index.html
 
 $(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
@@ -57,6 +65,7 @@ $(OBJ)%.o:	$(SRC)%.cpp $(HEADERS)%.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	-rm -rf $(OBJ)*.o
+	-rm -rf $(OBJ)*
+	-rm -rf *.gcda
 	-rm -rf $(EXECUTABLES) 
 	-rm -rf $(patsubst %,$(LIB)%,$(LIBS)) 

@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - rapport.info - /usr/include/SFML/Graphics/Sprite.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../../index.html">top level</a> - <a href="index.html">usr/include/SFML/Graphics</a> - Sprite.hpp<span style="font-size: 80%;"> (source / <a href="Sprite.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">rapport.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-04-22 00:23:02</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryLo">66.7 %</td>
+          </tr>
+          <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : ////////////////////////////////////////////////////////////</a>
+<span class="lineNum">       2 </span>            : //
+<span class="lineNum">       3 </span>            : // SFML - Simple and Fast Multimedia Library
+<span class="lineNum">       4 </span>            : // Copyright (C) 2007-2016 Laurent Gomila (laurent@sfml-dev.org)
+<span class="lineNum">       5 </span>            : //
+<span class="lineNum">       6 </span>            : // This software is provided 'as-is', without any express or implied warranty.
+<span class="lineNum">       7 </span>            : // In no event will the authors be held liable for any damages arising from the use of this software.
+<span class="lineNum">       8 </span>            : //
+<span class="lineNum">       9 </span>            : // Permission is granted to anyone to use this software for any purpose,
+<span class="lineNum">      10 </span>            : // including commercial applications, and to alter it and redistribute it freely,
+<span class="lineNum">      11 </span>            : // subject to the following restrictions:
+<span class="lineNum">      12 </span>            : //
+<span class="lineNum">      13 </span>            : // 1. The origin of this software must not be misrepresented;
+<span class="lineNum">      14 </span>            : //    you must not claim that you wrote the original software.
+<span class="lineNum">      15 </span>            : //    If you use this software in a product, an acknowledgment
+<span class="lineNum">      16 </span>            : //    in the product documentation would be appreciated but is not required.
+<span class="lineNum">      17 </span>            : //
+<span class="lineNum">      18 </span>            : // 2. Altered source versions must be plainly marked as such,
+<span class="lineNum">      19 </span>            : //    and must not be misrepresented as being the original software.
+<span class="lineNum">      20 </span>            : //
+<span class="lineNum">      21 </span>            : // 3. This notice may not be removed or altered from any source distribution.
+<span class="lineNum">      22 </span>            : //
+<span class="lineNum">      23 </span>            : ////////////////////////////////////////////////////////////
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : #ifndef SFML_SPRITE_HPP
+<span class="lineNum">      26 </span>            : #define SFML_SPRITE_HPP
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : ////////////////////////////////////////////////////////////
+<span class="lineNum">      29 </span>            : // Headers
+<span class="lineNum">      30 </span>            : ////////////////////////////////////////////////////////////
+<span class="lineNum">      31 </span>            : #include &lt;SFML/Graphics/Export.hpp&gt;
+<span class="lineNum">      32 </span>            : #include &lt;SFML/Graphics/Drawable.hpp&gt;
+<span class="lineNum">      33 </span>            : #include &lt;SFML/Graphics/Transformable.hpp&gt;
+<span class="lineNum">      34 </span>            : #include &lt;SFML/Graphics/Vertex.hpp&gt;
+<span class="lineNum">      35 </span>            : #include &lt;SFML/Graphics/Rect.hpp&gt;
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : namespace sf
+<span class="lineNum">      39 </span>            : {
+<span class="lineNum">      40 </span>            : class Texture;
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : ////////////////////////////////////////////////////////////
+<span class="lineNum">      43 </span>            : /// \brief Drawable representation of a texture, with its
+<span class="lineNum">      44 </span>            : ///        own transformations, color, etc.
+<a name="45"><span class="lineNum">      45 </span>            : ///</a>
+<span class="lineNum">      46 </span>            : ////////////////////////////////////////////////////////////
+<span class="lineNum">      47 </span><span class="lineCov">       2226 : class SFML_GRAPHICS_API Sprite : public Drawable, public Transformable</span>
+<span class="lineNum">      48 </span>            : {
+<span class="lineNum">      49 </span>            : public:
+<span class="lineNum">      50 </span>            : 
+<span class="lineNum">      51 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      52 </span>            :     /// \brief Default constructor
+<span class="lineNum">      53 </span>            :     ///
+<span class="lineNum">      54 </span>            :     /// Creates an empty sprite with no source texture.
+<span class="lineNum">      55 </span>            :     ///
+<span class="lineNum">      56 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      57 </span>            :     Sprite();
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      60 </span>            :     /// \brief Construct the sprite from a source texture
+<span class="lineNum">      61 </span>            :     ///
+<span class="lineNum">      62 </span>            :     /// \param texture Source texture
+<span class="lineNum">      63 </span>            :     ///
+<span class="lineNum">      64 </span>            :     /// \see setTexture
+<span class="lineNum">      65 </span>            :     ///
+<span class="lineNum">      66 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      67 </span>            :     explicit Sprite(const Texture&amp; texture);
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      70 </span>            :     /// \brief Construct the sprite from a sub-rectangle of a source texture
+<span class="lineNum">      71 </span>            :     ///
+<span class="lineNum">      72 </span>            :     /// \param texture   Source texture
+<span class="lineNum">      73 </span>            :     /// \param rectangle Sub-rectangle of the texture to assign to the sprite
+<span class="lineNum">      74 </span>            :     ///
+<span class="lineNum">      75 </span>            :     /// \see setTexture, setTextureRect
+<span class="lineNum">      76 </span>            :     ///
+<span class="lineNum">      77 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      78 </span>            :     Sprite(const Texture&amp; texture, const IntRect&amp; rectangle);
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      81 </span>            :     /// \brief Change the source texture of the sprite
+<span class="lineNum">      82 </span>            :     ///
+<span class="lineNum">      83 </span>            :     /// The \a texture argument refers to a texture that must
+<span class="lineNum">      84 </span>            :     /// exist as long as the sprite uses it. Indeed, the sprite
+<span class="lineNum">      85 </span>            :     /// doesn't store its own copy of the texture, but rather keeps
+<span class="lineNum">      86 </span>            :     /// a pointer to the one that you passed to this function.
+<span class="lineNum">      87 </span>            :     /// If the source texture is destroyed and the sprite tries to
+<span class="lineNum">      88 </span>            :     /// use it, the behavior is undefined.
+<span class="lineNum">      89 </span>            :     /// If \a resetRect is true, the TextureRect property of
+<span class="lineNum">      90 </span>            :     /// the sprite is automatically adjusted to the size of the new
+<span class="lineNum">      91 </span>            :     /// texture. If it is false, the texture rect is left unchanged.
+<span class="lineNum">      92 </span>            :     ///
+<span class="lineNum">      93 </span>            :     /// \param texture   New texture
+<span class="lineNum">      94 </span>            :     /// \param resetRect Should the texture rect be reset to the size of the new texture?
+<span class="lineNum">      95 </span>            :     ///
+<span class="lineNum">      96 </span>            :     /// \see getTexture, setTextureRect
+<span class="lineNum">      97 </span>            :     ///
+<span class="lineNum">      98 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">      99 </span>            :     void setTexture(const Texture&amp; texture, bool resetRect = false);
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     102 </span>            :     /// \brief Set the sub-rectangle of the texture that the sprite will display
+<span class="lineNum">     103 </span>            :     ///
+<span class="lineNum">     104 </span>            :     /// The texture rect is useful when you don't want to display
+<span class="lineNum">     105 </span>            :     /// the whole texture, but rather a part of it.
+<span class="lineNum">     106 </span>            :     /// By default, the texture rect covers the entire texture.
+<span class="lineNum">     107 </span>            :     ///
+<span class="lineNum">     108 </span>            :     /// \param rectangle Rectangle defining the region of the texture to display
+<span class="lineNum">     109 </span>            :     ///
+<span class="lineNum">     110 </span>            :     /// \see getTextureRect, setTexture
+<span class="lineNum">     111 </span>            :     ///
+<span class="lineNum">     112 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     113 </span>            :     void setTextureRect(const IntRect&amp; rectangle);
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     116 </span>            :     /// \brief Set the global color of the sprite
+<span class="lineNum">     117 </span>            :     ///
+<span class="lineNum">     118 </span>            :     /// This color is modulated (multiplied) with the sprite's
+<span class="lineNum">     119 </span>            :     /// texture. It can be used to colorize the sprite, or change
+<span class="lineNum">     120 </span>            :     /// its global opacity.
+<span class="lineNum">     121 </span>            :     /// By default, the sprite's color is opaque white.
+<span class="lineNum">     122 </span>            :     ///
+<span class="lineNum">     123 </span>            :     /// \param color New color of the sprite
+<span class="lineNum">     124 </span>            :     ///
+<span class="lineNum">     125 </span>            :     /// \see getColor
+<span class="lineNum">     126 </span>            :     ///
+<span class="lineNum">     127 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     128 </span>            :     void setColor(const Color&amp; color);
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     131 </span>            :     /// \brief Get the source texture of the sprite
+<span class="lineNum">     132 </span>            :     ///
+<span class="lineNum">     133 </span>            :     /// If the sprite has no source texture, a NULL pointer is returned.
+<span class="lineNum">     134 </span>            :     /// The returned pointer is const, which means that you can't
+<span class="lineNum">     135 </span>            :     /// modify the texture when you retrieve it with this function.
+<span class="lineNum">     136 </span>            :     ///
+<span class="lineNum">     137 </span>            :     /// \return Pointer to the sprite's texture
+<span class="lineNum">     138 </span>            :     ///
+<span class="lineNum">     139 </span>            :     /// \see setTexture
+<span class="lineNum">     140 </span>            :     ///
+<span class="lineNum">     141 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     142 </span>            :     const Texture* getTexture() const;
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     145 </span>            :     /// \brief Get the sub-rectangle of the texture displayed by the sprite
+<span class="lineNum">     146 </span>            :     ///
+<span class="lineNum">     147 </span>            :     /// \return Texture rectangle of the sprite
+<span class="lineNum">     148 </span>            :     ///
+<span class="lineNum">     149 </span>            :     /// \see setTextureRect
+<span class="lineNum">     150 </span>            :     ///
+<span class="lineNum">     151 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     152 </span>            :     const IntRect&amp; getTextureRect() const;
+<span class="lineNum">     153 </span>            : 
+<span class="lineNum">     154 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     155 </span>            :     /// \brief Get the global color of the sprite
+<span class="lineNum">     156 </span>            :     ///
+<span class="lineNum">     157 </span>            :     /// \return Global color of the sprite
+<span class="lineNum">     158 </span>            :     ///
+<span class="lineNum">     159 </span>            :     /// \see setColor
+<span class="lineNum">     160 </span>            :     ///
+<span class="lineNum">     161 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     162 </span>            :     const Color&amp; getColor() const;
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     165 </span>            :     /// \brief Get the local bounding rectangle of the entity
+<span class="lineNum">     166 </span>            :     ///
+<span class="lineNum">     167 </span>            :     /// The returned rectangle is in local coordinates, which means
+<span class="lineNum">     168 </span>            :     /// that it ignores the transformations (translation, rotation,
+<span class="lineNum">     169 </span>            :     /// scale, ...) that are applied to the entity.
+<span class="lineNum">     170 </span>            :     /// In other words, this function returns the bounds of the
+<span class="lineNum">     171 </span>            :     /// entity in the entity's coordinate system.
+<span class="lineNum">     172 </span>            :     ///
+<span class="lineNum">     173 </span>            :     /// \return Local bounding rectangle of the entity
+<span class="lineNum">     174 </span>            :     ///
+<span class="lineNum">     175 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     176 </span>            :     FloatRect getLocalBounds() const;
+<span class="lineNum">     177 </span>            : 
+<span class="lineNum">     178 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     179 </span>            :     /// \brief Get the global bounding rectangle of the entity
+<span class="lineNum">     180 </span>            :     ///
+<span class="lineNum">     181 </span>            :     /// The returned rectangle is in global coordinates, which means
+<span class="lineNum">     182 </span>            :     /// that it takes into account the transformations (translation,
+<span class="lineNum">     183 </span>            :     /// rotation, scale, ...) that are applied to the entity.
+<span class="lineNum">     184 </span>            :     /// In other words, this function returns the bounds of the
+<span class="lineNum">     185 </span>            :     /// sprite in the global 2D world's coordinate system.
+<span class="lineNum">     186 </span>            :     ///
+<span class="lineNum">     187 </span>            :     /// \return Global bounding rectangle of the entity
+<span class="lineNum">     188 </span>            :     ///
+<span class="lineNum">     189 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     190 </span>            :     FloatRect getGlobalBounds() const;
+<span class="lineNum">     191 </span>            : 
+<span class="lineNum">     192 </span>            : private:
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     195 </span>            :     /// \brief Draw the sprite to a render target
+<span class="lineNum">     196 </span>            :     ///
+<span class="lineNum">     197 </span>            :     /// \param target Render target to draw to
+<span class="lineNum">     198 </span>            :     /// \param states Current render states
+<span class="lineNum">     199 </span>            :     ///
+<span class="lineNum">     200 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     201 </span>            :     virtual void draw(RenderTarget&amp; target, RenderStates states) const;
+<span class="lineNum">     202 </span>            : 
+<span class="lineNum">     203 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     204 </span>            :     /// \brief Update the vertices' positions
+<span class="lineNum">     205 </span>            :     ///
+<span class="lineNum">     206 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     207 </span>            :     void updatePositions();
+<span class="lineNum">     208 </span>            : 
+<span class="lineNum">     209 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     210 </span>            :     /// \brief Update the vertices' texture coordinates
+<span class="lineNum">     211 </span>            :     ///
+<span class="lineNum">     212 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     213 </span>            :     void updateTexCoords();
+<span class="lineNum">     214 </span>            : 
+<span class="lineNum">     215 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     216 </span>            :     // Member data
+<span class="lineNum">     217 </span>            :     ////////////////////////////////////////////////////////////
+<span class="lineNum">     218 </span>            :     Vertex         m_vertices[4]; ///&lt; Vertices defining the sprite's geometry
+<span class="lineNum">     219 </span>            :     const Texture* m_texture;     ///&lt; Texture of the sprite
+<span class="lineNum">     220 </span>            :     IntRect        m_textureRect; ///&lt; Rectangle defining the area of the source texture to display
+<span class="lineNum">     221 </span>            : };
+<span class="lineNum">     222 </span>            : 
+<span class="lineNum">     223 </span>            : } // namespace sf
+<span class="lineNum">     224 </span>            : 
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span>            : #endif // SFML_SPRITE_HPP
+<span class="lineNum">     227 </span>            : 
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            : ////////////////////////////////////////////////////////////
+<span class="lineNum">     230 </span>            : /// \class sf::Sprite
+<span class="lineNum">     231 </span>            : /// \ingroup graphics
+<span class="lineNum">     232 </span>            : ///
+<span class="lineNum">     233 </span>            : /// sf::Sprite is a drawable class that allows to easily display
+<span class="lineNum">     234 </span>            : /// a texture (or a part of it) on a render target.
+<span class="lineNum">     235 </span>            : ///
+<span class="lineNum">     236 </span>            : /// It inherits all the functions from sf::Transformable:
+<span class="lineNum">     237 </span>            : /// position, rotation, scale, origin. It also adds sprite-specific
+<span class="lineNum">     238 </span>            : /// properties such as the texture to use, the part of it to display,
+<span class="lineNum">     239 </span>            : /// and some convenience functions to change the overall color of the
+<span class="lineNum">     240 </span>            : /// sprite, or to get its bounding rectangle.
+<span class="lineNum">     241 </span>            : ///
+<span class="lineNum">     242 </span>            : /// sf::Sprite works in combination with the sf::Texture class, which
+<span class="lineNum">     243 </span>            : /// loads and provides the pixel data of a given texture.
+<span class="lineNum">     244 </span>            : ///
+<span class="lineNum">     245 </span>            : /// The separation of sf::Sprite and sf::Texture allows more flexibility
+<span class="lineNum">     246 </span>            : /// and better performances: indeed a sf::Texture is a heavy resource,
+<span class="lineNum">     247 </span>            : /// and any operation on it is slow (often too slow for real-time
+<span class="lineNum">     248 </span>            : /// applications). On the other side, a sf::Sprite is a lightweight
+<span class="lineNum">     249 </span>            : /// object which can use the pixel data of a sf::Texture and draw
+<span class="lineNum">     250 </span>            : /// it with its own transformation/color/blending attributes.
+<span class="lineNum">     251 </span>            : ///
+<span class="lineNum">     252 </span>            : /// It is important to note that the sf::Sprite instance doesn't
+<span class="lineNum">     253 </span>            : /// copy the texture that it uses, it only keeps a reference to it.
+<span class="lineNum">     254 </span>            : /// Thus, a sf::Texture must not be destroyed while it is
+<span class="lineNum">     255 </span>            : /// used by a sf::Sprite (i.e. never write a function that
+<span class="lineNum">     256 </span>            : /// uses a local sf::Texture instance for creating a sprite).
+<span class="lineNum">     257 </span>            : ///
+<span class="lineNum">     258 </span>            : /// See also the note on coordinates and undistorted rendering in sf::Transformable.
+<span class="lineNum">     259 </span>            : ///
+<span class="lineNum">     260 </span>            : /// Usage example:
+<span class="lineNum">     261 </span>            : /// \code
+<span class="lineNum">     262 </span>            : /// // Declare and load a texture
+<span class="lineNum">     263 </span>            : /// sf::Texture texture;
+<span class="lineNum">     264 </span>            : /// texture.loadFromFile(&quot;texture.png&quot;);
+<span class="lineNum">     265 </span>            : ///
+<span class="lineNum">     266 </span>            : /// // Create a sprite
+<span class="lineNum">     267 </span>            : /// sf::Sprite sprite;
+<span class="lineNum">     268 </span>            : /// sprite.setTexture(texture);
+<span class="lineNum">     269 </span>            : /// sprite.setTextureRect(sf::IntRect(10, 10, 50, 30));
+<span class="lineNum">     270 </span>            : /// sprite.setColor(sf::Color(255, 255, 255, 200));
+<span class="lineNum">     271 </span>            : /// sprite.setPosition(100, 25);
+<span class="lineNum">     272 </span>            : ///
+<span class="lineNum">     273 </span>            : /// // Draw it
+<span class="lineNum">     274 </span>            : /// window.draw(sprite);
+<span class="lineNum">     275 </span>            : /// \endcode
+<span class="lineNum">     276 </span>            : ///
+<span class="lineNum">     277 </span>            : /// \see sf::Texture, sf::Transformable
+<span class="lineNum">     278 </span>            : ///
+<span class="lineNum">     279 </span>            : ////////////////////////////////////////////////////////////
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

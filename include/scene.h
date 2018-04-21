@@ -4,6 +4,7 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <algorithm>
 #include <functional>
 
 class entity;

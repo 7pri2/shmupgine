@@ -53,3 +53,7 @@ void graphicrenderer::blink(int ms) {
 bool graphicrenderer::blink_finished() {
 	return !f_blinking;
 }
+
+void graphicrenderer::rotate(int degrees) {
+	m_sprite.rotate(degrees);
+}

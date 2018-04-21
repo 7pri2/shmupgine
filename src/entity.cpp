@@ -33,8 +33,10 @@ entity::entity(float ix, float iy) : entity(sf::Vector2f(ix, iy)) {
 }
 
 entity::~entity() {
-	for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it)
+	for(attr_table::iterator it = attributes.begin(); it != attributes.end(); ++it) {
+		fprintf(stderr, "\tEntity %p deletes attribute %p.\n", (void*)this, (void*)(*it));
 		delete *it;
+	}
 }
 
 void entity::run_attributes() {

@@ -38,13 +38,16 @@ void scene::add_entity(entity* en) {
 }
 
 void scene::remove_entity(entity* en) {
-	m_to_be_removed.push_back(en);
+	fprintf(stderr, "Scene puts entity%p to the remove list\n", (void*)en);
+	if(std::find(m_to_be_removed.begin(), m_to_be_removed.end(), en) == m_to_be_removed.end())
+		m_to_be_removed.push_back(en);
 }
 
 void scene::remove_entities() {
 	while(!m_to_be_removed.empty()) {
 		m_entities.remove(m_to_be_removed.back());
 		remove_from_all_groups(m_to_be_removed.back());
+		fprintf(stderr, "Scene deletes entity %p\n", (void*)m_to_be_removed.back());
 		delete m_to_be_removed.back();
 		m_to_be_removed.pop_back();
 	}

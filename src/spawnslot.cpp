@@ -1,6 +1,7 @@
 #include "spawnslot.h"
 #include "entity.h"
 #include "scene.h"
+#include "soundmanager.h"
 #include "spawner.h"
 
 spawnslot::spawnslot(spawner* parent) {
@@ -10,6 +11,7 @@ spawnslot::spawnslot(spawner* parent) {
 	f_auto_spawn = false;
 	ms_cooldown = 250;
 	clock.restart();
+	enabled = true;
 	this->parent = parent;
 }
 
@@ -27,7 +29,9 @@ void spawnslot::spawn() {
 }
 
 void spawnslot::run() {
-	if((f_auto_spawn || f_spawn_requested) && clock.getElapsedTime().asMilliseconds() >= ms_cooldown) {
+	if(enabled && (f_auto_spawn || f_spawn_requested) && clock.getElapsedTime().asMilliseconds() >= ms_cooldown) {
+		if(!song_to_play.empty())
+			soundmanager::instance().play_sound(song_to_play);
 		if(f_spawn_at_parent)
 			to_spawn->set_position(parent->parent->get_position());
 		entity* en = new entity(to_spawn);

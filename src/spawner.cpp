@@ -52,3 +52,15 @@ void spawner::spawn_all() {
 	for(std::map<std::string, spawnslot*>::iterator it = m_spawnslots.begin(); it != m_spawnslots.end(); ++it)
 		it->second->spawn();
 }
+
+void spawner::enable_slot(std::string slotname) {
+	m_spawnslots[slotname]->enabled = true;
+}
+
+void spawner::disable_slot(std::string slotname) {
+	m_spawnslots[slotname]->enabled = false;
+}
+
+void spawner::set_song_to_play(std::string slotname, std::string songname) {
+	m_spawnslots[slotname]->song_to_play = songname;
+}

@@ -25,6 +25,7 @@ public:
 	void	set_texture(std::string texture_name);
 	void	colorify(sf::Color color);
 	void	blink(int ms = BLINK_DURATION);
+	void	rotate(int degrees);
 	bool	blink_finished();
 
 private:

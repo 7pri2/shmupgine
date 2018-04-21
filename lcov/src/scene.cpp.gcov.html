@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - rapport.info - src/scene.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - scene.cpp<span style="font-size: 80%;"> (source / <a href="scene.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">rapport.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">73</td>
+            <td class="headerCovTableEntry">74</td>
+            <td class="headerCovTableEntryHi">98.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-04-22 00:23:02</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;scene.h&quot;</a>
+<span class="lineNum">       2 </span>            : #include &quot;systems.h&quot;
+<span class="lineNum">       3 </span>            : #include &quot;entity.h&quot;
+<a name="4"><span class="lineNum">       4 </span>            : #include &quot;destructor.h&quot;</a>
+<span class="lineNum">       5 </span>            : 
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">          3 : scene::scene() {}</span></a>
+<span class="lineNum">       7 </span>            : 
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">          3 : scene::~scene() {}</span></a>
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span><span class="lineCov">       3144 : void scene::update() {</span>
+<span class="lineNum">      11 </span><span class="lineCov">       3144 :         shmupgine::window.clear();</span>
+<span class="lineNum">      12 </span><span class="lineCov">       3144 :         run_attributes();</span>
+<span class="lineNum">      13 </span><span class="lineCov">       3144 :         run_scripts();</span>
+<span class="lineNum">      14 </span><span class="lineCov">       3144 :         shmupgine::window.display();</span>
+<span class="lineNum">      15 </span><span class="lineCov">       3144 :         remove_entities();</span>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">       3144 : }</span></a>
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span><span class="lineCov">       3144 : void scene::run_attributes() {</span>
+<span class="lineNum">      19 </span><span class="lineCov">     161204 :         for(std::list&lt;entity*&gt;::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)</span>
+<span class="lineNum">      20 </span><span class="lineCov">     158060 :                 (*it)-&gt;run_attributes();</span>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">       3144 : }</span></a>
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineCov">       3147 : void scene::run() {</span>
+<span class="lineNum">      24 </span><span class="lineCov">       6291 :         while(shmupgine::window.isOpen()) {</span>
+<span class="lineNum">      25 </span>            :                 sf::Event event;
+<span class="lineNum">      26 </span><span class="lineCov">       3780 :                 while (shmupgine::window.pollEvent(event)) {</span>
+<span class="lineNum">      27 </span><span class="lineCov">        318 :                         if (event.type == sf::Event::Closed)</span>
+<span class="lineNum">      28 </span><span class="lineCov">          3 :                                 shmupgine::window.close();</span>
+<span class="lineNum">      29 </span>            :                 }
+<span class="lineNum">      30 </span><span class="lineCov">       3144 :                 scene::update();</span>
+<span class="lineNum">      31 </span><span class="lineCov">       3144 :                 shmupgine::clock.restart();</span>
+<span class="lineNum">      32 </span>            :         }
+<a name="33"><span class="lineNum">      33 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span><span class="lineCov">       1137 : void scene::add_entity(entity* en) {</span>
+<span class="lineNum">      36 </span><span class="lineCov">       1137 :         en-&gt;parent = this;</span>
+<span class="lineNum">      37 </span><span class="lineCov">       1137 :         scene::m_entities.push_back(en);</span>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">       1137 : }</span></a>
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span><span class="lineCov">       1088 : void scene::remove_entity(entity* en) {</span>
+<span class="lineNum">      41 </span><span class="lineCov">       1088 :         fprintf(stderr, &quot;Scene puts entity%p to the remove list\n&quot;, (void*)en);</span>
+<span class="lineNum">      42 </span><span class="lineCov">       1088 :         if(std::find(m_to_be_removed.begin(), m_to_be_removed.end(), en) == m_to_be_removed.end())</span>
+<span class="lineNum">      43 </span><span class="lineCov">       1086 :                 m_to_be_removed.push_back(en);</span>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">       1088 : }</span></a>
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span><span class="lineCov">       4230 : void scene::remove_entities() {</span>
+<span class="lineNum">      47 </span><span class="lineCov">       5316 :         while(!m_to_be_removed.empty()) {</span>
+<span class="lineNum">      48 </span><span class="lineCov">       1086 :                 m_entities.remove(m_to_be_removed.back());</span>
+<span class="lineNum">      49 </span><span class="lineCov">       1086 :                 remove_from_all_groups(m_to_be_removed.back());</span>
+<span class="lineNum">      50 </span><span class="lineCov">       1086 :                 fprintf(stderr, &quot;Scene deletes entity %p\n&quot;, (void*)m_to_be_removed.back());</span>
+<span class="lineNum">      51 </span><span class="lineCov">       1086 :                 delete m_to_be_removed.back();</span>
+<span class="lineNum">      52 </span><span class="lineCov">       1086 :                 m_to_be_removed.pop_back();</span>
+<span class="lineNum">      53 </span>            :         }
+<a name="54"><span class="lineNum">      54 </span><span class="lineCov">       3144 : }</span></a>
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span><span class="lineCov">     159431 : bool scene::entity_exists(entity* en) {</span>
+<span class="lineNum">      57 </span><span class="lineCov">     878484 :         for(std::list&lt;entity*&gt;::iterator it = scene::m_entities.begin(); it != scene::m_entities.end(); ++it)</span>
+<span class="lineNum">      58 </span><span class="lineCov">     869430 :                 if(*it == en)</span>
+<span class="lineNum">      59 </span><span class="lineCov">     150377 :                         return true;</span>
+<span class="lineNum">      60 </span><span class="lineCov">       9054 :         return false;</span>
+<a name="61"><span class="lineNum">      61 </span>            : }</a>
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span><span class="lineCov">       1131 : void scene::add_to_group(std::string groupname, entity* en) {</span>
+<span class="lineNum">      64 </span><span class="lineCov">       1131 :         if(!belongs_to_group(groupname, en))</span>
+<span class="lineNum">      65 </span><span class="lineCov">       1131 :                 m_groups[groupname].push_back(en);</span>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">       1131 : }</span></a>
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span><span class="lineCov">       2172 : void scene::remove_from_group(std::string groupname, entity* en) {</span>
+<span class="lineNum">      69 </span><span class="lineCov">      59121 :         for(group::iterator it = m_groups[groupname].begin(); it != m_groups[groupname].end(); ++it)</span>
+<span class="lineNum">      70 </span><span class="lineCov">      58032 :                 if(*it == en) {</span>
+<span class="lineNum">      71 </span><span class="lineCov">       1083 :                         m_groups[groupname].erase(it);</span>
+<span class="lineNum">      72 </span><span class="lineCov">       1083 :                         break;</span>
+<span class="lineNum">      73 </span>            :                 }
+<a name="74"><span class="lineNum">      74 </span><span class="lineCov">       2172 : }</span></a>
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span><span class="lineCov">       1131 : bool scene::belongs_to_group(std::string groupname, entity* en) {</span>
+<span class="lineNum">      77 </span><span class="lineCov">      42689 :         for(group::iterator it = m_groups[groupname].begin(); it != m_groups[groupname].end(); ++it)</span>
+<span class="lineNum">      78 </span><span class="lineCov">      41558 :                 if(*it == en)</span>
+<span class="lineNum">      79 </span><span class="lineNoCov">          0 :                         return true;</span>
+<span class="lineNum">      80 </span><span class="lineCov">       1131 :         return false;</span>
+<a name="81"><span class="lineNum">      81 </span>            : }</a>
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span><span class="lineCov">       3432 : bool scene::group_collides(std::string groupname, entity* en) {</span>
+<span class="lineNum">      84 </span><span class="lineCov">     103469 :         for(group::iterator it = m_groups[groupname].begin(); it != m_groups[groupname].end(); ++it)</span>
+<span class="lineNum">      85 </span><span class="lineCov">     100075 :                 if((*it)-&gt;get_attribute&lt;destructor&gt;() &amp;&amp; (*it)-&gt;get_attribute&lt;destructor&gt;()-&gt;collides(en))</span>
+<span class="lineNum">      86 </span><span class="lineCov">         38 :                         return true;</span>
+<span class="lineNum">      87 </span><span class="lineCov">       3394 :         return false;</span>
+<a name="88"><span class="lineNum">      88 </span>            : }</a>
+<span class="lineNum">      89 </span>            : 
+<span class="lineNum">      90 </span><span class="lineCov">          9 : void scene::add_script(std::function&lt;void()&gt; script) {</span>
+<span class="lineNum">      91 </span><span class="lineCov">          9 :         m_scripts.push_back(script);</span>
+<a name="92"><span class="lineNum">      92 </span><span class="lineCov">          9 : }</span></a>
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span><span class="lineCov">       3144 : void scene::run_scripts() {</span>
+<span class="lineNum">      95 </span><span class="lineCov">      12576 :         for(std::list&lt;std::function&lt;void()&gt;&gt;::iterator it = m_scripts.begin(); it != m_scripts.end(); ++it)</span>
+<span class="lineNum">      96 </span><span class="lineCov">       9432 :                 (*it)();</span>
+<a name="97"><span class="lineNum">      97 </span><span class="lineCov">       3144 : }</span></a>
+<span class="lineNum">      98 </span>            :         
+<span class="lineNum">      99 </span><span class="lineCov">       1086 : void scene::remove_from_all_groups(entity* en) {</span>
+<span class="lineNum">     100 </span><span class="lineCov">       3258 :         for(std::map&lt;std::string, group&gt;::iterator it = m_groups.begin(); it != m_groups.end(); ++it)</span>
+<span class="lineNum">     101 </span><span class="lineCov">       2172 :                 remove_from_group(it-&gt;first, en);</span>
+<span class="lineNum">     102 </span><span class="lineCov">       1086 : }</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

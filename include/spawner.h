@@ -24,6 +24,9 @@ public:
 	void		set_auto_spawn(std::string slotname, bool state);
 	void		add_group_to_join(std::string slotname, std::string groupname);
 	void		set_cooldown(std::string slotname, int ms);
+	void		enable_slot(std::string slotname);
+	void		disable_slot(std::string slotname);
+	void		set_song_to_play(std::string slotname, std::string songname);
 	void 		spawn(std::string slot);
 
 private:
