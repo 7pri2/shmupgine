@@ -27,6 +27,7 @@ public:
 /* La fonction run permet de lancer la scene; c'est elle qui gère ensuite
  * toutes les entités et les évenements qui s'y déroulent. */
 	void run();
+	void terminate();
 
 /* Fonctions d'interactions avec le moteur */
 	void 	add_entity(entity* en);
@@ -63,6 +64,7 @@ private:
  * programmation */
 	void	run_scripts();
 
+	bool							m_alive;
 	std::map<std::string, group>	m_groups;
 	std::list<entity*>				m_entities;
 	std::vector<entity*>			m_to_be_removed;

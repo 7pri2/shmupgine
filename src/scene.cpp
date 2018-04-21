@@ -3,7 +3,9 @@
 #include "entity.h"
 #include "destructor.h"
 
-scene::scene() {}
+scene::scene() {
+	m_alive = false;
+}
 
 scene::~scene() {}
 
@@ -21,7 +23,8 @@ void scene::run_attributes() {
 }
 
 void scene::run() {
-	while(shmupgine::window.isOpen()) {
+	this->m_alive = true;
+	while(m_alive && shmupgine::window.isOpen()) {
 		sf::Event event;
 		while (shmupgine::window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed)
@@ -30,6 +33,10 @@ void scene::run() {
 		scene::update();
 		shmupgine::clock.restart();
 	}
+}
+
+void scene::terminate() {
+	m_alive = false;
 }
 
 void scene::add_entity(entity* en) {
