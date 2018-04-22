@@ -36,3 +36,11 @@ tests/demo
 
 # Dirtamps
 *.dirstamp
+
+# vim tmp files
+*.swp
+
+# lcov
+lcov/*
+*.gcno
+*.gcda

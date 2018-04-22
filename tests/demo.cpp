@@ -27,8 +27,10 @@ int main() {
 	script sc_heros_hp = [&]() -> void {
 		static int heros_hp = 100;
 		if(sc1.entity_exists(heros) && heros->get_attribute<graphicrenderer>()->blink_finished()) {
-			if(heros_hp <= 0)
+			if(heros_hp <= 0) {
 				heros->get_attribute<destructor>()->destroy();
+				sc1.terminate();
+			}
 			if(sc1.group_collides("enemy_bullets", heros)) {
 				soundmanager::instance().play_sound("explode");
 				heros_hp -= 10;

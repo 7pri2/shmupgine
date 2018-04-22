@@ -34,8 +34,10 @@ LIBS=$(patsubst %,$(LIB)%,$(LIBFILES))
 
 all: executables libs
 
+tests: $(patsubst %.cpp,%,$(wildcard $(TESTS)test_*))
+
 debug: CXXFLAGS+=$(DEBUG) -DDEBUG $(GCOVFLAGS)
-debug: all
+debug: all tests
 
 executables: $(EXECUTABLES)
 libs: $(LIBS)
@@ -47,6 +49,9 @@ coverage: $(EXECUTABLES) $(wildcard $(SRC)*)
 	$(BROWSER) `pwd`/$(LCOV)index.html
 
 $(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
+	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
+
+$(TESTS)%: $(TESTS)%.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 $(LIB)libshmupgine.a: $(OBJS)

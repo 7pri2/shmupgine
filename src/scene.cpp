@@ -45,9 +45,14 @@ void scene::add_entity(entity* en) {
 }
 
 void scene::remove_entity(entity* en) {
-	fprintf(stderr, "Scene puts entity%p to the remove list\n", (void*)en);
-	if(std::find(m_to_be_removed.begin(), m_to_be_removed.end(), en) == m_to_be_removed.end())
-		m_to_be_removed.push_back(en);
+	if(m_alive) { // We put the entity on top of the remove list
+		fprintf(stderr, "Scene puts entity%p to the remove list\n", (void*)en);
+		if(std::find(m_to_be_removed.begin(), m_to_be_removed.end(), en) == m_to_be_removed.end())
+			m_to_be_removed.push_back(en);
+	} else { // We can remove it now
+		m_entities.remove(en);
+		remove_from_all_groups(en);
+	}
 }
 
 void scene::remove_entities() {
@@ -55,7 +60,7 @@ void scene::remove_entities() {
 		m_entities.remove(m_to_be_removed.back());
 		remove_from_all_groups(m_to_be_removed.back());
 		fprintf(stderr, "Scene deletes entity %p\n", (void*)m_to_be_removed.back());
-		delete m_to_be_removed.back();
+		//delete m_to_be_removed.back(); // We may not want to free the entity
 		m_to_be_removed.pop_back();
 	}
 }
