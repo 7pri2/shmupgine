@@ -38,6 +38,6 @@ void physics::rotate_force(int degrees) {
 	m_force_angle = (m_force_angle + degrees) % 360;
 }
 
-sf::Vector2f force(float angle) {
+sf::Vector2f physics::force(float angle) {
 	return sf::Vector2f(cos(angle*PI/180),sin(angle*PI/180));
 }

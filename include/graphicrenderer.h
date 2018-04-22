@@ -15,6 +15,10 @@ sf::Color RGBA(int r, int g, int b, int a = 255);
 /* Attribut de rendu graphique; permet également de fournir des options de 
  * collisions à l'attribut "destructor"		*/
 
+/**
+ * \class	graphicrenderer
+ */
+
 class graphicrenderer : public attribute {
 	friend class entity;
 	friend class destructor;

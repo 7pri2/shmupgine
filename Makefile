@@ -38,7 +38,7 @@ tests: $(patsubst %.cpp,%,$(wildcard $(TESTS)test_*))
 
 documentation: doxy-convert.conf
 	doxygen $<
-	$(BROWSER) doc/html/index.html &
+	#$(BROWSER) `pwd`/doc/doxygen/html/index.html &
 
 debug: CXXFLAGS+=$(DEBUG) -DDEBUG $(GCOVFLAGS)
 debug: all tests

@@ -1,18 +1,35 @@
+/**
+ * \file	controls.h
+ * \brief	Contains the definition of the class `controls' which inherits from 
+ * `attribute'. It manages user input
+ */
+
 #ifndef __controls_H__
 #define __controls_H__	
 
 #include "attribute.h"
 
-/* "controls" est un attribut qui permet de gérer les appuis sur les touches 
- * directionnelles pour déplacer l'entité parente	*/
+/**
+ * \class	controls
+ * \brief	This attribute manages user input and allow its parent entity to 
+ * move and to trigger the spawner attribute if the parent entity has one
+ */
 
 class controls : public attribute {
 public:
+	/**
+	 * \brief	Constructor of the attribute
+	 * \param	parent	Parent entity on which the attribute is attached to
+	 */
+
 	controls(entity* parent);
+
+	/// Destructor for this attribute
+	
 	~controls();
 
-/* move_speed gère la vitesse à laquelle l'entité parente de cet attribut se
- * déplace lors qu'elle est déplacée au clavier */
+	/// Speed of which the parent entity moves
+
 	float	move_speed;
 
 private:

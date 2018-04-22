@@ -1,3 +1,8 @@
+/**
+ * \file	destructor.h
+ * \brief	Contains the definition of the attribute destructor
+ */
+
 #ifndef __destructor_H__
 #define __destructor_H__	
 
