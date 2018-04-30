@@ -13,10 +13,8 @@ class scene;
 
 /**
  * \class	attribute
- * \brief	An attribute is a component for entities. It is derived into other 
- * 			inherited classes that do specialized things (like graphic
- * 			rendering, control management, etc...). It was made to be added do
- * 			a parent entity to characterize it
+ * \brief	Class designed to be attached to entities in order to characterize 
+ * 			them and give them particular behaviours
  *
  * An attribute is an element that we add to an entity. There are some and they 
  * all have a particular purpose. Some of their behaviours rely on other 
@@ -26,8 +24,8 @@ class scene;
  * sprite, etc... So that an entity with the attribute **control** can be 
  * considered as the "hero" of the scene because it is controlled by the player.
  *
- * ### Guide
- * #### Use an attribute
+ * # Guide
+ * ## Use an attribute
  * > In this guide, we will use the given entity `en`.
  * To use an attribute, you must know to what entity you want to attach it. Once
  * you have an entity, you must proceed in two steps:
@@ -47,7 +45,7 @@ class scene;
  * > Go to [wiki](https://github.com/7pri2/shmupgine/wiki/class_attribute) for 
  * > further informations
  *
- * #### Create an attribute
+ * ## Create an attribute
  * In order to create your own attribute, you must create a class that inherits 
  * from the classe **attribute**. It must implement the constructor that takes 
  * the *parent entity* to be attached to as parameter.
@@ -56,13 +54,13 @@ class scene;
  * - run
  * - make_copy
  *
- * ##### run
- * The main method of an attribute (see after for further documentation). It is 
- * private because it is meant to be called by the parent entity. You do all the
- * behaviour your attribute here. Keep in mind that any blocking behaviour in 
+ * ### run
+ * The main method of an attribute (_see after for further documentation_). It 
+ * is private because it is meant to be called by the parent entity. You do all 
+ * thebehaviour your attribute here. Keep in mind that any blocking behaviour in
  * there will cause the entire game to wait for the end of this function.
  *
- * ##### make_copy
+ * ### make_copy
  * This method is useful for making copies and is mainly used in the attribute 
  * **spawner**.
  *

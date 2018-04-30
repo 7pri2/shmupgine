@@ -1,3 +1,9 @@
+/**
+ * \file	scene.h
+ * \brief	
+ * \author	Cyprien Eymond Laritaz
+ */
+
 #ifndef __SCENE_H__
 #define __SCENE_H__
 
@@ -10,7 +16,10 @@
 class entity;
 class destructor;
 
+/// The type **group** is a list of entities
 typedef std::list<entity*> 		group;
+
+/// The type **script** is a function of type void()
 typedef std::function<void()>	script;
 
 /* L'utilisation normale de la scene est la suivante:
@@ -18,6 +27,16 @@ typedef std::function<void()>	script;
  * 2/ Elles sont ajoutées à la scène en question grâce à add_entity
  * 3/ La scène est lancée grâce à la méthode run()	*/
 
+/**
+ * \class	scene
+ * \brief	One of the main components of the game, contains entities and is 
+ * 			played once at a time. A scene typicaly is a level in a game
+ *
+ * To make the game, you must create its entities, with their attributes (_see 
+ * their specific documentation_) and then add them to a scene. Once all the 
+ * entities and scripts are added to the scene, simply run it with the method 
+ * `run()`
+ */
 class scene {
 	friend class destructor;
 public:
@@ -26,6 +45,9 @@ public:
 
 /* La fonction run permet de lancer la scene; c'est elle qui gère ensuite
  * toutes les entités et les évenements qui s'y déroulent. */
+	/**
+	 * \brief	Runs the scene; starts the game loop for this scene, 
+	 */
 	void run();
 	void terminate();
 

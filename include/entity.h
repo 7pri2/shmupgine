@@ -20,14 +20,18 @@ typedef std::list<attribute*> attr_table;
 
 /**
  * \class	entity
- * \brief	An entity is the smallest part of a scene. It is basically composed 
- * 			of a position from the window and a list of its attached attributes.
- * 			These attributes define what the entity is, for example, a bullet is
- * 			a sprite which translates towards a direction an is able to explode,
- * 			so it is not more than an entity equiped with the attributes physics
- * 			(for the movement), graphicrenderer (for the graphical rendering), 
- * 			and destructor (for the ability to explode). The combination of some
- * 			attributes brings life to the parent entity as explained previously
+ * \brief	The smallest part of a scene and the class that fills the great 
+ * 			majority of most of scenes. It is designed to have attributes 
+ * 			attached to it so that it gains abilities and becomes a part of the 
+ * 			game
+ *
+ * An entity is basically composed of a position from the window and a list of 
+ * its attached attributes. These attributes define what the entity is, for 
+ * example, a bullet is a sprite which translates towards a direction an is 
+ * able to explode, so it is not more than an entity equiped with the 
+ * attributes physics (for the movement), graphicrenderer (for the graphical 
+ * rendering), and destructor (for the ability to explode). The combination of 
+ * some attributes brings life to the parent entity as explained previously
  *
  * To use an entity properly, you need to proceed in 3 steps. First, attach the 
  * attributes you need, typically a graphicrenderer, but you can add any number
@@ -37,8 +41,8 @@ typedef std::list<attribute*> attr_table;
  * pointer on the attribute you request so you can read the documentation of the
  * concerned attribute to personnalize it. Keep in mind that an entity can have
  * one attribute of the same type at the time. Finally, you can add this entity 
- * to a scene (see documentation for class scene for further details). Note that
- * you can add it to a scene before dealing with its attributes, but it is 
+ * to a scene (_see documentation for class scene for further details_). Note 
+ * that you can add it to a scene before dealing with its attributes, but it is 
  * advised to add it just before running the scene for better readability
  */
 class entity {

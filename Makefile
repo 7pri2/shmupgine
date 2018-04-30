@@ -10,6 +10,7 @@ TESTS=tests/
 CXX=g++
 CXXFLAGS=-Wall -Werror -Wextra -std=c++11 -pedantic-errors -I$(HEADERS)
 LDFLAGS=-L$(LIB) -lshmupgine -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+CUTEST=$(TESTS)CuTest/
 GCOVFLAGS=-fprofile-arcs -ftest-coverage -pg
 DEBUG=-g
 BROWSER=firefox
@@ -34,11 +35,15 @@ LIBS=$(patsubst %,$(LIB)%,$(LIBFILES))
 
 all: executables libs
 
+tests: CXXFLAGS+=-I$(CUTEST)
 tests: $(patsubst %.cpp,%,$(wildcard $(TESTS)test_*))
 
 documentation: doxy-convert.conf
 	doxygen $<
-	#$(BROWSER) `pwd`/doc/doxygen/html/index.html &
+	make -C doc/doxygen/latex/ 
+
+show_documentation: documentation
+	$(BROWSER) `pwd`/doc/doxygen/html/index.html &
 
 debug: CXXFLAGS+=$(DEBUG) -DDEBUG $(GCOVFLAGS)
 debug: all tests
@@ -52,10 +57,11 @@ coverage: $(EXECUTABLES) $(wildcard $(SRC)*)
 	genhtml $(LCOV)rapport.info --output-directory $(LCOV)
 	$(BROWSER) `pwd`/$(LCOV)index.html
 
-$(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
+$(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a 
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
-$(TESTS)%: $(TESTS)%.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
+$(TESTS)%: $(TESTS)%.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a 
+$(TESTS)%: $(CUTEST)CuTest.h $(CUTEST)CuTest.c
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 $(LIB)libshmupgine.a: $(OBJS)

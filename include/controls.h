@@ -11,7 +11,7 @@
 
 /**
  * \class	controls
- * \brief	This attribute manages user input and allow its parent entity to 
+ * \brief	This attribute manages user input and allows its parent entity to 
  * move and to trigger the spawner attribute if the parent entity has one
  */
 
