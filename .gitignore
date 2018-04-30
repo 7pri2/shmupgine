@@ -47,3 +47,6 @@ lcov/*
 
 # doxygen
 doc/doxygen
+
+# notes
+*.wip
