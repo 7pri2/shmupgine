@@ -11,12 +11,6 @@
 #include <map>
 #include "singleton.h"
 
-/// Defines the default bullet size for the project
-#define DEF_BULLET_SIZE	16
-
-/// Defines the default bullet's sprite path
-#define BULLETPATH    	"res/bullet.png"
-
 class graphicrenderer;
 
 /**
@@ -33,6 +27,7 @@ class graphicrenderer;
 class gmanager : public singleton<gmanager> {
 	friend class singleton<gmanager>;
 	friend class graphicrenderer;
+	friend class test_gmanager;
 public:
 	/**
 	 * \brief Adds a new texture to the project
@@ -51,9 +46,6 @@ private:
 
 	/// Map of textures which allows access to textures through strings
 	std::map<std::string, sf::Texture*>	m_textures;
-
-	/// Default texture for bullets
-	sf::Texture*						m_tex_bullet;
 };
 
 #endif
