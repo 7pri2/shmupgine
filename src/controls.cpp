@@ -14,13 +14,13 @@ controls::~controls() {
 
 void controls::run() {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		parent->move(-0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds(), 0);
+		parent->move(shmupgine::clock.getElapsedTime().asMicroseconds() * -0.000001f * move_speed, 0);
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		parent->move(0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds(), 0);
+		parent->move(0.000001f * move_speed * shmupgine::clock.getElapsedTime().asMicroseconds(), 0);
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		parent->move(0, -0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds());
+		parent->move(0, -0.000001f * move_speed * shmupgine::clock.getElapsedTime().asMicroseconds());
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		parent->move(0, 0.001f * move_speed * shmupgine::clock.getElapsedTime().asMilliseconds());
+		parent->move(0, 0.000001f * move_speed * shmupgine::clock.getElapsedTime().asMicroseconds());
 	} if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		if(parent->get_attribute<spawner>() != NULL) {
 			//parent->get_attribute<spawner>()->spawn("bullet");
