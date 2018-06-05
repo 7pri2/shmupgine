@@ -3,11 +3,13 @@
 #include "entity.h"
 
 physics::physics(entity* parent) : attribute(parent) {
+    m_clock.restart();
 	m_force_angle = 0;
 	m_velocity = 0;
 }
 
 physics::physics(entity* parent, int angle, float velocity) : attribute(parent) {
+    m_clock.restart();
 	m_force_angle = angle;
 	m_velocity = velocity;
 }
@@ -17,7 +19,8 @@ physics::~physics() {
 }
 
 void physics::run() {
-	parent->move(0.001f * force(m_force_angle) * m_velocity * (float)shmupgine::clock.getElapsedTime().asMilliseconds());
+	parent->move(0.001f * force(m_force_angle) * m_velocity * (float)m_clock.getElapsedTime().asMilliseconds());
+    m_clock.restart();
 }
 
 void physics::set_force_angle(int angle) {
@@ -29,6 +32,7 @@ void physics::set_velocity(float velocity) {
 }
 
 physics* physics::make_copy(entity* newparent) {
+    m_clock.restart();
 	physics* ptr = new physics(*this);
 	ptr->parent = newparent;
 	return ptr;

@@ -74,10 +74,13 @@ private:
 	virtual physics*	make_copy(entity* newparent);
 
 	/// The force angle in degrees
-	int		m_force_angle;
+	int		    m_force_angle;
 
 	/// The velocity in pixels per second
-	float	m_velocity;
+	float	    m_velocity;
+
+    /// Internal clock used to calculate the movement
+    sf::Clock   m_clock;
 };
 
 #endif

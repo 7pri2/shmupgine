@@ -7,6 +7,7 @@
 #ifndef __controls_H__
 #define __controls_H__	
 
+#include <SFML/Graphics.hpp>
 #include "attribute.h"
 
 /**
@@ -35,6 +36,7 @@ public:
 private:
 	virtual void 		run();
 	virtual	controls*	make_copy(entity* newparent);
+    sf::Clock           m_clock;
 };
 
 #endif
