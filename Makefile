@@ -40,7 +40,6 @@ tests: $(patsubst %.cpp,%,$(wildcard $(TESTS)test_*))
 
 documentation: doxy-convert.conf
 	doxygen $<
-	make -C doc/doxygen/latex/ 
 
 show_documentation: documentation
 	$(BROWSER) `pwd`/doc/doxygen/html/index.html &
@@ -61,7 +60,6 @@ $(TESTS)demo: $(TESTS)demo.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 $(TESTS)%: $(TESTS)%.cpp $(HEADERS)shmupgine.h $(LIB)libshmupgine.a 
-$(TESTS)%: $(CUTEST)CuTest.h $(CUTEST)CuTest.c
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
 
 $(LIB)libshmupgine.a: $(OBJS)

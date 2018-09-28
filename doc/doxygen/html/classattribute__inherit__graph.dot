@@ -1,0 +1,19 @@
+digraph "attribute"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="attribute",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="controls",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classcontrols.html",tooltip="This attribute manages user input and allows its parent entity to move and to trigger the spawner att..."];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="destructor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classdestructor.html",tooltip="This attribute is used to destruct entities in the scene. If it is attached to an entity..."];
+  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="graphicrenderer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgraphicrenderer.html",tooltip="Attribute used to let the entities have a sprite and collisions. "];
+  Node0 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="movement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmovement.html"];
+  Node0 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="physics",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classphysics.html",tooltip="Attribute that allows the parent entity to have a uniform rectilinear motion by tweaking the angle of..."];
+  Node0 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="spawner",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspawner.html"];
+}

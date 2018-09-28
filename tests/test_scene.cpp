@@ -1,5 +1,5 @@
+#include <assert.h>
 #include "shmupgine.h"
-#include "CuTest.h"
 
 int main() {
 	shmupgine::init();

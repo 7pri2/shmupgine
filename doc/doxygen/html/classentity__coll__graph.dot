@@ -1,0 +1,9 @@
+digraph "entity"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="entity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" parent" ,fontname="Helvetica"];
+  Node3 [label="scene",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classscene.html",tooltip="One of the main components of the game, contains entities and is played once at a time..."];
+}

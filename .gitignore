@@ -45,8 +45,5 @@ lcov/*
 *.gcno
 *.gcda
 
-# doxygen
-doc/doxygen
-
 # notes
 *.wip

@@ -1,0 +1,17 @@
+digraph "include/singleton.h"
+{
+ // INTERACTIVE_SVG=YES
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="include/singleton.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="include/gmanager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gmanager_8h.html",tooltip="Defines the class `gmanager&#39; which manages all the graphical ressources for the project. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="include/graphicrenderer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$graphicrenderer_8h.html",tooltip="Contains the definition of the attribute graphicrenderer which allows the entity to have a sprite..."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="include/shmupgine.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$shmupgine_8h_source.html"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="include/soundmanager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$soundmanager_8h_source.html"];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}
